@@ -12,7 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require rails-ujs
+
+// Add from BootStrap 4 Docs
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets
+
 //= require turbolinks
 //= require_tree .
-
