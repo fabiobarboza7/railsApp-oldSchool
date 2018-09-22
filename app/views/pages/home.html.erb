@@ -9,9 +9,13 @@
       <div class="col-sm-6">
         <div>
           <%= image_tag "carrinho.png", class: 'img-fluid' %>
+          <% @courses.each do |course| %>
+            <%= cl_image_tag(course.photo) %>
+          <% end %>
         </div>
       </div>
       </div>
+      <%= render 'form', course: @course %>
     </div>
   </div>
 </header>
