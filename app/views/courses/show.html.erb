@@ -1,14 +1,21 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12 mt-5">
-      <%= cl_image_tag(@course.photo, :width => 200, :height => 100) %>
-      <p><%= @course.title %></p>
-      <p><%= @course.content %></p>
-      <p><%= @course.duration %></p>
-      <p><%= @course.price %></p>
+<header class="banner-moodev">
+  <div class="container">
+    <div class="row course-card my-5 bg-darkblue">
+      <div class="col-12 col-sm-10 offset-sm-1 d-sm-flex justify-content-between align-items-center py-4">
+        <%= cl_image_tag(@course.photo, :width => 300, class: 'img-fluid img-thumbnail mx-auto d-block') %>
+        <h3 class="flex-grow-1 text-center mt-sm-0 mt-2 text-white"><%= @course.title %></h3>
+      </div>
+      <div class="horizontal-line"></div>
+      <div class="col-sm-12 bg-grey">
+        <div class="col-12 col-sm-10 offset-sm-1 mt-5 text-darkblue">
+          <p class="course-txt-header">DESCRIÇÃO DO CURSO</p>
+          <p class="pl-4"><%= @course.content %></p>
+          <p class="course-txt-header">DURAÇÃO</p>
+          <p class="pl-4"><%= @course.duration %></p>
+          <p class="course-txt-header">INVESTIMENTO</p>
+          <p class="pl-4">R$<%= @course.price %>,00</p>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-<script>
-  alert('Página em Desenvolvimento!!!');
-</script>
+</header>

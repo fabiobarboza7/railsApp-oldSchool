@@ -11,3 +11,25 @@
   padding: 2rem;
   border-radius: 8px;
 }
+
+.horizontal-line {
+  display:block;
+  width:100%;
+  border-top: 3px solid $yellow;
+}
+
+.course-txt-header {
+  font-size: 1.25rem;
+  font-family: $my-font;
+  color: white;
+  font-weight: bold;
+  text-shadow: -1px 0 $blue, 0 1px $darkblue, 1px 0 $darkblue, 0 -1px black;
+}
+
+.bg-darkblue {
+  background-color: $darkblue;
+}
+
+.text-darkblue {
+  color: $darkblue;
+}
