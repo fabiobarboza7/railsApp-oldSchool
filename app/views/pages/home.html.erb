@@ -84,14 +84,81 @@
   </div>
 </section>
 <section>
-  <div class="container-fluid bg-grey">
+  <div class="container-fluid bg-white">
     <div class="row p-0 p-sm-4">
+      <div class="col-sm-12 text-center mb-5 mt-4 px-0 px-sm-5">
+        <h4>DEPOIMENTOS</h4>
+      </div>
+      <div class="col-sm-12 mb-5 feedback-heigth d-flex justify-content-center align-items-center">
+        <!-- Carousel -->
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner text-center px-5">
+            <div class="carousel-item active">
+              <blockquote>
+                <i class="fas fa-quote-right"></i><i>
+                Meu filho está amando. Profissionais muito capazes e um ótimo ambiente
+                </i>
+                <br>
+                <small>Tauana Maurell - Mãe</small>
+                <br>
+                <% 5.times do %>
+                  <%= @star %>
+                <% end %>
+              </blockquote>
+            </div>
+            <div class="carousel-item">
+              <blockquote>
+                <i class="fas fa-quote-right"></i><i>
+                Curso Excelente! Preparando nossas crianças para o futuro, sem perder a magia da infância!! Meu filho está amando.
+                </i>
+                <br>
+                <small>Marcella Bilhalva - Mãe</small>
+                <br>
+                <% 5.times do %>
+                  <%= @star %>
+                <% end %>
+              </blockquote>
+            </div>
+            <div class="carousel-item">
+              <blockquote>
+                <i class="fas fa-quote-right"></i><i>
+                Sou aluno do curso de Desenvolvimento Web para adultos, estou muito satisfeito e impressionado com o resultado obtido em poucas aulas, o professor tem uma excelente didática, desde a primeira aula já pude criar um site, e a cada aula os projetos "Sites", vão se aprofundando de forma gradual, desta forma facilitando o aprendizado.
+                </i>
+                <br>
+                <small>Joezer Smaniotto - Aluno</small>
+                <br>
+                <% 5.times do %>
+                  <%= @star %>
+                <% end %>
+              </blockquote>
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+        <!-- end -->
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="container-fluid bg-grey mb-5">
+    <div class="row p-0 p-sm-4">
+      <div class="col-sm-12 text-center mb-5 mt-4 px-0 px-sm-5">
+        <h4>CURSOS</h4>
+      </div>
       <div class="col-sm-12 ">
         <% @courses.in_groups_of(3, false).each do |group| %>
           <div class="row text-center">
             <% group.each do |course| %>
               <div class="col-sm-4 mb-5 mt-4 px-0 px-sm-5">
-                <div class="course-card">
+                <div class="course-card mb-5">
                   <img style="background: url(<%= course.photo %>);width:100%;height: 100px;background-size: cover;background-repeat: no-repeat; background-position: 50% 50%;")>
                   <p class="my-2"><%= course.title %></p>
                   <p class="my-2"><%= course.duration %></p>
@@ -101,7 +168,6 @@
             <% end %>
           </div>
         <% end %>
-
       </div>
     </div>
   </div>
