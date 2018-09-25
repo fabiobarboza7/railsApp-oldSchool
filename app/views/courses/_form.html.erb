@@ -1,0 +1,13 @@
+<%= simple_form_for @course, html: { class: "form-container"} do |f| %>
+  <%= f.input :title, label: 'Curso', placeholder: 'Digite o título' %>
+  <%= f.input :content, label: 'Descrição', placeholder: 'Digite a descrição' %>
+  <%= f.input :duration, label: 'Duração', placeholder: 'Digite a duração' %>
+  <%= f.input :price, label: 'Preço', placeholder: 'Digite o preço'  %>
+  <label class="btn btn-warning mb-0">
+    <i class="fas fa-image"></i>
+    <span style="display: none;">
+      <%= f.input :photo %>
+    </span>
+  </label>
+  <%= f.submit 'Criar Curso', class: 'btn btn-info' %>
+<% end %>

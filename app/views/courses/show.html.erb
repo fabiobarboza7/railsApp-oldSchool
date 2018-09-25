@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 mt-5">
+      <%= cl_image_tag(@course.photo, :width => 200, :height => 100) %>
+      <p><%= @course.title %></p>
+      <p><%= @course.content %></p>
+      <p><%= @course.duration %></p>
+      <p><%= @course.price %></p>
+    </div>
+  </div>
+</div>
