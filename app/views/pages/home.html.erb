@@ -7,14 +7,79 @@
         </div>
       </div>
       <div class="col-sm-6">
-        <div>
-          <%= image_tag "carrinho.png", class: 'img-fluid' %>
-          <% @courses.each do |course| %>
-            <%= cl_image_tag(course.photo) %>
-          <% end %>
-        </div>
-      </div>
+        <%= image_tag "carrinho.png", class: 'img-fluid banner-image' %>
       </div>
     </div>
   </div>
 </header>
+<section>
+  <div class="container-fluid bg-yellow">
+    <div class="row p-0 p-sm-4">
+      <div class="col-sm-12 text-center mb-5 mt-4 px-0 px-sm-5">
+        <h5>OS BENEFÍCIOS DE APRENDER CIÊNCIA DA COMPUTAÇÃO DESDE A INFÂNCIA</h5>
+      </div>
+      <div class="col-sm-4 px-sm-5 py-4 py-sm-0">
+        <div class="benefits-rounded">
+          <div>
+            <%= image_tag('raciocinioLogico.png', class: 'benefits-img mx-auto d-block') %>
+          </div>
+          <div class="benefits-box">
+            <p class="text-center">Raciocínio Lógico</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 px-sm-5 py-4 py-sm-0">
+        <div class="benefits-rounded">
+          <div>
+            <%= image_tag('focoConcentracao.png', class: 'benefits-img mx-auto d-block') %>
+          </div>
+          <div class="benefits-box">
+            <p class="text-center">Foco e Concentração</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 px-sm-5 py-4 py-sm-0">
+        <div class="benefits-rounded">
+          <div>
+            <%= image_tag('pensamentoComputacional.png', class: 'benefits-img mx-auto d-block') %>
+          </div>
+          <div class="benefits-box">
+            <p class="text-center">Pensamento Computacional e Sistêmico</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row p-0 p-sm-4">
+      <div class="col-sm-4 px-sm-5 py-4 py-sm-0">
+        <div class="benefits-rounded">
+          <div>
+            <%= image_tag('trabalhoEmEquipe.png', class: 'benefits-img mx-auto d-block') %>
+          </div>
+          <div class="benefits-box">
+            <p class="text-center">Cooperação e Trabalho em Equipe</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 px-sm-5 py-4 py-sm-0">
+        <div class="benefits-rounded">
+          <div>
+            <%= image_tag('criatividade.png', class: 'benefits-img mx-auto d-block') %>
+          </div>
+          <div class="benefits-box">
+            <p class="text-center">Criatividade e Empreendedorismo</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 px-sm-5 py-4 py-sm-0">
+        <div class="benefits-rounded">
+          <div>
+            <%= image_tag('inglesFisicaMatematica.png', class: 'benefits-img mx-auto d-block') %>
+          </div>
+          <div class="benefits-box">
+            <p class="text-center">Inglês, Física, Matemática, redação</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
