@@ -72,22 +72,6 @@ blockquote {
   border-radius: 0 250px 200px 0;
 }
 
-.course-card {
-  background-color: white;
-  border-radius: 15px;
-  box-shadow: 7px 10px 20px 0 rgba(46,61,73,0.15);
-  overflow: hidden;
-}
-
-.bg-grey {
-  background-color: #EFF2F4;
-}
-
-.course-card > p {
-  // margin-top: 0;
-  color: #4b5b68;
-}
-
 .fa-quote-right {
   color: $yellow;
   transform: scaleX(-1);

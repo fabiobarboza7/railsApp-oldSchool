@@ -1,0 +1,19 @@
+<header class="banner-moodev d-flex justify-content-center align-items-center my-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 offset-sm-3">
+        <h3 class="text-center">Formulário para agendar uma <span class="text-yellow">aula</span> experimental <span class="text-yellow">gratuita</span></h3>
+        <%= simple_form_for @test_class, html: { class: "form-container"} do |f| %>
+          <%= f.input :student, label: "Nome do Aluno", placeholder: "Digite o nome do aluno" %>
+          <%= f.input :age, label: "Idade", as: :integer, placeholder: "Digite a idade do aluno" %>
+          <%#= f.input :age, label: "Data de Nascimento", as: :date, :order => [ :day, :month, :year], placeholder: "Digite" %>
+          <%= f.input :parent, label: "Nome do Responsável", placeholder: "Digite o nome do responsável" %>
+          <%= f.input :email, label: "E-mail", placeholder: "Digite seu e-mail" %>
+          <%= f.input :phone, label: "Telefone", placeholder: "Digite se telefone" %>
+          <%= f.input :schedule, label: "Data", collection: TestClass::SCHEDULE_DAYS, :prompt => "Selecione um dia" %>
+          <%= f.submit "Solicitar Aula", class: 'btn bg-yellow' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</header>

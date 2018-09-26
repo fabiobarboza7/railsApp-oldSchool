@@ -17,10 +17,13 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
-
+//= require jquery.inputmask
+//= require jquery.inputmask.extensions
+//= require jquery.inputmask.numeric.extensions
+//= require jquery.inputmask.date.extensions
 //= require turbolinks
 //= require_tree .
 
 $(function(){
-
+  $('input[type="tel"]').inputmask("(99) 9 99999999");  //static mask
 });
