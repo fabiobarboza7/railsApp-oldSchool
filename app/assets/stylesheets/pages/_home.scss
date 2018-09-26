@@ -101,5 +101,12 @@ blockquote {
   color: white;
   background-color: $pink;
 }
+
+@media (max-width: 576px) {
+  .btn-xs-block {
+    width: 100%;
+    display: block;
+  }
+}
 // MooDev Pallete
 // https://coolors.co/373f51-ecb5d3-ffde17-008dd5-ffffff
