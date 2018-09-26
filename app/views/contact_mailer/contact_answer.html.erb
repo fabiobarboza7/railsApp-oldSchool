@@ -1,0 +1,10 @@
+<h1>Contato feito de <%= @user.name %></h1>
+<h3>Contato criado em: <%= @user.created_at.strftime("%d/%m/%Y - %H:%M") %></h3>
+
+<p>Dados do contato:</p>
+<ul>
+  <li>Nome: <%= @user.name %></li>
+  <li>Email: <%= @user.email %></li>
+  <li>Telefone: <%= @user.phone %></li>
+  <li>Mensagem: <%= @user.message %></li>
+</ul>

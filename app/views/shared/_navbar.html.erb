@@ -1,7 +1,9 @@
 <div class="container-fluid navbar-moodev">
   <div class="row p-3">
     <div class="col-sm-12 d-flex justify-content-between align-items-center">
-      <%= image_tag "http://res.cloudinary.com/fabiobarboza7/image/upload/moodev-weblogo-pelotas.png", class: 'logo' %>
+      <%= link_to root_path do %>
+        <%= image_tag "http://res.cloudinary.com/fabiobarboza7/image/upload/moodev-weblogo-pelotas.png", class: 'logo' %>
+      <% end %>
       <nav class="nav-a mx-2 d-none d-sm-block">
         <%= link_to "Home", root_path, class: "px-2"%>
         <%= link_to "Blog", "#", class: "px-2"%>
