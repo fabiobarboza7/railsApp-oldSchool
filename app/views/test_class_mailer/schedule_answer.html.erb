@@ -1,0 +1,12 @@
+<h1>Aula Teste de <%= @user.parent %></h1>
+<h3>Contato criado em: <%= @user.created_at.strftime("%d/%m/%Y - %H:%M") %></h3>
+
+<p>Dados do contato:</p>
+<ul>
+  <li>Aluno: <%= @user.student %></li>
+  <li>idade: <%= @user.age %></li>
+  <li>Email: <%= @user.email %></li>
+  <li>Responsável: <%= @user.parent %></li>
+  <li>Telefone: <%= @user.phone %></li>
+  <li>Dia: <%= @user.schedule %></li>
+</ul>

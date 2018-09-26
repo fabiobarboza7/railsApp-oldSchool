@@ -15,7 +15,7 @@
 .horizontal-line {
   display:block;
   width:100%;
-  border-top: 3px solid $yellow;
+  border-top: 1px solid $yellow;
 }
 
 .course-txt-header {
@@ -56,3 +56,22 @@
 .text-darkblue {
   color: $darkblue;
 }
+
+.p-link {
+  transition: ease 1s;
+}
+
+.p-link:hover {
+  a{
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  background-color: $yellow;
+}
+
+
+
+
+
+

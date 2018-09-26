@@ -10,4 +10,11 @@ class TestClassMailer < ApplicationMailer
     mail(to: @user.email, subject: "#{@user.parent}, aula agendada com sucesso!")
     # This will render a view in `app/views/test_class_mailer!
   end
+
+  def schedule_answer(user)
+    @user = user  # Instance variable => available in view
+    mail(to: "pelotas@moodev.com.br", subject: "Aula Teste #{user.parent}")
+    # This will render a view in `app/views/test_class_mailer!
+  end
+
 end

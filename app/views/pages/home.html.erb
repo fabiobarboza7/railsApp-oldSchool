@@ -3,7 +3,7 @@
     <div class="row d-flex justify-content-center align-items-center flex-column-reverse flex-sm-row">
       <div class="col-sm-6 text-center mt-2 mt-sm-0">
         <div>
-          <button class="btn btn-outline-danger btn-lg">Por que na MooDev?</button>
+          <a href="#benefits" class="btn btn-outline-danger btn-lg">Por que na MooDev?</a>
         </div>
       </div>
       <div class="col-sm-6">
@@ -12,7 +12,7 @@
     </div>
   </div>
 </header>
-<section>
+<section id="benefits">
   <div class="container-fluid bg-yellow">
     <div class="row p-0 p-sm-4">
       <div class="col-sm-12 text-center mb-5 mt-4 px-0 px-sm-5">
@@ -135,11 +135,11 @@
           </div>
           <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
+            <span class="sr-only">Anterior</span>
           </a>
           <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
+            <span class="sr-only">Próximo</span>
           </a>
         </div>
         <!-- end -->
@@ -147,7 +147,7 @@
     </div>
   </div>
 </section>
-<section>
+<section id="courses">
   <div class="container-fluid bg-grey">
     <div class="row p-0 p-sm-4">
       <div class="col-sm-12 text-center mb-5 mt-4 px-0 px-sm-5">
@@ -159,14 +159,37 @@
             <% group.each do |course| %>
               <div class="col-sm-4 mb-5 mt-4 px-0 px-sm-5">
                 <div class="course-card mb-5">
-                  <img style="background: url(<%= course.photo %>);width:100%;height: 100px;background-size: cover;background-repeat: no-repeat; background-position: 50% 50%;")>
+                  <img style="background: url(<%= course.photo %>);width:100%;height: 200px;background-size: cover;background-repeat: no-repeat; background-position: 50% 50%;")>
                   <p class="my-2"><%= course.title %></p>
                   <p class="my-2"><%= course.duration %></p>
-                  <p class="my-2"><%= link_to 'Saiba mais', course_path(course) %></p>
+                  <div class="horizontal-line"></div>
+                  <p class="mb-0 p-2 p-link"><%= link_to 'SAIBA MAIS', course_path(course), class: 'text-blue' %></p>
                 </div>
               </div>
             <% end %>
           </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="contact">
+  <div class="container-fluid bg-white">
+    <div class="row p-0 p-sm-4">
+      <div class="col-sm-12 text-center mb-5 mt-4 px-0 px-sm-5">
+        <h4>Dúvidas? Fale conosco!</h4>
+      </div>
+      <div class="col-sm-6 px-0 px-sm-2">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3392.295655075927!2d-52.344211985157976!3d-31.76242118129023!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9511b5a058edbe45%3A0x9f664b13c299f0f5!2sMooDev+-+Escola+de+Ci%C3%AAncia+da+Computa%C3%A7%C3%A3o+e+Rob%C3%B3tica+para+Crian%C3%A7as+e+Adolescentes!5e0!3m2!1spt-BR!2sbr!4v1537936883023" width="100%" height="470" frameborder="0" style="border:0;" allowfullscreen>
+        </iframe>
+      </div>
+      <div class="col-sm-6 px-0 px-sm-2 mb-3">
+        <%= simple_form_for @contact, html: { class: "form-container no-borders"} do |f| %>
+          <%= f.input :name, label: "Nome", placeholder: "Digite o seu nome" %>
+          <%= f.input :email, label: "E-mail", placeholder: "Digite seu e-mail" %>
+          <%= f.input :phone, label: "Telefone", placeholder: "Digite se telefone" %>
+          <%= f.input :message, as: :text, label: "Mensagem", placeholder: "Digite sua mensagem" %>
+          <%= f.submit "Enviar", class: 'btn btn-pink' %>
         <% end %>
       </div>
     </div>

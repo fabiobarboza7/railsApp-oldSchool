@@ -9,6 +9,7 @@ class TestClass < ApplicationRecord
 
   def send_welcome_email
     TestClassMailer.schedule(self).deliver_now
+    TestClassMailer.schedule_answer(self).deliver_now
   end
 
 end

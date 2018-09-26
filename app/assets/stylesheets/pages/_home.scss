@@ -81,5 +81,20 @@ blockquote {
   right: 5px;
 }
 
+.no-borders {
+  border-radius: 0 !important;
+}
+
+@media (max-width: 576px) {
+  .form-container {
+    border-radius: 0 !important;
+  }
+}
+
+.btn-pink {
+  font-weight: bold;
+  color: white;
+  background-color: $pink;
+}
 // MooDev Pallete
 // https://coolors.co/373f51-ecb5d3-ffde17-008dd5-ffffff

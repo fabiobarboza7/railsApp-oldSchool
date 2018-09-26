@@ -10,7 +10,7 @@ class TestClassesController < ApplicationController
   end
 
   def create
-    @test_class = TestClass.new(course_params)
+    @test_class = TestClass.new(test_class_params)
     if @test_class.save
       redirect_to root_path
     else
@@ -20,7 +20,7 @@ class TestClassesController < ApplicationController
 
   def update
     # before_action
-    @test_class.update(course_params)
+    @test_class.update(test_class_params)
     redirect_to root_path
   end
 
@@ -37,7 +37,7 @@ class TestClassesController < ApplicationController
     @test_class = TestClassfind(params[:id])
   end
 
-  def course_params
+  def test_class_params
     params.require(:test_class).permit(:student, :age, :parent, :email, :phone, :schedule)
   end
 end
