@@ -10,6 +10,8 @@ end
 gem 'rails', '~> 5.0.5'
 # Devise
 gem 'devise'
+# DropZoneJs
+gem 'dropzonejs-rails'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 gem 'jquery-inputmask-rails'

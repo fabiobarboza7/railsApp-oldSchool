@@ -1,0 +1,13 @@
+<header>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <% @blogs.each do |blog| %>
+          <%= blog.title %>
+          <%= blog.content %>
+          <%= cl_image_tag(blog.photo) %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</header>
