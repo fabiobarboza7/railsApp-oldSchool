@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= yield(:title_tag).blank? ? "MooDev - Computação e Robóticas" : yield(:title_tag) %></title>
+    <title><%= yield(:title_tag).blank? ? "MooDev - Ciência da Computação e Robótica" : yield(:title_tag) %></title>
     <%= favicon_link_tag 'logo-rounded.png' %>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,8 +16,10 @@
   <body>
     <div class="content">
       <%= render 'shared/navbar' %>
+      <%= render 'shared/flashes' %>
       <%= yield %>
     </div>
     <%= render'shared/footer' %>
+    <script src="https://cdn.jsdelivr.net/gh/jquery-form/form@4.2.2/dist/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i" crossorigin="anonymous"></script>
   </body>
 </html>

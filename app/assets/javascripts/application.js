@@ -21,9 +21,40 @@
 //= require jquery.inputmask.extensions
 //= require jquery.inputmask.numeric.extensions
 //= require jquery.inputmask.date.extensions
+//= require dropzone
 //= require turbolinks
 //= require_tree .
 
 $(function(){
+
   $('input[type="tel"]').inputmask("(99) 9 99999999");  //static mask
+
+  // start progressbar
+  var bar = $('.progress-bar');
+  var percent = $('.percent');
+  var status = $('#status');
+  var answer;
+
+  $('form').ajaxForm({
+    beforeSend: function() {
+      status.empty();
+      var percentVal = '0%';
+      bar.width(percentVal);
+      bar.html(percentVal);
+      percent.html(percentVal);
+    },
+    uploadProgress: function(event, position, total, percentComplete) {
+      var percentVal = percentComplete + '%';
+      // bar.html(percentVal);
+      bar.width(percentVal);
+      percent.html(percentVal);
+      answer = percentVal;
+    },
+    complete: function(xhr) {
+      bar.html(answer);
+      status.html(xhr.responseText);
+      $('button').removeAttr('disabled');
+    }
+  });
+  // end progressbar
 });

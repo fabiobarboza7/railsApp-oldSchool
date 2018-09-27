@@ -6,7 +6,7 @@
       <% end %>
       <nav class="nav-a mx-2 d-none d-sm-block">
         <%= link_to "Home", root_path, class: "px-2"%>
-        <%#= link_to "Blog", "#", class: "px-2"%>
+        <%= link_to "Blog", blogs_path, class: "px-2"%>
         <%= link_to "Cursos", "#courses", class: "px-2"%>
         <%#= link_to "Videos", "#videos", class: "px-2"%>
         <%= link_to "Contato", "#contact", class: "px-2"%>
@@ -15,21 +15,21 @@
           <i style="color: #0EC144;" class="fab fa-whatsapp"></i>
         <% end %>
         <%= link_to "Aula Grátis", new_test_class_path, class: "px-2 text-yellow"%>
-        <%= link_to "Acesso do Aluno", "#", class: "px-2"%>
+        <%= link_to "Acesso do Aluno", new_user_session_path, class: "px-2"%>
       </nav>
       <div class="dropdown d-block d-sm-none">
         <i class="fas fa-bars fa-2x" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         </i>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
           <%= link_to "Home", root_path, class: "dropdown-item"%>
-          <%#= link_to "Blog", "#", class: "dropdown-item"%>
+          <%= link_to "Blog", blogs_path, class: "dropdown-item"%>
           <%= link_to "Cursos", "#courses", class: "dropdown-item"%>
           <%#= link_to "Videos", "#videos", class: "dropdown-item"%>
           <%= link_to "Contato", "#contact", class: "dropdown-item"%>
           <%= link_to "Envie um WhatsApp", "https://api.whatsapp.com/send?phone=5553984541340&text=Ol%C3%A1,%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20curso.", class: "px-2", class: "dropdown-item"%>
           <%= link_to "Aula Grátis", new_test_class_path, class: "dropdown-item text-yellow"%>
           <div class="mt-1"></div>
-          <%= link_to "Acesso do Aluno", "#", class: "dropdown-item dropdown-divider-color"%>
+          <%= link_to "Acesso do Aluno", new_user_session_path, class: "dropdown-item dropdown-divider-color"%>
         </div>
       </div>
     </div>
