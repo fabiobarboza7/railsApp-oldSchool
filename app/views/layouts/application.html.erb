@@ -11,15 +11,23 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
   </head>
 
   <body>
-    <div class="content">
-      <%= render 'shared/navbar' %>
-      <%= render 'shared/flashes' %>
+      <% if user_signed_in? %>
+        <%= render 'shared/sidebar' %>
       <%= yield %>
-    </div>
-    <%= render'shared/footer' %>
+      <% else %>
+        <div class="content">
+          <%= render 'shared/navbar' %>
+          <%= render 'shared/flashes' %>
+          <%= yield %>
+          <%= render'shared/footer' %>
+        </div>
+      <% end %>
     <script src="https://cdn.jsdelivr.net/gh/jquery-form/form@4.2.2/dist/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
   </body>
 </html>

@@ -20,4 +20,8 @@ class ApplicationController < ActionController::Base
     @devise_mapping ||= Devise.mappings[:user]
   end
 
+  def after_sign_in_path_for(resource)
+    dashboards_path
+  end
+
 end
