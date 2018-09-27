@@ -15,7 +15,32 @@
           <i style="color: #0EC144;" class="fab fa-whatsapp"></i>
         <% end %>
         <%= link_to "Aula Grátis", new_test_class_path, class: "px-2 text-yellow"%>
-        <%= link_to "Acesso do Aluno", new_user_session_path, class: "px-2"%>
+        <span class="dropdown pl-3">
+          <span class="btn btn-sm btn-outline-dark" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Acesso do Aluno
+          </span>
+          <div class="dropdown-menu dropdown-menu-right" style="min-width: 15rem;">
+            <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "px-4 py-3 form-group"}) do |f| %>
+              <div class="form-inputs">
+                <%= f.input :email,
+                            required: false,
+                            autofocus: true, class: 'form-control' %>
+                <%= f.input :password,
+                            required: false,
+                            input_html: { autocomplete: "current-password" }, class: 'form-control' %>
+                <%= f.input :remember_me, class: 'form-control', as: :boolean if devise_mapping.rememberable? %>
+              </div>
+
+              <div class="form-actions">
+                <% if user_signed_in? %>
+                  <%= render "devise/shared/links" %>
+                <% else %>
+                  <%= f.button :submit, "Login", class: 'btn btn-primary btn-block' %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </span>
       </nav>
       <div class="dropdown d-block d-sm-none">
         <i class="fas fa-bars fa-2x" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
