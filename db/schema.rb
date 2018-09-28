@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180928183950) do
+ActiveRecord::Schema.define(version: 20180928205858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,17 @@ ActiveRecord::Schema.define(version: 20180928183950) do
   create_table "dashboards", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "lessons", force: :cascade do |t|
+    t.string   "title"
+    t.string   "subtitle"
+    t.string   "video"
+    t.string   "file"
+    t.integer  "subject_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subject_id"], name: "index_lessons_on_subject_id", using: :btree
   end
 
   create_table "subjects", force: :cascade do |t|
@@ -87,5 +98,6 @@ ActiveRecord::Schema.define(version: 20180928183950) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "lessons", "subjects"
   add_foreign_key "subjects", "courses"
 end
