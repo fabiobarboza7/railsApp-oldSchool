@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
 
-  resources :courses, except: [:index]
+  get 'subjects/index'
+
+  get 'subjects/show'
+
+  get 'subjects/new'
+
+  get 'subjects/edit'
+
+  resources :courses, except: [:index] do
+    resources :subjects
+  end
   resources :test_classes
   resources :contacts
   resources :blogs

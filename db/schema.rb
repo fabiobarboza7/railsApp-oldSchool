@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180928100421) do
+ActiveRecord::Schema.define(version: 20180928183950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,14 @@ ActiveRecord::Schema.define(version: 20180928100421) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "subjects", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_subjects_on_course_id", using: :btree
+  end
+
   create_table "test_classes", force: :cascade do |t|
     t.string   "student"
     t.string   "age"
@@ -74,8 +82,10 @@ ActiveRecord::Schema.define(version: 20180928100421) do
     t.string   "photo_cache"
     t.datetime "age"
     t.string   "phone"
+    t.boolean  "admin"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "subjects", "courses"
 end
