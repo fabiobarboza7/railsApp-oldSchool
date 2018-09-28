@@ -3,6 +3,7 @@ class TestClassesController < ApplicationController
 
   def new
     @test_class = TestClass.new
+    authorize @test_class
   end
 
   def show

@@ -10,7 +10,7 @@
       </div>
       <span class="dropdown pl-3">
         <span class="btn btn-sm btn-outline-dark" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Acesso do Aluno
+        Meu perfil
         </span>
         <div class="dropdown-menu dropdown-menu-right" style="min-width: 15rem;">
           <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "px-4 py-3 form-group"}) do |f| %>
@@ -21,8 +21,11 @@
               <%= f.input :remember_me, class: 'form-control', label: 'Lembrar senha', as: :boolean if devise_mapping.rememberable? %>
               </div>
             <% else %>
-              <%= current_user.email %>
-              <%= link_to "Dashboard", dashboards_path, class: 'text-yellow' %>
+              <div class="form-inputs">
+                <%= current_user.email %>
+                <%= link_to "Dashboard", dashboards_path, class: 'text-yellow' %>
+                <%= link_to "Editar perfil", edit_user_registration_path(current_user), class: 'text-yellow' %>
+              </div>
             <% end %>
             <div class="form-actions">
               <% if user_signed_in? %>
@@ -36,27 +39,14 @@
         </div>
       </span>
     </nav>
-    <section id="courses">
+    <section>
       <div class="container-fluid bg-grey">
         <div class="row p-0 p-sm-4">
           <div class="col-sm-12 text-center mb-5 mt-4 px-0 px-sm-5">
             <h4>Meus Cursos</h4>
           </div>
-          <div class="col-sm-12 ">
-            <% @courses.in_groups_of(3, false).each do |group| %>
-              <div class="row text-center">
-                <% group.each do |course| %>
-                  <div class="col-sm-4 px-0 px-sm-2">
-                    <div class="course-card mb-5">
-                      <img style="background: url(<%= course.photo %>);width:100%;height: 200px;background-size: cover;background-repeat: no-repeat; background-position: 50% 50%;")>
-                      <p class="my-2"><%= course.title %></p>
-                      <div class="horizontal-line"></div>
-                      <p class="mb-0 p-2 p-link"><%= link_to 'acessar', course_path(course), class: 'text-blue' %></p>
-                    </div>
-                  </div>
-                <% end %>
-              </div>
-            <% end %>
+          <div class="col-sm-12" id="ajax-content">
+            <%= render "form", user: @user %>
           </div>
         </div>
       </div>
