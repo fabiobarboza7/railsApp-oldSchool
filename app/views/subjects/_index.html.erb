@@ -1,19 +1,24 @@
-<div class="row text-center">
+<div class="row">
   <div class="col-sm-12 px-0 px-sm-2">
-    <div class="course-card mb-5">
-
+    <div class="d-flex justify-content-center">
+      <div class="course-card mb-5">
         <% colors = ['background-color: #373F51;','background-color: #ECB5D3;','background-color: #FFDE17;','background-color: #008DD5;'] %>
-        <div class="d-flex justify-content-around align-items-center mt-5">
-          <% @subjects.each do |subject| %>
-              <div class="subjects-box d-flex justify-content-center align-items-center" style="<%= colors[rand(0..3)] %>">
+        <% @subjects.in_groups_of(4, false).each do |group| %>
+          <div class="row text-center ">
+            <% group.each do |subject| %>
+              <div class="col-sm-3">
+                <div class="subjects-box d-flex justify-content-center align-items-center mx-3 my-3" style="<%= colors[rand(0..3)] %>">
                 <p class="text-white mb-0"><%= subject.title %></p>
               </div>
-          <% end %>
-        </div>
-
-      <% if current_user.admin? %>
-        <%= render 'form', subject: @subject, course: @course %>
-      <% end %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+        <% if current_user.admin? %>
+          <%= render 'form', subject: @subject, course: @course %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
+
