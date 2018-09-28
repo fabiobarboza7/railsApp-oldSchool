@@ -10,6 +10,8 @@ end
 gem 'rails', '~> 5.0.5'
 # Devise
 gem 'devise'
+# Authorization
+gem "pundit"
 # DropZoneJs
 gem 'dropzonejs-rails'
 # Use postgresql as the database for Active Record
