@@ -17,6 +17,7 @@ class CoursesController < ApplicationController
 
   def create
     @course = Course.new(course_params)
+    authorize @course
     @course.save
     redirect_to root_path
   end
