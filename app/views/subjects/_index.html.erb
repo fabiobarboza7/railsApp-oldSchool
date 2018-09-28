@@ -1,0 +1,14 @@
+<div class="row text-center">
+  <div class="col-sm-12 px-0 px-sm-2">
+    <div class="course-card mb-5">
+      <ul>
+        <% @subjects.each do |subject| %>
+          <li><%= subject.title %></li>
+        <% end %>
+      </ul>
+      <% if current_user.admin? %>
+        <%= render 'form', subject: @subject, course: @course %>
+      <% end %>
+    </div>
+  </div>
+</div>
