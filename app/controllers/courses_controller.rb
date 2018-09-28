@@ -8,6 +8,11 @@ class CoursesController < ApplicationController
 
   def show
     # before_action
+    authorize @course
+    respond_to do |format|
+      format.html { render 'courses/show' }
+      format.js  # <-- idem
+    end
   end
 
   def create

@@ -19,27 +19,12 @@
           <span class="btn btn-sm btn-outline-dark" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Acesso do Aluno
           </span>
-          <div class="dropdown-menu dropdown-menu-right" style="min-width: 15rem;">
-            <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "px-4 py-3 form-group"}) do |f| %>
-              <% if !user_signed_in? %>
-                <div class="form-inputs">
-                  <%= f.input :email, required: false, autofocus: true, class: 'form-control', label: 'Login', placeholder: 'usuário ou email' %>
-                  <%= f.input :password, required: false, input_html: { autocomplete: "current-password" }, class: 'form-control', label: 'Senha', placeholder: 'senha' %>
-                  <%= f.input :remember_me, class: 'form-control', label: 'Lembrar senha', as: :boolean if devise_mapping.rememberable? %>
-                </div>
-              <% else %>
-                <%= current_user.email %>
-                <%= link_to "Dashboard", dashboards_path, class: 'text-yellow' %>
-              <% end %>
-              <div class="form-actions">
-                <% if user_signed_in? %>
-                  <%= link_to "Sair", destroy_user_session_path, class: 'btn btn-danger btn-block', method: :delete %>
-                <% else %>
-                  <%= f.button :submit, "Login", class: 'btn btn-primary btn-block' %>
-                  <%= render "devise/shared/links" %>
-                <% end %>
-              </div>
-            <% end %>
+          <div class="px-4 py-3 form-group dropdown-menu dropdown-menu-right" style="min-width: 15rem;">
+            <%= current_user.email %>
+            <%= link_to "Dashboard", dashboards_path, class: 'text-yellow' %>
+            <div class="form-actions">
+              <%= link_to "Sair", destroy_user_session_path, class: 'btn btn-danger btn-block', method: :delete %>
+            </div>
           </div>
         </span>
       </nav>
