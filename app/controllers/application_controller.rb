@@ -1,8 +1,20 @@
 class ApplicationController < ActionController::Base
   add_flash_types :success
   protect_from_forgery with: :exception
+  before_action :authenticate_user!
+  helper_method :resource_name, :resource, :devise_mapping, :resource_class
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
-   before_action :authenticate_user!
+  def configure_permitted_parameters
+    # For additional fields in app/views/devise/registrations/new.html.erb
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :photo, :photo_cache])
+
+    # For additional in app/views/devise/registrations/edit.html.erb
+    devise_parameter_sanitizer.permit(:account_update, keys: [:username, :photo, :photo_cache])
+  end
+
+
+
   include Pundit
 
   # Pundit: white-list approach.
@@ -22,7 +34,6 @@ class ApplicationController < ActionController::Base
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
   end
 
-  helper_method :resource_name, :resource, :devise_mapping, :resource_class
 
   def resource_name
     :user
@@ -42,6 +53,12 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     dashboards_path
+  end
+
+  private
+
+  def after_sign_out_path_for(resource_or_scope)
+    root_path
   end
 
 end
