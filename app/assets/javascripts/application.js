@@ -10,25 +10,24 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
 
 // Add from BootStrap 4 Docs
-//= require jquery3
-//= require popper
-//= require bootstrap-sprockets
+//= require turbolinks
+//= require jquery
+//= require jquery_ujs
+//= require dropzone
+//= require scrollbar
 //= require jquery.inputmask
 //= require jquery.inputmask.extensions
 //= require jquery.inputmask.numeric.extensions
 //= require jquery.inputmask.date.extensions
-//= require dropzone
-//= require turbolinks
-//= require scrollbar
+//= require popper
+//= require bootstrap
+//= require bootstrap-sprockets
 //= require_tree .
 
-$(function(){
+$(document).on('turbolinks:load', function(){
   $('input[type="tel"]').inputmask("(99) 9 99999999");  //static mask
-
   // start progressbar
   var bar = $('.progress-bar');
   var percent = $('.percent');
@@ -57,25 +56,15 @@ $(function(){
     }
   });
   // end progressbar
+
   // start sidebar
-
-
-    $("#sidebar").mCustomScrollbar({
-         theme: "minimal"
-    });
-
-    $('#sidebarCollapse').on('click', function () {
-      $('#sidebar, #content-bar').toggleClass('active');
-      // open or close navbar
-      // fade in the overlay
-      // $('.overlay').addClass('active');
-      // close dropdowns
-      $('.collapse.in').toggleClass('in');
-      // and also adjust aria-expanded attributes we use for the open/closed arrows
-      // in our CSS
-      $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-    });
-
-
+  $("#sidebar").mCustomScrollbar({
+       theme: "minimal"
+  });
+  $('#sidebarCollapse').on('click', function () {
+    $('#sidebar, #content-bar').toggleClass('active');
+    $('.collapse.in').toggleClass('in');
+    $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+  });
   // end sidebar
 });
