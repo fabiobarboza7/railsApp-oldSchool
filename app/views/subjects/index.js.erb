@@ -4,5 +4,5 @@ function showCourse(courseHTML) {
   const subjects = document.getElementById('ajax-content');
   $(subjects).html(courseHTML);
 }
-showCourse('<%= j render "subjects/index", subject: @subjects, course: @course %>');
+showCourse('<%= j render "subjects/index", subject: @subjects %>');
 
