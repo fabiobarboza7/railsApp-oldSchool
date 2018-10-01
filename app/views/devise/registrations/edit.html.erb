@@ -11,7 +11,7 @@
               <div class="form-inputs">
                 <%= f.input :first_name, required: true, autofocus: true %>
                 <%= f.input :last_name, required: true, autofocus: true %>
-                <%= f.input :age, required: true, autofocus: true, :order => [ :day, :month, :year], :start_year => Date.current.year, :end_year => 1920, :ignore_time => true %>
+                <%= f.input :age, required: true, as: :date, autofocus: true, :order => [ :day, :month, :year], :start_year => Date.current.year, :end_year => 1920 %>
                 <%= f.input :photo, required: true, autofocus: true %>
                 <%= f.input :photo_cache, as: :hidden %>
                 <%= f.input :email, required: true, autofocus: true %>
