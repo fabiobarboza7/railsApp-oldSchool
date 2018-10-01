@@ -8,7 +8,13 @@
             <% group.each do |subject| %>
               <div class="col-3">
                 <div class="subjects-box mx-auto my-3 subjects-p" style="<%= colors[rand(0..3)] %>">
-                  <p class="text-white mb-0 subjects-p"><%= subject.title %></p>
+                  <p class="text-white mb-0 subjects-p">
+                    <%= link_to "Lições",  course_subject_lessons_path(subject.course_id, subject.id) %>
+                    <%= subject.title %>
+                    <% if policy(Lesson).create? %>
+                      <%= link_to "Cadastrar Lições", new_course_subject_lesson_path(subject.course_id, subject.id, @lesson), remote: true %>
+                    <% end %>
+                  </p>
                 </div>
               </div>
             <% end %>

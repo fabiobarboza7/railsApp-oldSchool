@@ -2,10 +2,10 @@ class SubjectsController < ApplicationController
   before_action :set_subject, only: [:show, :update, :destroy]
 
   def index
-    @subjects = policy_scope(Subject).where(course_id: params[:course_id]).order(created_at: :desc)
+    @subjects = policy_scope(Subject).where(course_id: params[:course_id]).order(created_at: :asc)
     @course = Course.find_by_id(params[:course_id])
     @subject = Subject.new
-    @subject.course = @course
+    # @subject.course = @course
     authorize Subject
   end
 
@@ -25,18 +25,32 @@ class SubjectsController < ApplicationController
   end
 
   def create
+    @subjects = policy_scope(Subject).where(course_id: params[:course_id]).order(created_at: :asc)
     @course = Course.find_by_id(params[:course_id])
     @subject = Subject.new(subject_params)
     authorize @subject
     @subject.course_id = @course.id
-    @subject.save
-    redirect_to dashboards_path
+
+    respond_to do |format|
+      if @subject.save
+        @subject = Subject.new
+        format.js { render action: "index" }# renders create.js.erb, which could be used to redirect via javascript
+      else
+        redirect_to dashboards_path
+      end
+    end
+    #   alert[:notice] = "Matéria cadastrada"
+    # else
+    #   alert[:notice] = "Erro"
+    # end
+
   end
 
   def update
     # before_action
     @subject.update(subject_params)
-    redirect_to root_path
+    authorize @subject
+    render "subjects/index"
   end
 
   def destroy

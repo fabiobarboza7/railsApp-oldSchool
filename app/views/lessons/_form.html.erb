@@ -1,0 +1,14 @@
+<%= simple_form_for [@subject.course, @subject, @lesson], html: { class: "form-container"}, remote: true do |f| %>
+  <%= f.input :title, label: 'Lição', placeholder: 'Digite o título' %>
+  <%= f.input :subtitle, label: 'Descrição', placeholder: 'Digite a descrição' %>
+  <%= f.input :video, label: 'Url do video', placeholder: 'Digite a url do video' %>
+  <%= f.input :file, label: 'Arquivos', placeholder: 'Faça o upload de algum arquivo'  %>
+  <label class="btn btn-warning mb-0">
+    <i class="fas fa-image"></i>
+    <span style="display: none;">
+      <%#= f.input :photo %>
+    </span>
+  </label>
+  <%#= f.input :photo_cache, as: :hidden %>
+  <%= f.submit 'Criar Lição', class: 'btn btn-info' %>
+<% end %>

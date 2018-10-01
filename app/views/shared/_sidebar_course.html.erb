@@ -1,0 +1,13 @@
+<nav id="sidebar" style="background-color: #008DD5;">
+  <div class="sidebar-header-course">
+      <h3 class="mb-0"><%= @subject.title %></h3>
+  </div>
+  <ul class="list-unstyled components">
+    <% @lessons.each do |lesson| %>
+      <li>
+        <%= link_to lesson.title,  course_subject_lesson_path(lesson.subject.course_id, lesson.subject_id, lesson), remote: true %>
+      </li>
+    <% end %>
+  </ul>
+</nav>
+
