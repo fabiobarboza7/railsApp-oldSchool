@@ -25,10 +25,11 @@
                   <%= current_user.first_name %>
                 </div>
                 <div class="form-inputs">
-                  <i class="fas fa-file-signature"></i>
+                  <i class="fas fa-briefcase"></i>
                   <%= link_to "Dashboard", dashboards_path%>
                 </div>
                 <div class="form-inputs">
+                  <i class="fas fa-user-edit"></i>
                   <%= link_to "Editar perfil", edit_user_registration_path(current_user)%>
                 </div>
               <% end %>
