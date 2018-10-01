@@ -7,11 +7,4 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validate :myDatetime
-
-  private
-  def myDatetime
-    age.strftime("%D.%M.%Y")
-  end
-
 end
