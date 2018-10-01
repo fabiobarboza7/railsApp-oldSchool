@@ -26,6 +26,27 @@
 //= require turbolinks
 //= require_tree .
 
+  // custom dropdown
+  function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show-custom");
+  }
+
+  // Close the dropdown menu if the user clicks outside of it
+  window.onclick = function(event) {
+    if (!event.target.matches('.dropdown-content-custom')) {
+
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show-custom')) {
+          openDropdown.classList.remove('show-custom');
+        }
+      }
+    }
+  }
+
+
 $(document).on('turbolinks:load', function(){
   $('input[type="tel"]').inputmask("(99) 9 99999999");  //static mask
   // start progressbar
@@ -66,5 +87,5 @@ $(document).on('turbolinks:load', function(){
     $('a[aria-expanded=true]').attr('aria-expanded', 'false');
   });
   // end sidebar
-
 });
+

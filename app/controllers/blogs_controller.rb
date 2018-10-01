@@ -2,11 +2,13 @@ class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :update, :destroy]
 
   def index
-    @blogs = Blog.all
+    @blogs = policy_scope(Blog).order(created_at: :asc)
+    authorize Blog
   end
 
   def new
     @blog = Blog.new
+    authorize @blog
   end
 
   def show
@@ -15,6 +17,7 @@ class BlogsController < ApplicationController
 
   def create
     @blog = Blog.new(blog_params)
+    authorize @blog
     if @blog.save
       flash[:notice] = "Post criado com sucesso"
     else
@@ -26,12 +29,14 @@ class BlogsController < ApplicationController
   def update
     # before_action
     @blog.update(blog_params)
+    authorize @blog
     redirect_to root_path
   end
 
   def destroy
     # before_action
     @blog.destroy
+    authorize @blog
     redirect_to root_path
   end
 
