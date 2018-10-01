@@ -1,0 +1,27 @@
+<div class="row text-center">
+  <div class="col-sm-12 px-0 px-sm-2">
+    <div class="course-card mb-5">
+      <%= @lesson.title %>
+      <p class="my-2"><%= @lesson.subtitle %></p>
+      <div class="horizontal-line"></div>
+      <% if !@lesson.next.nil? %>
+        <% next_lesson = @lesson.next %>
+      <% else %>
+        <% next_lesson = @lesson %>
+      <% end %>
+      <% if !@lesson.prev.nil? %>
+        <% prev_lesson = @lesson.prev %>
+      <% else %>
+        <% prev_lesson = @lesson %>
+      <% end %>
+      <div class="d-flex justify-content-center align-items-center">
+        <%= link_to course_subject_lesson_path(@lesson.subject.course_id, @lesson.subject_id, prev_lesson.id), remote: true do  %>
+          <i class="fas fa-arrow-circle-left mb-0 p-2 text-yellow fa-2x"></i>
+        <% end %>
+        <%= link_to course_subject_lesson_path(@lesson.subject.course_id, @lesson.subject_id, next_lesson.id), remote: true do  %>
+          <i class="fas fa-arrow-circle-right mb-0 p-2 text-yellow fa-2x"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

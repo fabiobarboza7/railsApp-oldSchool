@@ -21,4 +21,8 @@ class SubjectPolicy < ApplicationPolicy
     true
   end
 
+  def update?
+    true
+  end
+
 end

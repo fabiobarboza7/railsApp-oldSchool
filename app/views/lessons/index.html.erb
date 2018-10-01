@@ -1,6 +1,6 @@
 <% content_for :sidebar do %>
   <div class="wrapper">
-    <%= render 'shared/sidebar' %>
+    <%= render 'shared/sidebar_course' %>
    <!-- Page Content -->
     <div id="content-bar">
       <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between align-items-center">
@@ -25,11 +25,10 @@
                   <%= current_user.first_name %>
                 </div>
                 <div class="form-inputs">
-                  <i class="fas fa-briefcase"></i>
+                  <i class="fas fa-file-signature"></i>
                   <%= link_to "Dashboard", dashboards_path%>
                 </div>
                 <div class="form-inputs">
-                  <i class="fas fa-user-edit"></i>
                   <%= link_to "Editar perfil", edit_user_registration_path(current_user)%>
                 </div>
               <% end %>
@@ -52,7 +51,7 @@
               <h4>Meus Cursos</h4>
             </div>
             <div class="col-sm-12" id="ajax-content">
-              <%= render "form", user: @user %>
+              <%= render "index", lesson: @lessons %>
             </div>
           </div>
         </div>

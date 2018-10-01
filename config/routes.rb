@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   get 'subjects/edit'
 
   resources :courses, except: [:index] do
-    resources :subjects
+    resources :subjects do
+      resources :lessons
+    end
   end
   resources :test_classes
   resources :contacts
