@@ -12,18 +12,18 @@
 //
 
 // Add from BootStrap 4 Docs
-//= require turbolinks
 //= require jquery
 //= require jquery_ujs
+//= require popper
+//= require bootstrap
 //= require dropzone
 //= require scrollbar
 //= require jquery.inputmask
 //= require jquery.inputmask.extensions
 //= require jquery.inputmask.numeric.extensions
 //= require jquery.inputmask.date.extensions
-//= require popper
-//= require bootstrap
 //= require bootstrap-sprockets
+//= require turbolinks
 //= require_tree .
 
 $(document).on('turbolinks:load', function(){
@@ -56,7 +56,6 @@ $(document).on('turbolinks:load', function(){
     }
   });
   // end progressbar
-
   // start sidebar
   $("#sidebar").mCustomScrollbar({
        theme: "minimal"
@@ -67,4 +66,5 @@ $(document).on('turbolinks:load', function(){
     $('a[aria-expanded=true]').attr('aria-expanded', 'false');
   });
   // end sidebar
+
 });

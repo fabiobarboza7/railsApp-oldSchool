@@ -7,11 +7,11 @@
         <button type="button" id="sidebarCollapse" class="btn btn-info">
           <i class="fas fa-align-left"></i>
         </button>
-        <span class="dropdown pl-3">
+        <span class="dropdown-custom pl-3">
           <span class="btn btn-sm btn-outline-dark" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Meu perfil
           </span>
-          <div class="dropdown-menu dropdown-menu-right" style="min-width: 15rem;">
+          <div class="dropdown-menu dropdown-content-custom dropdown-menu-right" style="min-width: 15rem;">
             <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "px-4 py-3 form-group"}) do |f| %>
               <% if !user_signed_in? %>
                 <div class="form-inputs">
