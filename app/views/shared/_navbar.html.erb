@@ -28,10 +28,20 @@
                   <%= f.input :remember_me, class: 'form-control', label: 'Lembrar senha', as: :boolean if devise_mapping.rememberable? %>
                 </div>
               <% else %>
-                <%= current_user.email %>
-                <%= link_to "Dashboard", dashboards_path, class: 'text-yellow' %>
+                <div class="form-inputs d-flex justify-content-between align-items-center mb-3">
+                  <%= cl_image_tag(current_user.photo, class: 'avatar-mini') %>
+                  <%= current_user.first_name %>
+                </div>
+                <div class="form-inputs">
+                  <i class="fas fa-briefcase"></i>
+                  <%= link_to "Dashboard", dashboards_path%>
+                </div>
+                <div class="form-inputs">
+                  <i class="fas fa-user-edit"></i>
+                  <%= link_to "Editar perfil", edit_user_registration_path(current_user)%>
+                </div>
               <% end %>
-              <div class="form-actions">
+              <div class="form-actions mt-3">
                 <% if user_signed_in? %>
                   <%= link_to "Sair", destroy_user_session_path, class: 'btn btn-danger btn-block', method: :delete %>
                 <% else %>
