@@ -70,9 +70,10 @@
                 <p>Extrato</p>
                 <div class="list-group">
                   <% @transictions.each do |transiction| %>
-                    <% if transiction.user === current_user %>
+                    <% if transiction.user == current_user  %>
                       <a href="#" class="list-group-item list-group-item-action list-group-item-danger"> > <%= number_to_currency_br(transiction.amount) %> para <%= user_target(transiction.user_target).first_name %></a>
-                    <% else %>
+                    <% end %>
+                    <% if transiction.user_target == current_user.id %>
                       <a href="#" class="list-group-item list-group-item-action list-group-item-success"> < <%= number_to_currency_br(transiction.amount) %> de <%= transiction.user.first_name %></a>
                     <% end %>
                   <% end %>
