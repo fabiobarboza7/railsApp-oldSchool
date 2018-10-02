@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181001212225) do
+ActiveRecord::Schema.define(version: 20181002023547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,11 +42,21 @@ ActiveRecord::Schema.define(version: 20181001212225) do
     t.datetime "updated_at",  null: false
     t.string   "photo"
     t.string   "photo_cache"
+    t.boolean  "is_free"
   end
 
   create_table "dashboards", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "enrollments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_enrollments_on_course_id", using: :btree
+    t.index ["user_id"], name: "index_enrollments_on_user_id", using: :btree
   end
 
   create_table "lessons", force: :cascade do |t|
@@ -95,10 +105,22 @@ ActiveRecord::Schema.define(version: 20181001212225) do
     t.string   "phone"
     t.boolean  "admin"
     t.integer  "age"
+    t.integer  "score"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "wallets", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "money"
+    t.index ["user_id"], name: "index_wallets_on_user_id", using: :btree
+  end
+
+  add_foreign_key "enrollments", "courses"
+  add_foreign_key "enrollments", "users"
   add_foreign_key "lessons", "subjects"
   add_foreign_key "subjects", "courses"
+  add_foreign_key "wallets", "users"
 end
