@@ -16,7 +16,10 @@
         </ul>
     </li>
     <li>
-        <a href="#"><i class="fas fa-dollar-sign text-yellow"> </i> MooMoney Bank</a>
+      <%= link_to user_wallet_path(current_user, current_user.wallet) do %>
+        <i class="fas fa-dollar-sign text-yellow"></i>
+        MooMoney Bank
+      <% end %>
     </li>
     <li>
         <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Tutoriais</a>

@@ -1,7 +1,10 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  before_save :get_age
+  before_save :get_age, if: :age?
+  before_save :set_score
+  after_create :create_wallet
+  has_one :wallet, dependent: :destroy
   mount_uploader :photo, PhotoUploader
 
   devise :database_authenticatable, :registerable,
@@ -19,5 +22,15 @@ class User < ApplicationRecord
     self.age = user_age(self.date_of_birth)
   end
 
+  def create_wallet
+    new_wallet = Wallet.new(user_id: self.id)
+    new_wallet.save
+  end
+
+  def set_score
+    if self.score == 0 or self.score.nil?
+      self.score = 0
+    end
+  end
 
 end
