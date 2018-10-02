@@ -68,6 +68,16 @@
             <div class="col-sm-4 p-1">
               <div class="m-1  bg-white rounded p-4">
                 <p>Extrato</p>
+                <div class="list-group">
+                  <% @transitions.each do |transiction| %>
+                    <% if transiction.user === current_user %>
+                      <a href="#" class="list-group-item list-group-item-action list-group-item-danger"><%= transiction.amount %></a>
+                    <% else %>
+                      <a href="#" class="list-group-item list-group-item-action list-group-item-success"><%= transiction.amount %></a>
+                    <% end %>
+
+                  <% end %>
+                </div>
               </div>
             </div>
             <div class="col-sm-4 p-1">
