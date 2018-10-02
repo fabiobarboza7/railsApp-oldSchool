@@ -4,7 +4,6 @@ class WalletsController < ApplicationController
   def show
     @courses = Course.all
     @transictions = policy_scope(Transiction).order(created_at: :asc)
-    byebug
     authorize @wallet
   end
 
