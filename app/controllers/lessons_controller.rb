@@ -1,5 +1,5 @@
 class LessonsController < ApplicationController
-  before_action :set_lesson, only: [:show, :update, :destroy]
+  before_action :set_lesson, only: [:show, :edit, :update, :destroy]
 
   def index
     @lessons = policy_scope(Lesson).where(subject_id: params[:subject_id]).order(created_at: :asc)
@@ -33,6 +33,16 @@ class LessonsController < ApplicationController
     @lesson.subject_id = @subject.id
     @lesson.save
     redirect_to dashboards_path
+  end
+
+  def edit
+    @subject = Subject.find_by_id(params[:subject_id])
+    @lesson = Lesson.find(params[:id])
+    authorize @lesson
+    respond_to do |format|
+      format.html { render 'lessons/edit' }
+      format.js  # <-- idem
+    end
   end
 
   def update

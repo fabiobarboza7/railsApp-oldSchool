@@ -1,0 +1,8 @@
+// app/views/lessons/create.js.erb
+// Here you generate *JavaScript* that would be executed in the browser
+function showCourse(courseHTML) {
+  const lessons = document.getElementById('ajax-content');
+  $(lessons).html(courseHTML);
+}
+showCourse('<%= j render "lessons/form", lesson: @lessons %>');
+
