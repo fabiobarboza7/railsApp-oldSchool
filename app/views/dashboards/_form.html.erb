@@ -5,8 +5,8 @@
         <%= cl_image_tag(@user.photo, class: 'avatar') %>
         <p class="mb-0">Carteira: <%= number_to_currency_br(current_user.wallet.money) %> moos <i class="far fa-money-bill-alt"></i></p>
       </div>
-      <p>Minha posição no ranking:</p>
-      <p>9º <%= "#{@user.first_name} #{@user.last_name}" %></p>
+      <p>Meu desempenho no curso:</p>
+      <p><%= "#{@user.first_name} #{@user.last_name}" %></p>
     </div>
   </div>
   <div class="col-12 col-sm-6 rounded my-2 my-sm-0">
