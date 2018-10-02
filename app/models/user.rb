@@ -5,6 +5,7 @@ class User < ApplicationRecord
   before_save :set_score
   after_create :create_wallet
   has_one :wallet, dependent: :destroy
+  has_many :transictions
   mount_uploader :photo, PhotoUploader
 
   devise :database_authenticatable, :registerable,
