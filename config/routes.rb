@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       resources :lessons
     end
   end
-  resources :transitions, only: [:new, :create, :index, :show]
+  resources :transictions, only: [:new, :create, :index, :show]
   resources :users, only: [] do
     resources :wallets, only: [:show]
   end

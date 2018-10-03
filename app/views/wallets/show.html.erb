@@ -47,6 +47,7 @@
       </nav>
       <section>
         <div class="container-fluid bg-grey">
+          <%= render 'shared/flashes' %>
           <div class="row p-0 p-sm-4">
             <div class="col-sm-12 p-4 bg-white rounded">
               <div class="d-flex justify-content-between align-items-center">
@@ -61,28 +62,72 @@
           <div class="row p-0 p-sm-4">
             <div class="col-sm-4 p-1">
               <div class="m-1  bg-white rounded p-4">
-                <p>Saldo</p>
-                <a href="#" class="badge badge-success p-2"><%= number_to_currency_br(@wallet.money) %></a>
-              </div>
-            </div>
-            <div class="col-sm-4 p-1">
-              <div class="m-1  bg-white rounded p-4">
                 <p>Extrato</p>
-                <div class="list-group">
+                <div class="list-group transictions-overflow-box">
                   <% @transictions.each do |transiction| %>
                     <% if transiction.user == current_user  %>
-                      <a href="#" class="list-group-item list-group-item-action list-group-item-danger"> > <%= number_to_currency_br(transiction.amount) %> para <%= user_target(transiction.user_target).first_name %></a>
+                      <a href="#" class="list-group-item list-group-item-action list-group-item-danger" data-toggle="modal" data-target="#exampleModal-<%=transiction.id%>"> enviou <%= number_to_currency_br(transiction.amount) %> para <%= user_target(transiction.user_target).first_name %> </a>
                     <% end %>
                     <% if transiction.user_target == current_user.id %>
-                      <a href="#" class="list-group-item list-group-item-action list-group-item-success"> < <%= number_to_currency_br(transiction.amount) %> de <%= transiction.user.first_name %></a>
+                      <a href="#" class="list-group-item list-group-item-action list-group-item-success" data-toggle="modal" data-target="#exampleModal-<%=transiction.id%>"> recebeu <%= number_to_currency_br(transiction.amount) %> de <%= transiction.user.first_name %></a>
                     <% end %>
+                    <% sender = transiction.user %>
+                    <% sender == current_user ? sender.first_name = "você" : false %>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal-<%=transiction.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div id="divToPrint">
+                            <div class="modal-header">
+                              <h3 class="modal-title" id="exampleModalLabel">Transferência feita por <%= sender.first_name %></h3>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <table class="table table-striped">
+                                <tbody>
+                                  <tr>
+                                    <th scope="row">Data</th>
+                                    <td><%= transiction.created_at.strftime('%d/%m/%Y as %T') %></td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">De</th>
+                                    <td><%= sender.first_name %></td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">Para</th>
+                                    <td><%= user_target(transiction.user_target).first_name %></td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">Valor</th>
+                                    <td><%= number_to_currency_br(transiction.amount) %></td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button class="btn btn-primary" onclick='printDiv();'>Imprimir</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   <% end %>
                 </div>
               </div>
             </div>
             <div class="col-sm-4 p-1">
               <div class="m-1  bg-white rounded p-4">
+                <p>Saldo</p>
+                <a href="#" class="badge badge-success p-2"><%= number_to_currency_br(@wallet.money) %></a>
+              </div>
+            </div>
+            <div class="col-sm-4 p-1">
+              <div class="m-1  bg-white rounded p-4">
                 <p>Ofertas</p>
+                <p>Nenhuma oferta por enquanto</p>
               </div>
             </div>
           </div>

@@ -3,7 +3,7 @@ class WalletsController < ApplicationController
 
   def show
     @courses = Course.all
-    @transictions = policy_scope(Transiction).order(created_at: :asc)
+    @transictions = policy_scope(Transiction).order(created_at: :desc)
     authorize @wallet
   end
 
