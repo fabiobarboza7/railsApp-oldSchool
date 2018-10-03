@@ -1,7 +1,9 @@
 class Transiction < ApplicationRecord
   belongs_to :user
+  # belongs_to :user_target, foreign_key: 'user_target', primary_key: 'code'
   after_create :transfer_money
   after_create :decrease_money
+  validates :user_target, :amount, presence: true
 
 
   private

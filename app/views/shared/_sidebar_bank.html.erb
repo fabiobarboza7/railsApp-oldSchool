@@ -4,21 +4,23 @@
   </div>
 
   <ul class="list-unstyled components">
-    <p>Informações Gerais</p>
+    <li class="mb-5"><%= link_to "Informações Gerais", user_wallet_path(current_user, current_user.wallet) %></li class="mb-5">
     <li>
-      <a href="#">Saldo</a>
+      <a href="#"><i class="fas fa-hand-holding-usd"></i> Saldo</a>
     </li>
     <li>
-      <a href="#">Extrato</a>
+      <a href="#"><i class="far fa-file-alt"></i> Extrato</a>
     </li>
     <li>
-      <a href="#">Transferência</a>
+      <%= link_to new_transiction_path do %>
+      <i class="fas fa-exchange-alt"></i> Tranferência
+      <% end %>
     </li>
     <li>
-      <a href="#">Comprar MooMoney</a>
+      <a href="#"><i class="fas fa-money-bill-alt"></i> Comprar MooMoney</a>
     </li>
     <li>
-      <a href="#">Fale conosco</a>
+      <a href="#"><i class="fas fa-comments"></i> Fale conosco</a>
     </li>
   </ul>
 </nav>

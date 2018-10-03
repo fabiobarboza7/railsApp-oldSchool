@@ -26,6 +26,15 @@
 //= require turbolinks
 //= require_tree .
 
+  function printDiv()
+  {
+
+    var divToPrint=document.getElementById('divToPrint');
+
+    window.print();
+
+  }
+
   // custom dropdown
   function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show-custom");
@@ -48,6 +57,8 @@
 
 
 $(document).on('turbolinks:load', function(){
+  $(".alert, .success, .notice" ).fadeOut(5000);
+
   $('input[type="tel"]').inputmask("(99) 9 99999999");  //static mask
   // start progressbar
   var bar = $('.progress-bar');
