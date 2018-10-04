@@ -1,5 +1,4 @@
-class LessonPolicy < ApplicationPolicy
-
+class QuizPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all

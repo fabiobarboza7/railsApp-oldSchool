@@ -1,4 +1,4 @@
 <%= simple_form_for [@subject, @course, Subject.new], remote: true do |f| %>
-  <%= f.input :title, label: 'Matéria', placeholder: 'Digite o título' %>
+  <%= f.input :title, label: 'Matéria', placeholder: 'Digite o título'%>
   <%= f.submit 'Criar matéria', class: 'btn btn-info' %>
 <% end %>

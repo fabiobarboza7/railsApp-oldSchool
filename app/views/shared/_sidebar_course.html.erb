@@ -5,9 +5,24 @@
   <ul class="list-unstyled components">
     <% @lessons.each do |lesson| %>
       <li>
-        <%= link_to lesson.title,  course_subject_lesson_path(lesson.subject.course_id, lesson.subject_id, lesson), remote: true %>
+        <%= link_to  course_subject_lesson_path(lesson.subject.course_id, lesson.subject_id, lesson), remote: true do %>
+          <%= lesson.title %>
+          <% if lesson.quizzes.any? %>
+            <% lesson.quizzes.each do |quiz| %>
+              <p class="quiz-size pl-4 p-0 m-0">
+                Quiz<%= quiz.title %>
+                <% if quiz.done? %>
+                  <i class="far fa-check-circle text-success"></i>
+                <% end %>
+              </p>
+            <% end %>
+          <% end %>
+        <% end %>
       </li>
     <% end %>
+    <li>
+      <%= link_to "Fale conosco", new_contact_path %>
+    </li>
   </ul>
 </nav>
 

@@ -6,7 +6,7 @@ class WalletPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    user.wallet.is_verified?
   end
 
 end

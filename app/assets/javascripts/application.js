@@ -36,8 +36,16 @@
   }
 
   // custom dropdown
+  function myFunctionSideBar() {
+    document.getElementById("myDropdownSideBar").classList.toggle("show");
+  }
+
   function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show-custom");
+  }
+
+  function myFunctionXs() {
+    document.getElementById("myDropdownXs").classList.toggle("show-custom");
   }
 
   // Close the dropdown menu if the user clicks outside of it
