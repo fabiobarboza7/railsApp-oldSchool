@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
   resources :courses, except: [:index] do
     resources :subjects do
-      resources :lessons
+      resources :lessons do
+        resources :quizzes
+      end
     end
   end
   resources :transictions, only: [:new, :create, :index, :show]

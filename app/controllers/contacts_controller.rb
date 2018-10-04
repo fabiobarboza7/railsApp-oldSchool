@@ -3,6 +3,7 @@ class ContactsController < ApplicationController
 
   def new
     @contact = Contact.new
+    authorize @contact
   end
 
   def show
@@ -11,6 +12,7 @@ class ContactsController < ApplicationController
 
   def create
     @contact = Contact.new(contact_params)
+    authorize @contact
     if @contact.save
       redirect_to root_path
     else
@@ -21,12 +23,14 @@ class ContactsController < ApplicationController
   def update
     # before_action
     @contact.update(contact_params)
+    authorize @contact
     redirect_to root_path
   end
 
   def destroy
     # before_action
     @contact.destroy
+    authorize @contact
     redirect_to root_path
   end
 

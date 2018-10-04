@@ -23,6 +23,8 @@ class LessonsController < ApplicationController
   def show
     @lessons = policy_scope(Lesson).where(subject_id: params[:subject_id]).order(created_at: :asc)
     # before_action
+    @quiz = Quiz.new
+    @question = Question.new
     authorize @lesson
   end
 

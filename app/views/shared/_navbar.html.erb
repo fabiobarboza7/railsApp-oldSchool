@@ -53,10 +53,10 @@
           </div>
         </span>
       </nav>
-      <div class="dropdown-custom d-block d-sm-none">
+      <div class="dropdown-custom d-block d-sm-none" onclick="myFunctionXs()">
         <a class="fas fa-bars fa-2x">
         </a>
-        <div class="dropdown-menu dropdown-content-custom dropdown-menu-right">
+        <div id="myDropdownXs" class="dropdown-menu dropdown-content-custom dropdown-menu-right">
           <%= link_to "Home", root_path, class: "dropdown-item"%>
           <%= link_to "Blog", blogs_path, class: "dropdown-item"%>
           <%= link_to "Cursos", "#courses", class: "dropdown-item"%>

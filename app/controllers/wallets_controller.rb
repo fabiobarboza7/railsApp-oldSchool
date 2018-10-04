@@ -14,7 +14,7 @@ class WalletsController < ApplicationController
   end
 
   def wallet_params
-    params.require(:wallet).permit(:title, :course_id)
+    params.require(:wallet).permit(:title, :course_id, :is_verified)
   end
 
 end

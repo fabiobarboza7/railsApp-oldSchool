@@ -1,0 +1,2 @@
+      invoke  active_record
+      create    db/migrate/20181003215203_add_is_verified_to_wallet.rb

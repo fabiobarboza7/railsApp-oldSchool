@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181002074534) do
+ActiveRecord::Schema.define(version: 20181004014733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,27 @@ ActiveRecord::Schema.define(version: 20181002074534) do
     t.index ["subject_id"], name: "index_lessons_on_subject_id", using: :btree
   end
 
+  create_table "questions", force: :cascade do |t|
+    t.string   "title"
+    t.boolean  "is_true"
+    t.integer  "score"
+    t.string   "questionable_type"
+    t.integer  "questionable_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["questionable_type", "questionable_id"], name: "index_questions_on_questionable_type_and_questionable_id", using: :btree
+  end
+
+  create_table "quizzes", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "score"
+    t.integer  "lesson_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean  "done"
+    t.index ["lesson_id"], name: "index_quizzes_on_lesson_id", using: :btree
+  end
+
   create_table "subjects", force: :cascade do |t|
     t.string   "title"
     t.integer  "course_id"
@@ -87,6 +108,16 @@ ActiveRecord::Schema.define(version: 20181002074534) do
     t.string   "schedule"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "tests", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "lesson_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "score"
+    t.boolean  "done"
+    t.index ["lesson_id"], name: "index_tests_on_lesson_id", using: :btree
   end
 
   create_table "transictions", force: :cascade do |t|
@@ -121,16 +152,19 @@ ActiveRecord::Schema.define(version: 20181002074534) do
 
   create_table "wallets", force: :cascade do |t|
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.decimal  "money"
+    t.boolean  "is_verified", default: false
     t.index ["user_id"], name: "index_wallets_on_user_id", using: :btree
   end
 
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users"
   add_foreign_key "lessons", "subjects"
+  add_foreign_key "quizzes", "lessons"
   add_foreign_key "subjects", "courses"
+  add_foreign_key "tests", "lessons"
   add_foreign_key "transictions", "users"
   add_foreign_key "wallets", "users"
 end
