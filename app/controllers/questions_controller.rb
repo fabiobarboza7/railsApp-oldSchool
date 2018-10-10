@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-    before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :set_question, only: [:show, :edit, :destroy]
 
   def index
 
@@ -18,18 +18,21 @@ class QuestionsController < ApplicationController
     # @quiz = Quiz.new(question_params)
     # @quiz.lesson_id = @lesson
     # @quiz.save!
+    authorize @question
   end
 
   def edit
-
+    authorize @question
   end
 
   def update
-
+    @question = Question.find(params[:id])
+    @question.update(question_params)
+    authorize @question
   end
 
   def destroy
-
+    authorize @question
   end
 
 
@@ -40,6 +43,6 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:title, :is_true, :score, :lesson_id, :done)
+    params.require(:question).permit(:title, :is_true, :score, :lesson_id, :done, :answer)
   end
 end

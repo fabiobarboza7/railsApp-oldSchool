@@ -7,8 +7,13 @@
       <div class="col-sm-6 offset-sm-3">
         <h3 class="text-center">Fale conosco</h3>
         <%= simple_form_for @contact, html: { class: "form-container no-borders"} do |f| %>
-          <%= f.input :name, placeholder: "Digite o seu nome", as: :hidden %>
-          <%= f.input :email, placeholder: "Digite seu e-mail", as: :hidden %>
+          <% if user_signed_in? %>
+            <%= f.input :name, placeholder: "Digite o seu nome", input_html: {value: current_user.first_name}, as: :hidden %>
+            <%= f.input :email, placeholder: "Digite seu e-mail", input_html: {value: current_user.email}, as: :hidden %>
+          <% else %>
+            <%= f.input :name, placeholder: "Digite o seu nome" %>
+            <%= f.input :email, placeholder: "Digite seu e-mail" %>
+          <% end %>
           <%= f.input :phone, label: "Telefone", placeholder: "Digite se telefone" %>
           <%= f.input :message, as: :text, label: "Mensagem", placeholder: "Digite sua mensagem" %>
           <%= f.submit "Enviar", class: 'btn btn-pink btn-xs-block' %>

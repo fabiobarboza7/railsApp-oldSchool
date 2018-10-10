@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181004014733) do
+ActiveRecord::Schema.define(version: 20181009234755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 20181004014733) do
     t.integer  "questionable_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.boolean  "answer"
     t.index ["questionable_type", "questionable_id"], name: "index_questions_on_questionable_type_and_questionable_id", using: :btree
   end
 
@@ -129,6 +130,20 @@ ActiveRecord::Schema.define(version: 20181004014733) do
     t.index ["user_id"], name: "index_transictions_on_user_id", using: :btree
   end
 
+  create_table "user_answers", force: :cascade do |t|
+    t.integer  "question_id"
+    t.boolean  "is_true"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "test_id"
+    t.integer  "quiz_id"
+    t.index ["question_id"], name: "index_user_answers_on_question_id", using: :btree
+    t.index ["quiz_id"], name: "index_user_answers_on_quiz_id", using: :btree
+    t.index ["test_id"], name: "index_user_answers_on_test_id", using: :btree
+    t.index ["user_id"], name: "index_user_answers_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -166,5 +181,9 @@ ActiveRecord::Schema.define(version: 20181004014733) do
   add_foreign_key "subjects", "courses"
   add_foreign_key "tests", "lessons"
   add_foreign_key "transictions", "users"
+  add_foreign_key "user_answers", "questions"
+  add_foreign_key "user_answers", "quizzes"
+  add_foreign_key "user_answers", "tests"
+  add_foreign_key "user_answers", "users"
   add_foreign_key "wallets", "users"
 end

@@ -1,19 +1,20 @@
 class QuizzesController < ApplicationController
-  before_action :set_quiz, only: [:show, :edit, :update, :destroy]
+  before_action :set_quiz, only: [:show, :destroy]
 
   def index
 
   end
 
   def new
-    @lesson = Lesson.find_by_id(params[:subject_id])
-    @quiz = Quiz.new
-    @quiz.lesson_id = @lesson
-    authorize @lesson
-    respond_to do |format|
-      format.html { render 'lessons/new' }
-      format.js  # <-- idem
-    end
+    # @lesson = Lesson.find_by_id(params[:subject_id])
+
+    # @quiz.lesson_id = @lesson
+
+    # authorize @quiz
+    # respond_to do |format|
+    #   format.html { render 'lessons/new' }
+    #   format.js  # <-- idem
+    # end
   end
 
   def show
@@ -23,13 +24,14 @@ class QuizzesController < ApplicationController
   def create
     @lesson = Lesson.find(params[:lesson_id])
     @quiz = Quiz.new(quiz_params)
-    @question = Question.new
-
-    @quiz.lesson_id = @lesson
+    @quiz.lesson_id = @lesson.id
+    @question = @quiz.questions.first
     authorize @quiz
-    byebug
-    @quiz.save
-
+    if @quiz.save!
+      redirect_to dashboards_path
+    else
+      redirect_to dashboards_path
+    end
   end
 
   def edit
@@ -37,7 +39,20 @@ class QuizzesController < ApplicationController
   end
 
   def update
+    @quiz = Quiz.find(params[:id])
+    byebug
+    @update_question = @quiz.questions.find(params[:quiz][:questions_attributes]["0"][:id])
+    if @quiz.questions.find(params[:quiz][:questions_attributes]["0"][:answer]) == "1"
+      @update_question.answer == true
+    end
 
+    # byebug
+    # @question = @quiz.questions.find(params[:quiz][:questions_attributes]["0"][:id])
+    # byebug
+    @question.save!
+    byebug
+    authorize @quiz
+    redirect_to dashboards_path
   end
 
   def destroy
@@ -52,7 +67,7 @@ class QuizzesController < ApplicationController
   end
 
   def quiz_params
-    params.require(:quiz).permit(:title, :score, :lesson_id, :done, :questions_attributes => [:title, :is_true, :score, :lesson_id, :done])
+    params.require(:quiz).permit(:title, :score, :lesson_id, :done, :questions_attributes => [:title, :is_true, :score, :lesson_id, :answer, :id])
   end
 
 end

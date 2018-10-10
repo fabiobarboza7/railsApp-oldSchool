@@ -7,9 +7,17 @@
       <nav class="nav-a mx-2 d-none d-sm-block">
         <%= link_to "Home", root_path, class: "px-2"%>
         <%= link_to "Blog", blogs_path, class: "px-2"%>
-        <%= link_to "Cursos", "#courses", class: "px-2"%>
+        <% if request.env['PATH_INFO'] == '/'%>
+          <%= link_to "Cursos", "#courses", class: "px-2"%>
+        <% else %>
+          <%= link_to "Cursos", root_path(:anchor => "courses"), class: "px-2"%>
+        <% end %>
+        <% if request.env['PATH_INFO'] == '/'%>
+          <%= link_to "Contato", "#contact", class: "px-2"%>
+        <% else %>
+          <%= link_to "Contato", new_contact_path, class: "px-2"%>
+        <% end %>
         <%#= link_to "Videos", "#videos", class: "px-2"%>
-        <%= link_to "Contato", "#contact", class: "px-2"%>
         <%= link_to "https://api.whatsapp.com/send?phone=5553984541340&text=Ol%C3%A1,%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20curso.", class: "px-2" do %>
           Envie um WhatsApp
           <i style="color: #0EC144;" class="fab fa-whatsapp"></i>

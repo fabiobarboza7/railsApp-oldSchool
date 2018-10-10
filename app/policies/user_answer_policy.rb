@@ -1,9 +1,10 @@
-class QuestionPolicy < ApplicationPolicy
+class UserAnswerPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
     end
   end
+
 
   def index?
     show?
@@ -24,5 +25,6 @@ class QuestionPolicy < ApplicationPolicy
   def update?
     true
   end
+
 
 end

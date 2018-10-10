@@ -23,9 +23,20 @@ class LessonsController < ApplicationController
   def show
     @lessons = policy_scope(Lesson).where(subject_id: params[:subject_id]).order(created_at: :asc)
     # before_action
+    @user_answer = UserAnswer.new
     @quiz = Quiz.new
-    @question = Question.new
+    @quizzes = @lesson.quizzes
+    @count = 0
+    @quizzes.each do |quiz|
+      if !quiz.user_answers.where(user: current_user).any?
+        @count = @count + 1
+      end
+    end
+
+    @question = @quiz.questions.build
+    @quiz.lesson_id = @lesson
     authorize @lesson
+
   end
 
   def create
