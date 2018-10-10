@@ -8,13 +8,24 @@
         <%= link_to  course_subject_lesson_path(lesson.subject.course_id, lesson.subject_id, lesson), remote: true do %>
           <%= lesson.title %>
           <% if lesson.quizzes.any? %>
+            <% count = 0 %>
             <% lesson.quizzes.each do |quiz| %>
-              <p class="quiz-size pl-4 p-0 m-0">
-                Quiz<%= quiz.title %>
-                <% if quiz.done? %>
-                  <i class="far fa-check-circle text-success"></i>
-                <% end %>
-              </p>
+                <p class="quiz-size pl-4 p-0 m-0">
+                  Quiz - <%= quiz.title %>
+                  <% if quiz.user_answers.where(user: current_user).any? %>
+                  <% is_true = quiz.user_answers.where(user: current_user).first.is_true? ? true : false %>
+                    <% if is_true %>
+                      <i class="far fa-check-circle text-success"></i>
+                    <% elsif is_true == false %>
+                      <i class="far fa-times-circle text-danger"></i>
+                    <% end %>
+                  <% else %>
+                    <% count = count + 1 %>
+                  <% end %>
+                </p>
+            <% end %>
+            <% if count != 0 %>
+              <p class="quiz-size pl-4 p-0 m-0">restam <span class="text-danger"><%= count %></span> <%= count > 1? "Quizzes" : "Quiz" %></p>
             <% end %>
           <% end %>
         <% end %>

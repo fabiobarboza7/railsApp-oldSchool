@@ -11,10 +11,15 @@ Rails.application.routes.draw do
   resources :courses, except: [:index] do
     resources :subjects do
       resources :lessons do
-        resources :quizzes
+        resources :quizzes do
+          resources :questions
+        end
       end
     end
   end
+
+  resources :questions
+  resources :user_answers
   resources :transictions, only: [:new, :create, :index, :show]
   resources :users, only: [] do
     resources :wallets, only: [:show]
