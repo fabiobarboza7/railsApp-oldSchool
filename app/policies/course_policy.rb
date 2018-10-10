@@ -18,7 +18,7 @@ class CoursePolicy < ApplicationPolicy
   end
 
   def create?
-    true
+    user.admin?
   end
 
 end

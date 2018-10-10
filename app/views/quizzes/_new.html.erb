@@ -1,24 +1,24 @@
-<div class="row">
-  <div class="col-sm-6 offset-sm-3">
-    <%= simple_form_for [@lesson.subject.course, @lesson.subject, @lesson, @quiz]  do |f| %>
-      <%= f.input :title, placeholder: "Quiz title" %>
+<% if policy(@quiz).create? %>
+  <div class="row">
+    <div class="col-sm-6 offset-sm-3">
+      <%= simple_form_for [@lesson.subject.course, @lesson.subject, @lesson, @quiz]  do |f| %>
+        <%= f.input :title, placeholder: "Questão do Quiz" %>
+        <div class="mb-5"></div>
 
-      <%= f.simple_fields_for :questions, @question do |question| %>
-        <%= question.input :title, placeholder: "Question title" %>
-        <%= question.input :score %>
-        <%= question.input :is_true %>
+        <%= f.simple_fields_for :questions, @question do |question| %>
+          <%= question.input :title, placeholder: "opção 1", label: false %>
+          <%= question.input :is_true, label: "questão correta" %>
+        <% end %>
+        <%= f.simple_fields_for :questions, @question do |question| %>
+          <%= question.input :title, placeholder: "opção 2", label: false %>
+          <%= question.input :is_true, label: "questão correta" %>
+        <% end %>
+        <%= f.simple_fields_for :questions, @question do |question| %>
+          <%= question.input :title, placeholder: "opção 3", label: false %>
+          <%= question.input :is_true, label: "questão correta" %>
+        <% end %>
+        <%= f.submit %>
       <% end %>
-      <%= f.simple_fields_for :questions, @question do |question| %>
-        <%= question.input :title, placeholder: "Question title" %>
-        <%= question.input :score %>
-        <%= question.input :is_true %>
-      <% end %>
-      <%= f.simple_fields_for :questions, @question do |question| %>
-        <%= question.input :title, placeholder: "Question title" %>
-        <%= question.input :score %>
-        <%= question.input :is_true %>
-      <% end %>
-      <%= f.submit %>
-    <% end %>
+    </div>
   </div>
-</div>
+<% end %>

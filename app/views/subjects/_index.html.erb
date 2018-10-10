@@ -22,11 +22,15 @@
           </div>
         <% end %>
         <% if current_user.admin? %>
-          <%= simple_form_for [@course, @subject], remote: true do |f| %>
-            <%= f.input :title, label: 'Matéria', placeholder: 'Digite o título' %>
-            <%= f.submit 'Criar matéria', class: 'btn btn-info' %>
-          <% end %>
-          <%#= render 'form', subject: @subject, course: @course %>
+          <div class="row mb-4">
+            <div class="col-sm-6 offset-sm-3">
+            <%= simple_form_for [@course, @subject], remote: true do |f| %>
+              <%= f.input :title, label: 'Matéria', placeholder: 'Digite o título' %>
+              <%= f.submit 'Criar matéria', class: 'btn btn-info' %>
+            <% end %>
+            <%#= render 'form', subject: @subject, course: @course %>
+            </div>
+          </div>
         <% end %>
       </div>
 

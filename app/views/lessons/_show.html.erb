@@ -14,7 +14,9 @@
       <% end %>
       <p class="my-2"><%= @lesson.subtitle %></p>
       <br>
-      <p>Responder <%= @count %> <%= @count > 1? "Quizzes" : "Quiz" %></p>
+      <% if @count > 0 %>
+        <p>Responder <%= @count %> <%= @count > 1? "Quizzes" : "Quiz" %></p>
+      <% end %>
       <% @quizzes.each do |quiz| %>
         <% if !quiz.user_answers.where(user: current_user).any? %>
           <a href="#" class="list-group-item list-group-item-action list-group-item-success" data-toggle="modal" data-target="#exampleModal-<%=quiz.id%>"> <%= quiz.title %> </a>
