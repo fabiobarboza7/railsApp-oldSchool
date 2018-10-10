@@ -18,7 +18,7 @@ class BlogPolicy < ApplicationPolicy
   end
 
   def create?
-    true
+    user.admin?
   end
 
   def edit?
@@ -26,7 +26,7 @@ class BlogPolicy < ApplicationPolicy
   end
 
   def update?
-    true
+    create?
   end
 
 end

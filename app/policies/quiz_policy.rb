@@ -18,11 +18,11 @@ class QuizPolicy < ApplicationPolicy
   end
 
   def create?
-    true
+    user.admin?
   end
 
   def update?
-    true
+    create?
   end
 
 end

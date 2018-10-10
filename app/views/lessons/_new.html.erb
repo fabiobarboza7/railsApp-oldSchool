@@ -1,13 +1,15 @@
 <% content_for(:title_tag) do %>
   Cadastrar Lição
 <% end %>
-<header class="banner-moodev d-flex justify-content-center align-items-center">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-6 offset-sm-3">
-        <h3 class="text-center">Cadastrar Lição</h3>
-        <%= render 'form', lesson: @lesson %>
+<% if policy(@lesson).new? %>
+  <header class="banner-moodev d-flex justify-content-center align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 offset-sm-3">
+          <h3 class="text-center">Cadastrar Lição</h3>
+          <%= render 'form', lesson: @lesson %>
+        </div>
       </div>
     </div>
-  </div>
-</header>
+  </header>
+<% end %>
