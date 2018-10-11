@@ -5,7 +5,6 @@
         <%= cl_image_tag(@user.photo, class: 'avatar') %>
         <p class="mb-0">Carteira: <%= number_to_currency_br(current_user.wallet.money) %> moos <i class="far fa-money-bill-alt text-success"></i></p>
       </div>
-      <p>Meu desempenho no curso:</p>
       <p><%= "#{@user.first_name} #{@user.last_name}" %></p>
     </div>
     <div class="p-4 bg-white rounded mt-3">
@@ -13,9 +12,11 @@
       <ul class="list-group">
         <% @quizzes.each do |quiz| %>
           <% if !quiz.user_answers.where(user: current_user).any? %>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-              <%= link_to quiz.title, course_subject_lessons_path(quiz.lesson.subject.course, quiz.lesson.subject, quiz.lesson) %>
+              <%= link_to course_subject_lessons_path(quiz.lesson.subject.course, quiz.lesson.subject, quiz.lesson) do %>
+            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action list-group-item-success">
+              <%= quiz.title %>
             </li>
+              <% end %>
           <% end %>
         <% end %>
       </ul>
@@ -23,6 +24,11 @@
   </div>
   <div class="col-12 col-sm-6 rounded my-2 my-sm-0">
     <div class="p-4 bg-white rounded">
+      <p>Meu desempenho no curso</p>
+      <% chart = ["Acertos", "Erros"] %>
+      <%= line_chart user_range().each_with_index.map {|user, index|
+        {name: chart[index], data: user.group_by_day(:created_at).count}
+      }, xtitle: "Tempo", ytitle: "Pontos" %>
       <p class="text-yellow">Ranking</p>
       <ul class="list-group">
         <% @users.each do |user_rank| %>
