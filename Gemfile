@@ -12,6 +12,10 @@ gem 'rails', '~> 5.0.5'
 gem 'devise'
 # Authorization
 gem "pundit"
+# Chart
+gem "chartkick"
+# GroupDate
+gem 'groupdate'
 # DropZoneJs
 gem 'dropzonejs-rails'
 # Use postgresql as the database for Active Record

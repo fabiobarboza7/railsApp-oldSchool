@@ -24,6 +24,9 @@
 //= require jquery.inputmask.date.extensions
 //= require bootstrap-sprockets
 //= require turbolinks
+//= require Chart.bundle
+//= require highcharts
+//= require chartkick
 //= require_tree .
 
   function printDiv()
@@ -106,5 +109,6 @@ $(document).on('turbolinks:load', function(){
     $('a[aria-expanded=true]').attr('aria-expanded', 'false');
   });
   // end sidebar
+  Chartkick.configure({language: "pt"});
 });
 
