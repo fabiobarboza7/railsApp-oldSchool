@@ -1,3 +1,29 @@
 // Place all the styles related to the Lessons controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.bg-opacity {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 0px 10px 10px 10px;
+}
+
+.lesson-horizontal-line {
+  display:block;
+  width:100%;
+  border-top: 1px solid $blue;
+}
+
+.text-dots {
+  width: 200px;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow: ellipsis;
+}
+
+.color-lightgreen {
+  color: #33ff00;
+}
+
+.color-lightred {
+  color: #ff3300;
+}

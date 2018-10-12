@@ -1,41 +1,49 @@
 <div class="row">
-  <div class="col-12 col-sm-6">
+  <div class="col-12 rounded my-2 my-sm-0">
     <div class="p-4 bg-white rounded">
+      <p>Meu desempenho no curso</p>
+      <% chart = ["Acertos", "Erros"] %>
+      <%= line_chart user_range().each_with_index.map {|user, index|
+        {name: chart[index], data: user.group_by_day(:created_at).count}
+      }, xtitle: "Data", ytitle: "Pontos" %>
+    </div>
+  </div>
+</div>
+<div class="row mt-3">
+  <div class="col-sm-5">
+    <div class="p-3 bg-white rounded">
       <div class="d-flex justify-content-between align-items-center mb-3">
         <%= cl_image_tag(@user.photo, class: 'avatar') %>
         <p class="mb-0">Carteira: <%= number_to_currency_br(current_user.wallet.money) %> moos <i class="far fa-money-bill-alt text-success"></i></p>
       </div>
       <p><%= "#{@user.first_name} #{@user.last_name}" %></p>
     </div>
-    <div class="p-4 bg-white rounded mt-3">
-      <p class="text-darkblue">Quizzes para fazer <i class="fas fa-dice text-danger"></i></p>
-      <ul class="list-group">
-        <% @quizzes.each do |quiz| %>
-          <% if !quiz.user_answers.where(user: current_user).any? %>
-              <%= link_to course_subject_lessons_path(quiz.lesson.subject.course, quiz.lesson.subject, quiz.lesson) do %>
-            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action list-group-item-success">
-              <%= quiz.title %>
-            </li>
-              <% end %>
-          <% end %>
-        <% end %>
-      </ul>
-    </div>
   </div>
-  <div class="col-12 col-sm-6 rounded my-2 my-sm-0">
-    <div class="p-4 bg-white rounded">
-      <p>Meu desempenho no curso</p>
-      <% chart = ["Acertos", "Erros"] %>
-      <%= line_chart user_range().each_with_index.map {|user, index|
-        {name: chart[index], data: user.group_by_day(:created_at).count}
-      }, xtitle: "Tempo", ytitle: "Pontos" %>
+  <div class="col-sm-3">
+    <div class="p-3 bg-white rounded">
       <p class="text-yellow">Ranking</p>
-      <ul class="list-group">
+      <ul class="list-group overflow-scroll">
         <% @users.each do |user_rank| %>
           <li class="list-group-item d-flex justify-content-between align-items-center">
             <span class="badge bg-darkblue text-yellow badge-pill"><%= user_rank.score %></span>
             <%= user_rank.first_name %>
           </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="p-3 bg-white rounded">
+      <p class="text-darkblue">Quizzes para fazer <i class="fas fa-dice text-danger"></i></p>
+      <ul class="list-group overflow-scroll">
+        <% @quizzes.each do |quiz| %>
+          <% if !quiz.user_answers.where(user: current_user).any? %>
+              <%= link_to course_subject_lessons_path(quiz.lesson.subject.course, quiz.lesson.subject, quiz.lesson) do %>
+            <li class="my-1 list-group-item d-flex justify-content-between align-items-center list-group-item-action list-group-item-success">
+              <%= quiz.title %> <i class="fas fa-question text-danger"></i>
+            </li>
+              <% end %>
+          <% end %>
         <% end %>
       </ul>
     </div>

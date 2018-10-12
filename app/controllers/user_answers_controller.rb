@@ -17,8 +17,15 @@ class UserAnswersController < ApplicationController
     @user_answer = UserAnswer.new(user_answer_params)
     @user_answer.user = current_user
     @user_answer.quiz = @user_answer.question.questionable
-    @user_answer.save!
     authorize @user_answer
+    if @user_answer.save
+      redirect_to course_subject_lessons_path(@user_answer.quiz.lesson.subject.course, @user_answer.quiz.lesson.subject)
+      if @user_answer.is_true?
+        flash[:notice] = "Parabéns #{@user_answer.user.first_name}, você acertou! :)"
+      else
+        flash[:alert] = "Não foi dessa vez :("
+      end
+    end
   end
 
   def edit
