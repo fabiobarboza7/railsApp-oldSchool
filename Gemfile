@@ -10,6 +10,8 @@ end
 gem 'rails', '~> 5.0.5'
 # Devise
 gem 'devise'
+# Friendly
+gem 'friendly_id', '~> 5.2.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
 # Authorization
 gem "pundit"
 # Chart
