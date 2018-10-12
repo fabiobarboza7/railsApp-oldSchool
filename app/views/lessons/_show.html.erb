@@ -9,46 +9,11 @@
         <% if @lesson.video.include? 'vimeo' %>
           <iframe src="<%= @lesson.video %>" width="100%" height="500" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         <% else %>
-          <iframe style="border: solid 1px #ffde17 !important;" width="100%" height="500" src="http://www.youtube.com/embed/<%=@lesson.video.split('watch?v=').last if @lesson.video %>" frameborder="0" allowfullscreen></iframe>
+          <iframe width="100%" height="500" src="http://www.youtube.com/embed/<%=@lesson.video.split('watch?v=').last if @lesson.video %>" frameborder="0" allowfullscreen></iframe>
         <% end %>
       <% end %>
       <p class="my-2"><%= @lesson.subtitle %></p>
       <br>
-      <% if @count > 0 %>
-        <p>Responder <%= @count %> <%= @count > 1? "Quizzes" : "Quiz" %></p>
-      <% end %>
-      <% @quizzes.each do |quiz| %>
-        <% if !quiz.user_answers.where(user: current_user).any? %>
-          <a href="#" class="list-group-item list-group-item-action list-group-item-success" data-toggle="modal" data-target="#exampleModal-<%=quiz.id%>"> <%= quiz.title %> </a>
-          <!-- Modal -->
-          <div class="modal fade" id="exampleModal-<%=quiz.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div id="divToPrint">
-                  <div class="modal-header">
-                    <h3 class="modal-title" id="exampleModalLabel"><%= quiz.title %></h3>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                      <% quiz.questions.each do |question| %>
-                        <%= simple_form_for @user_answer do |f| %>
-                      <p><%= question.title %></p>
-                      <%= f.input :question_id, input_html: {value: question.id}, as: :hidden %>
-                        <%= f.submit "Correto" %>
-                      <% end %>
-                    <% end %>
-                  </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
       <div class="horizontal-line"></div>
       <% if !@lesson.next.nil? %>
         <% next_lesson = @lesson.next %>
@@ -68,6 +33,43 @@
           <i class="fas fa-arrow-circle-right mb-0 p-2 text-yellow fa-2x"></i>
         <% end %>
       </div>
+      <div class="horizontal-line"></div>
+      <br>
+      <% if @count > 0 %>
+        <p>Responder <%= @count %> <%= @count > 1? "Quizzes" : "Quiz" %></p>
+      <% end %>
+      <% @quizzes.each do |quiz| %>
+        <% if !quiz.user_answers.where(user: current_user).any? %>
+          <a href="#" class="list-group-item list-group-item-action list-group-item-success" data-toggle="modal" data-target="#exampleModal-<%=quiz.id%>"> <%= quiz.title %> <i class="fas fa-question"></i></a>
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal-<%=quiz.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div id="divToPrint">
+                  <div class="modal-header">
+                    <h3 class="modal-title text-center text-dark" id="exampleModalLabel"><%= quiz.title %> <i class="fas fa-question text-danger"></i></h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                      <% quiz.questions.each do |question| %>
+                        <%= simple_form_for @user_answer, html: {class: 'form-inline d-flex justify-content-between bg-grey p-2 m-2'} do |f| %>
+                      <p class="mb-0"><%= question.title %></p>
+                      <%= f.input :question_id, input_html: {value: question.id}, as: :hidden %>
+                      <span class="badge badge-light"><%= f.submit "correta?", class: 'btn btn-success', data: { confirm: 'Tem certeza?' } %></span>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Responder depois</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>

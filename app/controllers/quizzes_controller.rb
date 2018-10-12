@@ -28,9 +28,9 @@ class QuizzesController < ApplicationController
     @question = @quiz.questions.first
     authorize @quiz
     if @quiz.save!
-      redirect_to dashboards_path
+      redirect_to course_subject_lessons_path(@quiz.lesson.subject.course, @quiz.lesson.subject)
     else
-      redirect_to dashboards_path
+      redirect_to course_subject_lessons_path(@quiz.lesson.subject.course, @quiz.lesson.subject)
     end
   end
 
