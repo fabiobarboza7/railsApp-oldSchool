@@ -1,2 +1,32 @@
-<h1>Blogs#show</h1>
-<p>Find me in app/views/blogs/show.html.erb</p>
+<% content_for(:title_tag) do %>
+  <%= @blog.title %>
+<% end %>
+<header>
+  <div class="container">
+    <div class="row course-card my-5 bg-darkblue">
+      <div class="col-12 col-sm-10 offset-sm-1 d-sm-flex justify-content-between align-items-center py-4">
+        <%= cl_image_tag(@blog.photo, :width => 300, class: 'img-fluid img-thumbnail mx-auto d-block') %>
+        <h3 class="flex-grow-1 text-center mt-sm-0 mt-2 text-white"><%= @blog.title %></h3>
+      </div>
+      <div class="horizontal-line"></div>
+      <div class="col-sm-12 bg-grey">
+        <div class="col-12 col-sm-10 offset-sm-1 mt-5 text-darkblue">
+          <p class="pl-4 text-justify"><%= h(@blog.content).gsub(/\n/, '<br>').html_safe %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="container-fluid bg-dark mb-5">
+  <div class="row d-flex justify-content-center align-items-center">
+    <div class="col-12 col-sm-6 text-center">
+      <h2 class="text-white mt-5 m-sm-0">Dê o primeiro passo !</h2>
+      <p class="text-white">Faça uma aula experimental gratuita, é rápido e sem compromisso!</p>
+
+      <%= link_to "Aula Grátis", new_test_class_path, class: "btn btn-block btn-danger text-yellow"%>
+    </div>
+    <div class="col-xs-12 col-sm-6 text-center">
+      <%= cl_image_tag("http://res.cloudinary.com/dr4xmxoal/image/upload/c_scale,w_609/v1501782763/moodev-programac%CC%A7a%CC%83o_hmkzwz.png", class: "img-fluid mx-auto d-block rounded m-5") %>
+    </div>
+  </div>
+</div>

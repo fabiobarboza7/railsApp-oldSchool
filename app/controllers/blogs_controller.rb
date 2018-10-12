@@ -14,6 +14,7 @@ class BlogsController < ApplicationController
 
   def show
     # before_action
+    authorize @blog
   end
 
   def create

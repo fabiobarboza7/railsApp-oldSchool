@@ -1,13 +1,41 @@
-<header>
+<% content_for(:title_tag) do %>
+  MooDev - Blog
+<% end %>
+<header class="banner-moodev d-flex justify-content-center align-items-center" style="background-image: linear-gradient(320deg, rgba(255,222,23, 0.4) 0%, rgba(0,0,0,0.4) 70%) ,url(http://res.cloudinary.com/dr4xmxoal/image/upload/v1495173212/moodev-pelotas_rgwsxp.jpg);" data-stellar-background-ratio="0.5">
   <div class="container">
     <div class="row">
-      <div class="col-sm-12">
-        <% @blogs.each do |blog| %>
-          <%= blog.title %>
-          <%= blog.content %>
-          <%= cl_image_tag(blog.photo) %>
+      <div class="col-sm-8 offset-sm-2 text-center text-white">
+        <h1>BLOG</h1>
+        <h1 style="font-size: 30px;">“Todos deveriam aprender a programar um computador porque isto te ensina a pensar &mdash;  Steve Jobs”</h1>
+      </div>
+    </div>
+    <div class="arrow arrow-first"></div>
+    <div class="arrow arrow-second"></div>
+  </div>
+</header>
+<section id="courses">
+  <div class="container-fluid bg-grey">
+    <div class="row p-0 p-sm-4">
+      <div class="col-sm-12 text-center mb-5 mt-4 px-0 px-sm-5">
+        <h4>CURSOS</h4>
+      </div>
+      <div class="col-sm-12 ">
+        <% @blogs.in_groups_of(3, false).each do |group| %>
+          <div class="row text-center">
+            <% group.each do |blog| %>
+              <div class="col-sm-4 px-0 px-sm-5">
+                <div class="blog-card mb-5">
+                  <img style="background: url(<%= blog.photo %>);width:100%;height: 200px;background-size: cover;background-repeat: no-repeat; background-position: 50% 50%;")>
+                  <%#= h(@blog.content).gsub(/\n/, '<br>').html_safe %>
+                  <p class="my-2"><%= blog.title %></p>
+                  <div class="horizontal-line"></div>
+                  <p class="mb-0 p-2 p-link"><%= link_to 'Ler mais', blog_path(blog), class: 'text-blue' %></p>
+                </div>
+              </div>
+            <% end %>
+          </div>
         <% end %>
       </div>
     </div>
   </div>
-</header>
+</section>
