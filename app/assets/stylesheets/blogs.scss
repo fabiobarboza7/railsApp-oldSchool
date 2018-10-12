@@ -2,6 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.blog-card {
+  background-color: white;
+  border-radius: 7px;
+  overflow: hidden;
+  transition: ease 1s;
+}
+
+.blog-card:hover {
+  box-shadow: 17px 20px 15px 0 rgba(46,61,73,0.3);
+}
+
 $ani-speed: 2s;
 $ani-delay: 1s;
 
