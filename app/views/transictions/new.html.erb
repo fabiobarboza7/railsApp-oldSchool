@@ -63,7 +63,7 @@
           <div class="row p-0 p-sm-4">
             <div class="col-12 col-sm-6 offset-sm-3 p-1">
               <%= simple_form_for @transiction do |f| %>
-                <%= f.input :user_target, label: "Transferir para", :collection => User.all, :label_method => :email, :value_method => :id %>
+                <%= f.input :user_target, label: "Transferir para", :collection => @users, :label_method => :email, :value_method => :id %>
                 <%= f.input :amount, label: "Valor em u$" %>
                 <%= f.submit "Concluir transferência", class: 'btn btn-pink' %>
               <% end %>

@@ -11,6 +11,7 @@ class TutorialsController < ApplicationController
     end
     @enrollments = current_user.enrollments
     authorize Lesson
+    @tutorial = Tutorial.new
   end
 
   def new
@@ -29,7 +30,7 @@ class TutorialsController < ApplicationController
     @tutorial = Tutorial.new(tutorial_params)
     authorize @tutorial
     @tutorial.save
-    redirect_to dashboards_path
+    redirect_to tutorials_path
   end
 
   def edit

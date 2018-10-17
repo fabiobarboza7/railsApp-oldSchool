@@ -7,6 +7,7 @@ class TransictionsController < ApplicationController
 
   def new
     @transiction = Transiction.new
+    @users = User.all
     authorize @transiction
   end
 
