@@ -9,7 +9,7 @@
         <% if @tutorial.video.include? 'vimeo' %>
           <iframe src="<%= @tutorial.video %>" width="100%" height="500" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
         <% else %>
-          <iframe width="100%" height="500" src="http://www.youtube.com/embed/<%=@tutorial.video.split('watch?v=').last if @tutorial.video %>" frameborder="0" allowfullscreen></iframe>
+          <iframe width="100%" height="500" src="https://www.youtube.com/embed/<%=@tutorial.video.split('watch?v=').last if @tutorial.video %>" frameborder="0" allowfullscreen></iframe>
         <% end %>
       <% end %>
       <p class="my-2"><%= @tutorial.subtitle %></p>
