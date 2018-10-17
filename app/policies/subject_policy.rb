@@ -6,11 +6,11 @@ class SubjectPolicy < ApplicationPolicy
   end
 
   def index?
-    show?
+    true
   end
 
   def show?
-    true
+    user.enrollments.where(course_id: record.course_id).exists?
   end
 
   def new?
