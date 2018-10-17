@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resources :contacts, except: [:edit, :update, :destroy], :path => "contato"
   resources :blogs, except: [:destroy], :path => "blog"
   resources :dashboards, only: [:index]
-
+  resources :tutorials
   devise_for :users, :path => "usuario"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
