@@ -10,7 +10,7 @@ class TutorialsController < ApplicationController
       @set_color << {course_id: course.id, course_color: index}
     end
     @enrollments = current_user.enrollments
-    authorize Lesson
+    authorize Tutorial
     @tutorial = Tutorial.new
   end
 
