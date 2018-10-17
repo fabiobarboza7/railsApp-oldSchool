@@ -54,7 +54,7 @@
                   <%= link_to "Sair", destroy_user_session_path, class: 'btn btn-danger btn-block', method: :delete %>
                 <% else %>
                   <%= f.button :submit, "Login", class: 'btn btn-primary btn-block' %>
-                  <%= render "devise/shared/links" %>
+                  <%#= render "devise/shared/links" %>
                 <% end %>
               </div>
             <% end %>

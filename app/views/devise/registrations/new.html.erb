@@ -1,30 +1,75 @@
-<h2>Sign up</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :first_name, required: true, autofocus: true %>
-    <%= f.input :last_name, required: true, autofocus: true %>
-    <%#= f.input :age, required: true, autofocus: true, :order => [ :day, :month, :year], :start_year => Date.current.year, :end_year => 1920 %>
-    <%= f.input :date_of_birth, as: :string, input_html: {type: :date} %>
-    <%= f.input :photo, required: true, autofocus: true %>
-    <%= f.input :photo_cache, as: :hidden %>
-    <%= f.input :email, required: true, autofocus: true %>
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-    <% end %>
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
+<% content_for :sidebar do %>
+  <div class="container-fluid navbar-moodev">
+    <div class="row p-3">
+      <div class="col-sm-12 d-flex justify-content-between align-items-center">
+        <%= link_to root_path do %>
+          <%= image_tag "http://res.cloudinary.com/fabiobarboza7/image/upload/moodev-weblogo-pelotas.png", class: 'logo' %>
+        <% end %>
+        <nav class="nav-a mx-2 d-none d-sm-block">
+          <%= link_to "Home", root_path, class: "px-2"%>
+          <%= link_to "Blog", blogs_path, class: "px-2"%>
+          <%= link_to "Cursos", "#courses", class: "px-2"%>
+          <%#= link_to "Videos", "#videos", class: "px-2"%>
+          <%= link_to "Contato", "#contact", class: "px-2"%>
+          <%= link_to "https://api.whatsapp.com/send?phone=5553984541340&text=Ol%C3%A1,%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20curso.", class: "px-2" do %>
+            Envie um WhatsApp
+            <i style="color: #0EC144;" class="fab fa-whatsapp"></i>
+          <% end %>
+          <%= link_to "Aula Grátis", new_test_class_path, class: "px-2 text-yellow"%>
+        </nav>
+        <div class="dropdown-custom d-block d-sm-none" onclick="myFunctionXs()">
+          <a class="fas fa-bars fa-2x">
+          </a>
+          <div id="myDropdownXs" class="dropdown-menu dropdown-content-custom dropdown-menu-right">
+            <%= link_to "Home", root_path, class: "dropdown-item"%>
+            <%= link_to "Blog", blogs_path, class: "dropdown-item"%>
+            <%= link_to "Cursos", "#courses", class: "dropdown-item"%>
+            <%#= link_to "Videos", "#videos", class: "dropdown-item"%>
+            <%= link_to "Contato", "#contact", class: "dropdown-item"%>
+            <%= link_to "Envie um WhatsApp", "https://api.whatsapp.com/send?phone=5553984541340&text=Ol%C3%A1,%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20curso.", class: "px-2 dropdown-item"%>
+            <%= link_to "Aula Grátis", new_test_class_path, class: "dropdown-item text-yellow"%>
+            <div class="mt-1"></div>
+            <%= link_to "Acesso do Aluno", new_user_session_path, class: "dropdown-item dropdown-divider-color"%>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+
+  <div class="container my-5">
+    <div class="col-sm-6 offset-sm-3">
+      <h3 class="text-center">Cadastrar</h3>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= f.error_notification %>
+        <div class="form-inputs">
+          <%= f.input :first_name, required: true, autofocus: true , label: "Nome"%>
+          <%= f.input :last_name, required: true, autofocus: true , label: "Sobrenome"%>
+          <%#= f.input :age, required: true, autofocus: true, :order => [ :day, :month, :year], :start_year => Date.current.year, :end_year => 1920 , label: "s"%>
+          <%= f.input :date_of_birth, as: :string, input_html: {type: :date} , label: "Data de Nascimento"%>
+          <label class="btn btn-warning mb-2">
+          <i class="fas fa-image"></i>
+          <span style="display: none;">
+            <%= f.input :photo, required: true, autofocus: true , label: "Foto"%>
+            <%= f.input :photo_cache, as: :hidden %>
+          </span>
+        </label>
+          <%= f.input :username, required: true, autofocus: true, label: "Usuário" %>
+          <%= f.input :email, required: true, autofocus: true, label: "Email" %>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+          <% end %>
+          <%= f.input :password,
+                      required: false,
+                      input_html: { autocomplete: "new-password" }, label: "Senha" %>
+          <%= f.input :password_confirmation,
+                      required: false,
+                      input_html: { autocomplete: "new-password" }, label: "Confirmação de Senha" %>
+        </div>
+        <div class="form-actions">
+          <%= f.button :submit, "Concluir Cadastro", class: "bg-dark text-white" %>
+        </div>
+      <% end %>
+      <%= render "devise/shared/links" %>
+    </div>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>
