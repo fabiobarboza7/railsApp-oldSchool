@@ -1,4 +1,4 @@
-class CoursePolicy < ApplicationPolicy
+class TutorialPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
@@ -10,7 +10,8 @@ class CoursePolicy < ApplicationPolicy
   end
 
   def show?
-    user.enrollments.where(course_id: record).exists?
+    true
+    # user.enrollments.where(course_id: record.course_id).exists?
   end
 
   def new?
@@ -19,6 +20,10 @@ class CoursePolicy < ApplicationPolicy
 
   def create?
     user.admin?
+  end
+
+  def update?
+    true
   end
 
 end

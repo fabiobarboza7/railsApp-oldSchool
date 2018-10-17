@@ -1,0 +1,33 @@
+<section>
+  <div class="row p-0 p-sm-4 bg-grey rounded mt-5">
+    <div class="col-sm-12 text-center mb-5 mt-4 px-0 px-sm-5">
+      <h4>Tutoriais</h4>
+    </div>
+    <div class="col-sm-12 ">
+      <% count = 0 %>
+      <% @tutorials.in_groups_of(3, false).each do |group| %>
+        <div class="row text-center">
+
+          <% group.each_with_index do |tutorial, index| %>
+            <%= link_to tutorial_path(tutorial), remote: true do %>
+              <% if tutorial.course_id == @set_color[count][:course_id] %>
+                <% this_color = @set_color[count][:course_color] %>
+              <% else %>
+                <% count = count + 1 %>
+                <% this_color = count %>
+              <% end %>
+              <div class="col-sm-4 px-0 px-sm-5">
+                <div class="tutorial-card mb-5 blog-card pt-2" style="<%= @colors[this_color] %>">
+                  <p class="my-2 text-white"><%= tutorial.title %></p>
+                  <div class="horizontal-line"></div>
+                  <p class="mb-0 p-2 p-link text-white"><%= link_to tutorial.course.title, tutorial_path(tutorial), remote: true %></p>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+

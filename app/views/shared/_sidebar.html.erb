@@ -8,9 +8,9 @@
     <li class="active">
       <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Meus cursos</a>
       <ul class="collapse list-unstyled" id="homeSubmenu">
-        <% @courses.each do |course| %>
+        <% @enrollments.each do |enroll| %>
           <li>
-            <%= link_to course.title, course_path(course), remote: true %>
+            <%= link_to enroll.course.title, course_path(enroll.course), remote: true %>
           </li>
         <% end %>
       </ul>
@@ -24,18 +24,7 @@
     </li>
     <% end %>
     <li>
-      <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Tutoriais</a>
-      <ul class="collapse list-unstyled" id="pageSubmenu">
-          <!-- <li>
-              <a href="#">Page 1</a>
-          </li>
-          <li>
-              <a href="#">Page 2</a>
-          </li>
-          <li>
-              <a href="#">Page 3</a>
-          </li> -->
-      </ul>
+      <%= link_to "Tutoriais", tutorials_path %>
     </li>
     <li>
         <a href="#">Ranking</a>
