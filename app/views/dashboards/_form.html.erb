@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-12 rounded my-2 my-sm-0">
     <div class="p-4 bg-white rounded">
-      <p>Meu desempenho no curso</p>
+      <p>Meu desempenho no curso <%= current_user.last_sign_in_at %></p>
       <% chart = ["Acertos", "Erros"] %>
       <%= line_chart user_range().each_with_index.map {|user, index|
         {name: chart[index], data: user.group_by_day(:created_at).count}
