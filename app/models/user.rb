@@ -14,7 +14,7 @@ class User < ApplicationRecord
   mount_uploader :photo, PhotoUploader
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, authentication_keys: [:login]
+         :recoverable, :rememberable, :trackable, :validatable, authentication_keys: [:login]
 
   validates :username, presence: :true, uniqueness: { case_sensitive: false }
 
