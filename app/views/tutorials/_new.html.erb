@@ -1,0 +1,16 @@
+<% if policy(@tutorial).new? %>
+  <br>
+  <div class="row">
+    <div class="col-sm-6 offset-sm-3">
+      <h3 class="text-center">Cadastrar Tutorial</h3>
+      <%= simple_form_for @tutorial, html: { class: "form-container"} do |f| %>
+        <%= f.input :title, label: 'Tutorial', placeholder: 'Digite o título' %>
+        <%= f.input :subtitle, label: 'Descrição', placeholder: 'Digite a descrição' %>
+        <%= f.input :video, label: 'Url do video', placeholder: 'Digite a url do video' %>
+        <%= f.input :file, label: 'Arquivos', placeholder: 'Faça o upload de algum arquivo'  %>
+        <%= f.association :course, label: 'Curso', as: :radio_buttons %>
+        <%= f.submit 'Criar tutorial', class: 'btn btn-info' %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
