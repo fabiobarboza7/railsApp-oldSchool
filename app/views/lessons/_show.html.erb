@@ -14,6 +14,20 @@
       <% end %>
       <p class="my-2"><%= @lesson.subtitle %></p>
       <br>
+      <% if @lesson.file.nil? == false %>
+        <div>
+          <object data="<%= @lesson.file %>" type="application/pdf" width="100%" height="500">
+          </object>
+          <a href="<%= @lesson.file %>" download="" class="btn btn-primary"><i class="glyphicon glyphicon-cloud-download"></i> baixar material de apoio</a>
+        </div>
+      <% else %>
+        <% if policy(@lesson).edit? %>
+          <div>
+            <%= link_to "[adicionar slide]", edit_course_subject_lesson_path(@lesson.subject.course.id, @lesson.subject.id, @lesson), remote: true %></p>
+          </div>
+        <% end %>
+      <% end %>
+      <br>
       <div class="horizontal-line"></div>
       <% if !@lesson.next.nil? %>
         <% next_lesson = @lesson.next %>

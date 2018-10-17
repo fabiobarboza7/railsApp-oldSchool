@@ -18,6 +18,10 @@ class TutorialPolicy < ApplicationPolicy
     create?
   end
 
+  def edit?
+    create?
+  end
+
   def create?
     user.admin?
   end
