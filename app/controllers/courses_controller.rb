@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-
+  skip_before_action :authenticate_user!, only: :show
   before_action :set_course, only: [:show, :update, :destroy]
 
   def new
@@ -9,7 +9,11 @@ class CoursesController < ApplicationController
 
   def show
     # before_action
-    authorize @course
+    if !user_signed_in?
+      skip_authorization
+    else
+      authorize @course
+    end
     respond_to do |format|
       format.html { render 'courses/show' }
       format.js  # <-- idem
