@@ -3,6 +3,8 @@ class Lesson < ApplicationRecord
   has_many :quizzes
   has_many :tests
 
+  mount_uploader :file, PhotoUploader
+
   def next
     subject.lessons.where("id > ?", id).first
   end
