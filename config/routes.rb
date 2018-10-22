@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :wallets, only: [:show], :path => "carteira"
   end
   resources :test_classes, except: [:edit, :update, :destroy], :path => "aula-gratis"
+  get "/aula-gratis", to: "test_classes#new"
   resources :contacts, except: [:edit, :update, :destroy], :path => "contato"
   resources :blogs, except: [:destroy], :path => "blog"
   resources :dashboards, only: [:index]
