@@ -8,8 +8,6 @@ class UserAnswer < ApplicationRecord
   def set_done
     if self.question.is_true?
       self.is_true = true
-      score = self.user.score + self.question.score
-      self.user.update(score: score)
       # self.question.questionable.update(done: true)
     else
       self.is_true = false
