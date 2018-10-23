@@ -19,6 +19,10 @@ class UserAnswersController < ApplicationController
     @user_answer.quiz = @user_answer.question.questionable
     authorize @user_answer
     if @user_answer.save
+      # if @user_answer.is_true?
+        score = current_user.score + @user_answer.question.score
+        current_user.update(score: score)
+      # end
       redirect_to course_subject_lessons_path(@user_answer.quiz.lesson.subject.course, @user_answer.quiz.lesson.subject)
       if @user_answer.is_true?
         flash[:notice] = "Parabéns #{@user_answer.user.first_name}, você acertou! :)"
