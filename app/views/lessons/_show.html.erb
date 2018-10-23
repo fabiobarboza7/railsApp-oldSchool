@@ -69,7 +69,7 @@
                   <div class="modal-body">
                     <% quiz.questions.each do |question| %>
                       <%= simple_form_for @user_answer, html: {class: 'form-inline d-flex justify-content-between bg-grey p-2 m-2'} do |f| %>
-                      <div class="d-flex justify-content-center align-items-center">
+                      <div class="d-flex justify-content-center align-items-center w-100">
                         <p class="mb-0"><%= question.title %></p>
                         <%= f.input :question_id, input_html: {value: question.id}, as: :hidden %>
                         <span class="badge badge-light"><%= f.submit "correta?", class: 'btn btn-success', data: { confirm: 'Tem certeza?' } %></span>
