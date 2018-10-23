@@ -34,6 +34,7 @@
     </li>
     <li>
       <% if policy(Enrollment).new? %>
+        <%= link_to "Cadastrar Usuário", new_user_registration_path, class: "text-danger" %>
         <%= link_to "Cadastrar Matrícula", new_enrollment_path, class: "text-danger" %>
       <% end %>
     </li>
