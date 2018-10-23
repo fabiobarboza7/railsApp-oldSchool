@@ -14,7 +14,7 @@
       <% end %>
       <p class="my-2"><%= @lesson.subtitle %></p>
       <br>
-      <% if @lesson.file.nil? == false %>
+      <% if @lesson.file.file.nil? == false %>
         <div>
           <object data="<%= cloudinary_url(@lesson.file, :secure => true) %>" type="application/pdf" width="100%" height="500">
           </object>
