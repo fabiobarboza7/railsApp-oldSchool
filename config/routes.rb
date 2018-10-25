@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :questions, except: [:destroy]
   resources :user_answers, only: [:new, :create]
   resources :transictions, only: [:new, :create, :index, :show]
-  resources :users, only: [] do
+  resources :users, only: [:new, :create] do
     resources :wallets, only: [:show], :path => "carteira"
   end
   resources :test_classes, except: [:edit, :update, :destroy, :new, :index], :path => "aula-gratis"
