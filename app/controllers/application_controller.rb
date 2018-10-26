@@ -2,9 +2,9 @@ class ApplicationController < ActionController::Base
   add_flash_types :success
   protect_from_forgery with: :exception
 
-  before_action :authenticate_user!
   helper_method :resource_name, :resource, :devise_mapping, :resource_class
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :authenticate_user!
 
   def configure_permitted_parameters
     # For additional fields in app/views/devise/registrations/new.html.erb
@@ -62,18 +62,18 @@ class ApplicationController < ActionController::Base
     root_path
   end
 
-  protected
+  # protected
 
-  def authenticate_user!
-    if user_signed_in?
-      super
-    else
-      redirect_to root_path
-      flash[:alert] = "Tivemos algum problema, tente novamente..."
-      ## if you want render 404 page
-      ## render :file => File.join(Rails.root, 'public/404'), :formats => [:html], :status => 404, :layout => false
-    end
-  end
+  # def authenticate_user!
+  #   if user_signed_in?
+  #     super
+  #   else
+  #     redirect_to root_path
+  #     flash[:alert] = "Tivemos algum problema, tente novamente..."
+  #     ## if you want render 404 page
+  #     ## render :file => File.join(Rails.root, 'public/404'), :formats => [:html], :status => 404, :layout => false
+  #   end
+  # end
 
 
 end

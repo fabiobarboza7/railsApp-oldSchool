@@ -15,7 +15,7 @@
             Envie um WhatsApp
             <i style="color: #0EC144;" class="fab fa-whatsapp"></i>
           <% end %>
-          <%= link_to "Aula Grátis", new_test_class_path, class: "px-2 text-yellow"%>
+          <%= link_to "Aula Grátis", aula_gratis_path, class: "px-2 text-yellow"%>
         </nav>
         <div class="dropdown-custom d-block d-sm-none" onclick="myFunctionXs()">
           <a class="fas fa-bars fa-2x">
@@ -27,7 +27,7 @@
             <%#= link_to "Videos", "#videos", class: "dropdown-item"%>
             <%= link_to "Contato", "#contact", class: "dropdown-item"%>
             <%= link_to "Envie um WhatsApp", "https://api.whatsapp.com/send?phone=5553984541340&text=Ol%C3%A1,%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20curso.", class: "px-2 dropdown-item"%>
-            <%= link_to "Aula Grátis", new_test_class_path, class: "dropdown-item text-yellow"%>
+            <%= link_to "Aula Grátis", aula_gratis_path, class: "dropdown-item text-yellow"%>
             <div class="mt-1"></div>
             <%= link_to "Acesso do Aluno", new_user_session_path, class: "dropdown-item dropdown-divider-color"%>
           </div>
