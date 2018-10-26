@@ -10,3 +10,14 @@
 h4, p, .overflow-word {
   overflow-wrap: break-word;
 }
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.non-pic {
+  min-width: 80px;
+  min-height: 80px;
+  border-radius: 50%;
+  font-size: 50%;
+}
