@@ -18,7 +18,7 @@
             <%= link_to "adicionar foto", edit_user_registration_path(current_user) %>
           </div>
         <% else %>
-          <%= cl_image_tag(@user.photo, class: 'avatar') %>
+          <%= cl_image_tag(@user.photo, :secure => true, class: 'avatar') %>
         <% end %>
         <p class="mb-0">Carteira: <%= number_to_currency_br(current_user.wallet.money) %> moos <i class="far fa-money-bill-alt text-success"></i></p>
       </div>
