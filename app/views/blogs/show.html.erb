@@ -3,12 +3,12 @@
 <% end %>
 <% content_for :meta_title, @blog.title %>
 <% content_for :meta_description, @blog.content %>
-<% content_for :meta_image, cloudinary_url(@blog.photo, :secure => true) %>
+<% content_for :meta_image, cl_image_tag(@blog.photo, :secure => true) %>
 <header>
   <div class="container">
     <div class="row course-card my-5 bg-darkblue">
       <div class="col-12 col-sm-10 offset-sm-1 d-sm-flex justify-content-between align-items-center py-4">
-        <%= cloudinary_url(@blog.photo, :secure => true, :width => 300, class: 'img-fluid img-thumbnail mx-auto d-block') %>
+        <%= cl_image_tag(@blog.photo, :secure => true, :width => 300, class: 'img-fluid img-thumbnail mx-auto d-block') %>
         <h3 class="flex-grow-1 text-center mt-sm-0 mt-2 text-white"><%= @blog.title %></h3>
       </div>
       <div class="horizontal-line"></div>
