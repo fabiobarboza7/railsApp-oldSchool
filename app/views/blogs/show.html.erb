@@ -1,6 +1,9 @@
 <% content_for(:title_tag) do %>
   <%= @blog.title %>
 <% end %>
+<% content_for :meta_title, @blog.tile %>
+<% content_for :meta_description, @blog.content %>
+<% content_for :meta_image, cloudinary_url(@blog.photo, :secure => true) %>
 <header>
   <div class="container">
     <div class="row course-card my-5 bg-darkblue">

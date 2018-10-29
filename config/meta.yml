@@ -1,0 +1,5 @@
+meta_product_name: "MooDev"
+meta_title: "MooDev - Ciência da Computação e Robótica"
+meta_description: "A MooDev é a primeira Escola de Ciência da Computação e Robótica para crianças e adolescentes de Pelotas."
+meta_image: "MOODEV_LOGO.png"                       # should exist in `app/assets/images/`
+# twitter_account: "@product_twitter_account"   # required for Twitter Cards
