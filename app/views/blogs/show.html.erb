@@ -1,7 +1,7 @@
 <% content_for(:title_tag) do %>
   <%= @blog.title %>
 <% end %>
-<% content_for :meta_title, @blog.title %>
+<% content_for :meta_title, "Blog - #{@blog.title}" %>
 <% content_for :meta_description, @blog.content %>
 <% content_for :meta_image, cloudinary_url(@blog.photo, :secure => true) %>
 <header>
