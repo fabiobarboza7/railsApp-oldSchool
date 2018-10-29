@@ -14,11 +14,11 @@ class TestClassesController < ApplicationController
   def create
     @test_class = TestClass.new(test_class_params)
     authorize @test_class
-    if @test_class.save
+    if @test_class.save!
       redirect_to root_path
       flash[:notice] = "Aula Teste agendada com sucesso"
     else
-      redirect_to new_test_class_path
+      redirect_to aula_gratis_path
       flash[:alert] = "Houve um erro, verifique todos os campos!"
     end
   end
@@ -45,6 +45,6 @@ class TestClassesController < ApplicationController
   end
 
   def test_class_params
-    params.require(:test_class).permit(:student, :age, :parent, :email, :phone, :schedule)
+    params.require(:test_class).permit(:student, :age, :parent, :email, :phone, :schedule, :course_id)
   end
 end

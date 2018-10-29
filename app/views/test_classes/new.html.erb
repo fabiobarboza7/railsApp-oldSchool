@@ -14,7 +14,11 @@
           <%= f.input :email, label: "E-mail", placeholder: "Digite seu e-mail" %>
           <%= f.input :phone, label: "Telefone", placeholder: "Digite se telefone" %>
           <%= f.input :schedule, label: "Data", collection: TestClass::SCHEDULE_DAYS, :prompt => "Selecione um dia" %>
+          <%= f.association :course, label: "Qual curso fará a aula gratuita?", as: :radio_buttons, label_method: :title, :prompt => "Selecione o curso" %>
           <%= f.submit "Solicitar Aula", class: 'btn bg-yellow' %>
+          <div class="progress mt-2">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
         <% end %>
       </div>
     </div>
