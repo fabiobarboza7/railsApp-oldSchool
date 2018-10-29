@@ -3,12 +3,37 @@
   <head>
     <title><%= yield(:title_tag).blank? ? "MooDev - Ciência da Computação e Robótica" : yield(:title_tag) %></title>
     <%= favicon_link_tag 'logo-rounded.png' %>
+     <meta name="description" content="<%= meta_description %>">
 
+    <!-- Facebook Open Graph data -->
+    <meta property="og:title" content="<%= meta_title %>" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:image" content="<%= meta_image %>" />
+    <meta property="og:description" content="<%= meta_description %>" />
+    <meta property="og:site_name" content="<%= meta_title %>" />
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- <meta name="twitter:site" content="<%#= DEFAULT_META["twitter_account"] %>"> -->
+    <meta name="twitter:title" content="<%= meta_title %>">
+    <meta name="twitter:description" content="<%= meta_description %>">
+    <!-- <meta name="twitter:creator" content="<%#= DEFAULT_META["twitter_account"] %>"> -->
+    <meta name="twitter:image:src" content="<%= meta_image %>">
+    <!-- end meta rilas help -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <title>Ciência da Computação e Robótica para Crianças e Adolescentes</title> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <meta name="description" content="A MooDev é a primeira Escola de Ciência da Computação e Robótica para crianças e adolescentes de Pelotas." /> -->
+    <meta name="keywords" content="Escola de programação pelotas, escola de ciência da computação, robótica pelotas, robotica,  programação para crianças pelotas, curso informática para crianças, arduino para crianças, aprender programar, programar minecraft, escola de ciencia da computacao e robotica, pelotas" />
+    <meta name="author" content="MooDev - Ciência da Computação e Robótica" />
+    <link rel="canonical" href="https://www.moodev.com.br/" />
+    <!-- Facebook and Twitter -->
+    <meta property="og:locale" content="pt_BR" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="theme-color" content="#008DD5">
     <%= csrf_meta_tags %>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
@@ -17,6 +42,15 @@
       Chartkick.configure({language: "pt-BR"});
     </script>
     <script src="https://cdn.jsdelivr.net/gh/jquery-form/form@4.2.2/dist/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i" crossorigin="anonymous"></script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-99380241-1', 'auto');
+  ga('send', 'pageview');
+    </script>
   </head>
 
   <body>
