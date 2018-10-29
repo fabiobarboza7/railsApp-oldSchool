@@ -3,7 +3,7 @@
 <% end %>
 <% content_for :meta_title, @blog.title %>
 <% content_for :meta_description, @blog.content %>
-<% content_for :meta_image, cl_image_tag(@blog.photo, :secure => true) %>
+<% content_for :meta_image, cloudinary_url(@blog.photo, :secure => true) %>
 <header>
   <div class="container">
     <div class="row course-card my-5 bg-darkblue">
