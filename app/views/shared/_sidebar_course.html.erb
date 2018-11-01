@@ -1,7 +1,12 @@
 <nav id="sidebar" style="background-color: #008DD5;">
   <%= link_to course_subject_lessons_path(@subject.course_id, @subject) do %>
     <div class="sidebar-header-course">
-        <h3 class="mb-0"><%= @subject.title %></h3>
+      <%= link_to url_for(:back) do %>
+        <div class="d-flex justify-content-between align-items-center">
+          <i class="fas fa-chevron-left mr-3"></i>
+          <h3 class="mb-0"><%= @subject.title %></h3>
+        </div>
+      <% end %>
     </div>
   <% end %>
   <ul class="list-unstyled components">
