@@ -8,6 +8,7 @@ class CoursesController < ApplicationController
   end
 
   def show
+    @contact = Contact.new
     # before_action
     if !user_signed_in?
       skip_authorization
