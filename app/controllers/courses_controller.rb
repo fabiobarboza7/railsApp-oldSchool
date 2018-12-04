@@ -26,6 +26,8 @@ class CoursesController < ApplicationController
     authorize @course
     if @course.save
       flash[:notice] = "Mensagem enviada com sucesso"
+      else
+      flash[:alert] = "Houve um erro, verifique todos os campos!"
     end
     redirect_to root_path
   end
