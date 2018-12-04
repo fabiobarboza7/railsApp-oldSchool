@@ -1,6 +1,9 @@
 <% content_for(:title_tag) do %>
   <%= @course.title %>
 <% end %>
+<% content_for :meta_title, "course - #{@course.title}" %>
+<% content_for :meta_description, @course.content %>
+<% content_for :meta_image, cloudinary_url(@course.photo, :secure => true) %>
 <header>
   <div class="container">
     <div class="row course-card my-5 bg-darkblue">
