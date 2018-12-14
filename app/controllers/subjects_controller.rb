@@ -3,7 +3,7 @@ class SubjectsController < ApplicationController
 
   def index
     @subjects = policy_scope(Subject).where(course_id: params[:course_id]).order(created_at: :asc)
-    @course = Course.find_by_id(params[:course_id])
+    @course = Course.friendly.find(params[:course_id])
     @subject = Subject.new
     # @subject.course = @course
     authorize Subject
