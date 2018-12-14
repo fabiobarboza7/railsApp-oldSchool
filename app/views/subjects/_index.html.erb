@@ -3,7 +3,7 @@
 
       <div class="course-card mb-5">
         <% colors = ['background-color: #373F51;','background-color: #ECB5D3;','background-color: #FFDE17;','background-color: #008DD5;'] %>
-        <% @subjects.in_groups_of(4, false).each do |group| %>
+        <% @course.subjects.in_groups_of(4, false).each do |group| %>
           <div class="row text-center d-flex justify-content-start">
             <% group.each do |subject| %>
               <div class="col-3">
