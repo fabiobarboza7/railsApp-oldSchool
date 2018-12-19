@@ -26,7 +26,7 @@ class SubjectsController < ApplicationController
 
   def create
     @subjects = policy_scope(Subject).where(course_id: params[:course_id]).order(created_at: :asc)
-    @course = Course.find_by_id(params[:course_id])
+    @course = Course.friendly.find(params[:course_id])
     @subject = Subject.new(subject_params)
     authorize @subject
     @subject.course_id = @course.id
