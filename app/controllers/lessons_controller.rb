@@ -60,8 +60,9 @@ class LessonsController < ApplicationController
 
   def update
     # before_action
+    authorize @lesson
     @lesson.update(lesson_params)
-    redirect_to root_path
+    redirect_to :back
   end
 
   def destroy
