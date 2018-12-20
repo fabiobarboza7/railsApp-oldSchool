@@ -62,6 +62,8 @@ class LessonsController < ApplicationController
     # before_action
     authorize @lesson
     @lesson.update(lesson_params)
+    flash[:notice] = "Lição atualizada com sucesso"
+
     redirect_to :back
   end
 
