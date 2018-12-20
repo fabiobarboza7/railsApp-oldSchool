@@ -1,6 +1,7 @@
 class TestClassesController < ApplicationController
   before_action :set_test_class, only: [:show, :update, :destroy]
   skip_before_action :authenticate_user!
+  skip_before_action :verify_authenticity_token
   def new
     @test_class = TestClass.new
     authorize @test_class
@@ -14,13 +15,19 @@ class TestClassesController < ApplicationController
   def create
     @test_class = TestClass.new(test_class_params)
     authorize @test_class
-    if @test_class.save!
-      redirect_to root_path
-      flash[:notice] = "Aula Teste agendada com sucesso"
-    else
+    if @test_class.valid?
+      if @test_class.save!
+        redirect_to root_path
+        flash[:notice] = "Aula Teste agendada com sucesso"
+      else 
+        redirect_to aula_gratis_path
+        flash[:alert] = "Houve um erro, verifique todos os campos!"
+      end
+    else  
       redirect_to aula_gratis_path
       flash[:alert] = "Houve um erro, verifique todos os campos!"
     end
+
   end
 
   def update
