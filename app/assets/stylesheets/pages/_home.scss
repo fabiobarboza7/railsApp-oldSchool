@@ -26,6 +26,10 @@ blockquote {
   }
 }
 
+.banner-rj > h1 {
+  font-family: Poppins, serif;
+}
+
 .carousel-item blockquote {
     border-left: none;
     margin: 0;
@@ -84,6 +88,10 @@ blockquote {
   position: relative;
   bottom: 5px;
   right: 5px;
+}
+
+.border-radius {
+  border-radius: 10px;
 }
 
 .no-borders {
