@@ -10,6 +10,6 @@ class PagesController < ApplicationController
   end
 
   def rio_de_janeiro
-  	
+  	@contact = Contact.new
   end
 end
