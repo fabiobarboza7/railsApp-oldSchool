@@ -73,7 +73,7 @@ class ApplicationController < ActionController::Base
       super
     else
       redirect_to root_path
-      flash[:alert] = "Tivemos algum problema, tente novamente..."
+      flash[:alert] = "Login ou senha inválidos, tente novamente..."
       ## if you want render 404 page
       ## render :file => File.join(Rails.root, 'public/404'), :formats => [:html], :status => 404, :layout => false
     end
