@@ -15,13 +15,16 @@ class QuizPolicy < ApplicationPolicy
       record.all.each do |rec|
         if rec.lesson.subject.course_id == enroll.last.course_id
           true
+          puts "true =============== #{rec.lesson.subject.course_id}"
         else
           false
+          puts "false =============== #{rec.lesson.subject.course_id} --- #{enroll.last.course_id}"
         end
       end
     else
       false
     end
+
   end
 
   def new?
