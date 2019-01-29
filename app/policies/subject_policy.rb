@@ -10,7 +10,7 @@ class SubjectPolicy < ApplicationPolicy
   end
 
   def show?
-    user.enrollments.where(course_id: record.course_id).exists?
+    true
   end
 
   def new?

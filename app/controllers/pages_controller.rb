@@ -7,6 +7,9 @@ class PagesController < ApplicationController
     @course = Course.new
     @star = "<i class='fas fa-star text-yellow'></i>".html_safe
     @contact = Contact.new
+    if user_signed_in?
+      redirect_to dashboards_path
+    end
   end
 
   def rio_de_janeiro

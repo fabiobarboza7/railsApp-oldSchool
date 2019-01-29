@@ -9,8 +9,22 @@ class QuizPolicy < ApplicationPolicy
     show?
   end
 
-  def show?
-    true
+  def show? 
+    enroll = Enrollment.where(user: user.id)
+    if enroll.any?
+      record.each do |rec|
+        if rec.lesson.subject.course_id == enroll.last.course_id
+          true
+          puts "true ==============="
+        else
+          false
+          puts "false ==============="
+        end
+      end
+    else
+      false
+    end
+
   end
 
   def new?
