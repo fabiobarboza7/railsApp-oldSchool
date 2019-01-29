@@ -42,7 +42,7 @@
     <div class="p-3 bg-white rounded">
       <p class="text-darkblue">Quizzes para fazer <i class="fas fa-dice text-danger"></i></p>
       <ul class="list-group overflow-scroll">
-        <% if policy(@quizzes).index? %>
+        <% if policy(@quizzes).show? %>
           <% @quizzes.each do |quiz| %>
             <% if !quiz.user_answers.where(user: current_user).any? %>
                 <%= link_to course_subject_lessons_path(quiz.lesson.subject.course, quiz.lesson.subject, quiz.lesson) do %>
