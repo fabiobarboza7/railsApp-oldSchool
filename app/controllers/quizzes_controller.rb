@@ -2,11 +2,13 @@ class QuizzesController < ApplicationController
   before_action :set_quiz, only: [:show, :destroy]
 
   def index
-
+    @quizzes = policy_scope(Quiz).order(created_at: :asc)
+    authorize Quiz
   end
 
   def new
-    # @lesson = Lesson.find_by_id(params[:subject_id])
+    @quiz = Quiz.new
+    authorize @quiz
 
     # @quiz.lesson_id = @lesson
 
