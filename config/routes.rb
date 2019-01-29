@@ -23,8 +23,7 @@ Rails.application.routes.draw do
   resources :dashboards, only: [:index]
   resources :tutorials
   resources :enrollments
-  devise_for :users, :path => "usuario"
-
+  devise_for :users, :path => "usuario", controllers: {sessions: "sessions"}
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'pages/home'
   get '/rio-de-janeiro', to: "pages#rio_de_janeiro"
