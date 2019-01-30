@@ -11,7 +11,7 @@ class QuizPolicy < ApplicationPolicy
 
   def show? 
     enroll = Enrollment.where(user: user.id)
-    if enroll.nil? == false
+    if enroll.last.nil? == false
       record.all.each do |rec|
         if rec.lesson.subject.course_id == enroll.last.course_id
           true
@@ -24,7 +24,6 @@ class QuizPolicy < ApplicationPolicy
     else
       false
     end
-
   end
 
   def new?
