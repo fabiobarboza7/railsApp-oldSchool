@@ -110,5 +110,11 @@ $(document).on('turbolinks:load', function(){
   });
   // end sidebar
   Chartkick.configure({language: "pt"});
+
+  $('.carousel').carousel({
+    interval: 2000
+  })
 });
+
+
 

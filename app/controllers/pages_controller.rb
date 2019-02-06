@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home, :rio_de_janeiro]
+  skip_before_action :authenticate_user!, only: [:home, :rio_de_janeiro, :franchise]
 
   def home
     # Get all courses
@@ -15,4 +15,9 @@ class PagesController < ApplicationController
   def rio_de_janeiro
   	@contact = Contact.new
   end
+
+  def franchise
+    @contact = Contact.new
+  end
+
 end
