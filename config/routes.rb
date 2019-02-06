@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'pages/home'
   get '/rio-de-janeiro', to: "pages#rio_de_janeiro"
-  get '/seja-um-franquado', to: "pages#franchise"
+  get '/seja-um-franqueado', to: "pages#franchise"
   root to: 'pages#home'
 
 end
