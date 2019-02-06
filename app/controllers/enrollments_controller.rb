@@ -21,8 +21,17 @@ class EnrollmentsController < ApplicationController
   def create
     @enrollment = Enrollment.new(enrollment_params)
     authorize @enrollment
-    @enrollment.save
-    redirect_to dashboards_path
+    if @enrollment.save
+      flash[:notice] = "Matricula criada com sucesso"
+    else  
+      @enrollment.errors.full_messages.each do |message|
+        full_msg = message.split
+        full_msg = full_msg.drop(1).join(" ")
+        flash[:alert] = full_msg
+      end 
+      
+    end
+    redirect_to dashboards_path    
   end
 
   def edit
