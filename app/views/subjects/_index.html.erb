@@ -1,39 +1,29 @@
-<div class="row">
-  <div class="col-sm-12 px-0 px-sm-2">
-
-      <div class="course-card mb-5">
-        <% colors = ['background-color: #373F51;','background-color: #ECB5D3;','background-color: #FFDE17;','background-color: #008DD5;'] %>
-        <% @course.subjects.in_groups_of(4, false).each do |group| %>
-          <div class="row text-center d-flex justify-content-start">
-            <% group.each do |subject| %>
-              <div class="col-3">
-                <%= link_to course_subject_lessons_path(subject.course_id, subject.id) do %>
-                  <div class="subjects-box mx-auto my-3 subjects-p" style="<%= colors[rand(0..3)] %>">
-                    <p class="text-white mb-0 subjects-p">
-                      <%= subject.title %>
-                    </p>
-                  </div>
-                <% end %>
-                <% if policy(Lesson).create? %>
-                  <%= link_to "Cadastrar Lições", new_course_subject_lesson_path(subject.course_id, subject.id, @lesson), remote: true %>
-                <% end %>
-              </div>
-            <% end %>
+<% colors = ['background-color: #373F51;','background-color: #ECB5D3;','background-color: #FFDE17;','background-color: #008DD5;'] %>
+<% @course.subjects.in_groups_of(4, false).each do |group| %>
+  <div class="row text-center d-flex justify-content-start">
+    <% group.each do |subject| %>
+      <div class="col-3">
+        <%= link_to course_subject_lessons_path(subject.course_id, subject.id) do %>
+          <div class="subjects-box mx-auto my-3 subjects-p" style="<%= colors[rand(0..3)] %>">
+            <p class="text-white mb-0 subjects-p">
+              <%= subject.title %>
+            </p>
           </div>
         <% end %>
-        <% if current_user.admin? %>
-          <div class="row mb-4">
-            <div class="col-sm-6 offset-sm-3">
-            <%= simple_form_for [@course, @subject], remote: true do |f| %>
-              <%= f.input :title, label: 'Matéria', placeholder: 'Digite o título' %>
-              <%= f.submit 'Criar matéria', class: 'btn btn-info' %>
-            <% end %>
-            <%#= render 'form', subject: @subject, course: @course %>
-            </div>
-          </div>
+        <% if policy(Lesson).create? %>
+          <%= link_to "Cadastrar Lições", new_course_subject_lesson_path(subject.course_id, subject.id, @lesson), remote: true %>
         <% end %>
       </div>
-
+    <% end %>
   </div>
-</div>
-
+<% end %>
+<% if current_user.admin? %>
+  <div class="row mb-4">
+    <div class="col-sm-6 offset-sm-3">
+    <%= simple_form_for [@course, @subject], remote: true do |f| %>
+      <%= f.input :title, label: 'Matéria', placeholder: 'Digite o título' %>
+      <%= f.submit 'Criar matéria', class: 'btn btn-info' %>
+    <% end %>
+    </div>
+  </div>
+<% end %>

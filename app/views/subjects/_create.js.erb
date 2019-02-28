@@ -1,8 +1,8 @@
 // app/views/subjects/create.js.erb
 // Here you generate *JavaScript* that would be executed in the browser
 function showCourse(courseHTML) {
-  const subjects = document.getElementById('ajax-content');
+  const subjects = document.getElementById('inside-ajax');
   $(subjects).html(courseHTML);
 }
-showCourse('<%= j render "subjects/index", subject: @subjects %>');
+showCourse('<%= j render "index", subject: @enrollments%>');
 

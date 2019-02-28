@@ -1,9 +1,14 @@
 class CoursesController < ApplicationController
   skip_before_action :authenticate_user!, only: :show
-  before_action :set_course, only: [:show, :update, :destroy]
+  before_action :set_course, only: [:show, :update, :destroy, :student_show]
 
   def new
     @course = Course.new
+    authorize @course
+  end
+
+  def student_show
+    @enrollments = current_user.enrollments
     authorize @course
   end
 

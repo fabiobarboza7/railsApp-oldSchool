@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :courses, except: [:index, :edit, :update, :destroy], :path => "curso" do
+  resources :courses, except: [:index, :edit, :update, :destroy], :path => "cursos" do
     resources :subjects, except: [:destroy], :path => "materia" do
       resources :lessons, except: [:destroy], :path => "aula" do
         resources :quizzes, except: [:destroy], :path => "quiz" do
@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   devise_for :users, :path => "usuario", controllers: {sessions: "sessions"}
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'pages/home'
+  get '/curso/:id', to: "courses#student_show", as: :student_show
   get '/rio-de-janeiro', to: "pages#rio_de_janeiro"
   get '/seja-um-franqueado', to: "pages#franchise"
   root to: 'pages#home'
