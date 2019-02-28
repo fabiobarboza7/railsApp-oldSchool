@@ -19,3 +19,4 @@
 # Ignore vendor files
 /vendor/*
 .env*
+.env*
