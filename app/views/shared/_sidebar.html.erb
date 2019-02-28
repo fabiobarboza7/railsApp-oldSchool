@@ -4,13 +4,15 @@
   </div>
 
   <ul class="list-unstyled components">
-    <p>Painel Geral</p>
+    <p>
+      <%= link_to "Painel Geral", dashboards_path %>
+    </p>
     <li class="active">
       <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Meus cursos</a>
       <ul class="collapse list-unstyled" id="homeSubmenu">
         <% @enrollments.each do |enroll| %>
           <li>
-            <%= link_to enroll.course.title, course_path(enroll.course), remote: true %>
+            <%= link_to enroll.course.title, student_show_path(enroll.course) %>
           </li>
         <% end %>
       </ul>
