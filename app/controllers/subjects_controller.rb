@@ -2,7 +2,9 @@ class SubjectsController < ApplicationController
   before_action :set_subject, only: [:show, :update, :destroy]
 
   def index
+
     @subjects = policy_scope(Subject).where(course_id: params[:course_id]).order(created_at: :asc)
+    @enrollments = current_user.enrollments
     @course = Course.friendly.find(params[:course_id])
     @subject = Subject.new
     # @subject.course = @course
@@ -25,19 +27,20 @@ class SubjectsController < ApplicationController
   end
 
   def create
+    @enrollments = current_user.enrollments
     @subjects = policy_scope(Subject).where(course_id: params[:course_id]).order(created_at: :asc)
     @course = Course.friendly.find(params[:course_id])
     @subject = Subject.new(subject_params)
     authorize @subject
     @subject.course_id = @course.id
 
-    respond_to do |format|
-      if @subject.save
-        @subject = Subject.new
-        format.js { render action: "index" }# renders create.js.erb, which could be used to redirect via javascript
-      else
-        redirect_to dashboards_path
+    if @subject.save
+      respond_to do |format|
+        # @subject = Subject.new
+        format.js { render action: "_create" }# renders create.js.erb, which could be used to redirect via javascript
       end
+    else
+      redirect_to dashboards_path
     end
     #   alert[:notice] = "Matéria cadastrada"
     # else

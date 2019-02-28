@@ -22,4 +22,8 @@ class CoursePolicy < ApplicationPolicy
     user.admin?
   end
 
+  def student_show?
+    show?
+  end
+
 end
