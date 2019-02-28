@@ -4,5 +4,5 @@ function showCourse(courseHTML) {
   const subjects = document.getElementById('inside-ajax');
   $(subjects).html(courseHTML);
 }
-showCourse('<%= j render "index", subject: @enrollments%>');
+showCourse('<%= j render "form" %>');
 
