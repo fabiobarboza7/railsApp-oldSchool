@@ -33,14 +33,14 @@ class SubjectsController < ApplicationController
     @subject = Subject.new(subject_params)
     authorize @subject
     @subject.course_id = @course.id
-
-    if @subject.save
-      respond_to do |format|
+    # @subject.save!
+    respond_to do |format|
+      if @subject.save
         # @subject = Subject.new
-        format.js { render action: "_create" }# renders create.js.erb, which could be used to redirect via javascript
+        format.js  # renders create.js.erb, which could be used to redirect via javascript
+      else
+        redirect_to dashboards_path
       end
-    else
-      redirect_to dashboards_path
     end
     #   alert[:notice] = "Matéria cadastrada"
     # else
