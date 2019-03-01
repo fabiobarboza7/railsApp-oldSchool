@@ -44,8 +44,13 @@ class LessonsController < ApplicationController
     @lesson = Lesson.new(lesson_params)
     authorize @lesson
     @lesson.subject_id = @subject.id
-    @lesson.save
-    redirect_to dashboards_path
+    if @lesson.save!
+       redirect_to course_subject_lessons_path(@lesson.subject.course.id, @lesson.subject.id)
+      flash[:notice] = "Aula salva com sucesso"
+    else
+      redirect_to dashboards_path
+    end
+
   end
 
   def edit

@@ -12,9 +12,6 @@ class SubjectsController < ApplicationController
   end
 
   def new
-    # @course = Course.find_by_id(params[:course_id])
-    # @subject = Subject.new
-    # byebug
   end
 
   def show
@@ -33,20 +30,13 @@ class SubjectsController < ApplicationController
     @subject = Subject.new(subject_params)
     authorize @subject
     @subject.course_id = @course.id
-    # @subject.save!
     respond_to do |format|
       if @subject.save
-        # @subject = Subject.new
         format.js  # renders create.js.erb, which could be used to redirect via javascript
       else
         redirect_to dashboards_path
       end
     end
-    #   alert[:notice] = "Matéria cadastrada"
-    # else
-    #   alert[:notice] = "Erro"
-    # end
-
   end
 
   def update
@@ -61,7 +51,6 @@ class SubjectsController < ApplicationController
     @subject.destroy
     redirect_to root_path
   end
-
 
   private
 
