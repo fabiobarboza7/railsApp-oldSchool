@@ -3,7 +3,7 @@ class LessonsController < ApplicationController
 
   def index
     @lessons = policy_scope(Lesson).where(subject_id: params[:subject_id]).order(created_at: :asc)
-    @subject = Subject.find_by_id(params[:subject_id])
+    @subject = Subject.friendly.find(params[:subject_id])
     @lesson = Lesson.new
     @lesson.subject = @subject
     authorize Lesson
@@ -82,7 +82,7 @@ class LessonsController < ApplicationController
   private
 
   def set_lesson
-    @lesson = Lesson.find(params[:id])
+    @lesson = Lesson.friendly.find(params[:id])
   end
 
   def lesson_params

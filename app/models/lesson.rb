@@ -5,6 +5,16 @@ class Lesson < ApplicationRecord
 
   mount_uploader :file, PhotoUploader
 
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+
+  def slug_candidates
+    [
+      :title,
+      [:title, :id]
+    ]
+  end
+
   def next
     subject.lessons.where("id > ?", id).first
   end

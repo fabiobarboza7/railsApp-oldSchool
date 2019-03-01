@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181204162030) do
+ActiveRecord::Schema.define(version: 20190301025654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attachments", force: :cascade do |t|
+    t.integer  "subject_id"
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "file"
+    t.index ["subject_id"], name: "index_attachments_on_subject_id", using: :btree
+  end
 
   create_table "blogs", force: :cascade do |t|
     t.string   "title"
@@ -81,6 +90,8 @@ ActiveRecord::Schema.define(version: 20181204162030) do
     t.integer  "subject_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "slug"
+    t.index ["slug"], name: "index_lessons_on_slug", unique: true, using: :btree
     t.index ["subject_id"], name: "index_lessons_on_subject_id", using: :btree
   end
 
@@ -110,7 +121,9 @@ ActiveRecord::Schema.define(version: 20181204162030) do
     t.integer  "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "slug"
     t.index ["course_id"], name: "index_subjects_on_course_id", using: :btree
+    t.index ["slug"], name: "index_subjects_on_slug", unique: true, using: :btree
   end
 
   create_table "test_classes", force: :cascade do |t|
@@ -176,23 +189,23 @@ ActiveRecord::Schema.define(version: 20181204162030) do
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "first_name"
     t.string   "last_name"
     t.string   "photo"
     t.string   "photo_cache"
+    t.datetime "date_of_birth"
     t.string   "phone"
     t.boolean  "admin"
-    t.integer  "date_of_birth"
+    t.integer  "age"
     t.integer  "score"
     t.string   "username"
-    t.integer  "age"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
@@ -207,6 +220,7 @@ ActiveRecord::Schema.define(version: 20181204162030) do
     t.index ["user_id"], name: "index_wallets_on_user_id", using: :btree
   end
 
+  add_foreign_key "attachments", "subjects"
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users"
   add_foreign_key "lessons", "subjects"
