@@ -13,12 +13,12 @@
       <% @lessons.in_groups_of(3, false).each do |group| %>
         <div class="row text-center">
           <% group.each do |lesson| %>
-            <%= link_to  course_subject_lesson_path(lesson.subject.course_id, lesson.subject_id, lesson), remote: true do %>
+            <%= link_to  course_subject_lesson_path(lesson.subject.course.slug, lesson.subject.slug, lesson), remote: true do %>
               <div class="col-sm-4 px-0 px-sm-5">
                 <div class="lesson-card mb-5 bg-white blog-card pt-2">
                   <p class="my-2"><%= lesson.title %></p>
                   <div class="horizontal-line"></div>
-                  <p class="mb-0 p-2 p-link"><%= link_to 'Fazer Lição', course_subject_lesson_path(lesson.subject.course_id, lesson.subject_id, lesson), class: 'text-blue', remote: true %></p>
+                  <p class="mb-0 p-2 p-link"><%= link_to 'Fazer Lição', course_subject_lesson_path(lesson.subject.course.slug, lesson.subject.slug, lesson), class: 'text-blue', remote: true %></p>
                 </div>
               </div>
             <% end %>
