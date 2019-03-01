@@ -43,6 +43,33 @@
       </li>
     <% end %>
     <div class="horizontal-line"></div>
+    <li><a>Meus Arquivos <i class="fas fa-file"></i></a></li>
+    <li>
+      <ul>
+        <% @files.each do |file| %>
+          <a class="d-flex justify-content-between align-items-center btn btn-primary" href="<%= file.file %>" download="true" target="_blank"><i class="fas fa-download"></i><%= file.title %> - Baixar</a>
+        <% end %>
+      </ul>
+    </li>
+    <div class="horizontal-line"></div>
+    <li>
+      <a>Salvar Arquivo</a>
+      <%= simple_form_for @file, html: { class: "form-container"} do |f| %>
+        <%= f.input :title, label: "Titulo", placeholder: "Digite um titulo" %>
+        <%= f.input :subject_id, input_html: {value: @subject.id}, as: :hidden %>
+        <label class="btn btn-warning">
+          <i class="fas fa-file"></i> escolher arquivo
+          <span style="display: none;">
+            <%= f.input :file, label: "Arquivo" %>
+          </span>
+        </label>
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" aria-valuenow="25" aria-valuemin="espere" aria-valuemax="100"></div>
+        </div>
+        <%= f.submit "Salvar Arquivo", class: 'btn btn-pink mt-4' %>
+      <% end %>
+    </li>
+    <div class="horizontal-line mt-2"></div>
     <li>
       <%= link_to "Fale conosco", new_contact_path %>
     </li>

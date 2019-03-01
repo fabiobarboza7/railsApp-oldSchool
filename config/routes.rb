@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'attachments/index'
-
-  get 'attachments/new'
-
-  get 'attachments/show'
+  resources :attachments, only: [:new, :create]
 
   resources :courses, except: [:index, :edit, :update, :destroy], :path => "cursos" do
     resources :subjects, except: [:destroy], :path => "materia" do

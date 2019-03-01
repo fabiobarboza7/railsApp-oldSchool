@@ -8,6 +8,7 @@ class DashboardsController < ApplicationController
     @dashboards = policy_scope(Dashboard).order(created_at: :desc)
     @users = User.all.order(score: :desc)
     @quizzes = Quiz.all
+    @files = Attachment.where(user: current_user)
   end
 
 end

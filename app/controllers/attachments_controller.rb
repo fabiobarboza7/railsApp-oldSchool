@@ -19,13 +19,16 @@ class AttachmentsController < ApplicationController
 
   def create
     @file = Attachment.new(file_params)
+    @file.user = current_user
     authorize @file
     if @file.save
-      flash[:notice] = "Post criado com sucesso"
+      redirect_to course_subject_lessons_path(@file.subject.course.slug, @file.subject.slug)
+      flash[:notice] = "Arquivo salvo com sucesso!"
     else
-      render :new
+      redirect_to course_subject_lessons_path(@file.subject.course.slug, @file.subject.slug)
+      flash[:alert] = "Erro, preencha todos os campos!"
+      
     end
-    redirect_to root_path
   end
 
   def update
@@ -46,11 +49,11 @@ class AttachmentsController < ApplicationController
   private
 
   def set_file
-    @file = Attachment.friendly.find(params[:id])
+    @file = Attachment.find(params[:id])
   end
 
   def file_params
-    params.require(:file).permit(:title, :subject_id, :file)
+    params.require(:attachment).permit(:title, :subject_id, :file)
   end
 
 end

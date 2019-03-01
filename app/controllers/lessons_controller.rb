@@ -6,6 +6,9 @@ class LessonsController < ApplicationController
     # @lessons = policy_scope(Lesson).friendly.where(subject_id: params[:subject_id]).order(created_at: :asc)
     @lessons = policy_scope(Lesson).where(subject_id: @subject)
     @lesson = Lesson.new
+    @file = Attachment.new
+    @files = Attachment.where(subject_id: @subject, user: current_user)
+    # @file.subject = @subject
     @lesson.subject = @subject
     authorize Lesson
   end
