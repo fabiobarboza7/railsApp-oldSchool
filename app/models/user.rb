@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :transictions
   has_many :user_answers
   has_many :enrollments
+  has_many :attachments
   mount_uploader :photo, PhotoUploader
 
   devise :database_authenticatable, :registerable,
