@@ -6,7 +6,7 @@
           <div class="row text-center d-flex justify-content-start">
             <% group.each do |subject| %>
               <div class="col-3">
-                <%= link_to course_subject_lessons_path(subject.course_id, subject.id) do %>
+                <%= link_to course_subject_lessons_path(subject.course.slug, subject.slug) do %>
                   <div class="subjects-box mx-auto my-3 subjects-p" style="<%= colors[rand(0..3)] %>">
                     <p class="text-white mb-0 subjects-p">
                       <%= subject.title %>

@@ -1,5 +1,5 @@
 <nav id="sidebar" style="background-color: #008DD5;">
-  <%= link_to course_subject_lessons_path(@subject.course_id, @subject) do %>
+  <%= link_to course_subject_lessons_path(@subject.course.slug, @subject) do %>
     <div class="sidebar-header-course">
       <%= link_to course_subjects_path(@subject.course) do %>
         <div class="d-flex justify-content-between align-items-center">
@@ -12,7 +12,7 @@
   <ul class="list-unstyled components">
     <% @lessons.each do |lesson| %>
       <li>
-        <%= link_to  course_subject_lesson_path(lesson.subject.course_id, lesson.subject_id, lesson), remote: true do %>
+        <%= link_to  course_subject_lesson_path(lesson.subject.course.slug, lesson.subject.slug, lesson), remote: true do %>
           <%= lesson.title %>
           <% if lesson.quizzes.any? %>
             <% count = 0 %>

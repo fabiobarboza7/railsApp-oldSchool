@@ -2,8 +2,9 @@ class LessonsController < ApplicationController
   before_action :set_lesson, only: [:show, :edit, :update, :destroy]
 
   def index
-    @lessons = policy_scope(Lesson).where(subject_id: params[:subject_id]).order(created_at: :asc)
     @subject = Subject.friendly.find(params[:subject_id])
+    # @lessons = policy_scope(Lesson).friendly.where(subject_id: params[:subject_id]).order(created_at: :asc)
+    @lessons = policy_scope(Lesson).where(subject_id: @subject)
     @lesson = Lesson.new
     @lesson.subject = @subject
     authorize Lesson
@@ -40,10 +41,12 @@ class LessonsController < ApplicationController
   end
 
   def create
-    @subject = Subject.find_by_id(params[:subject_id])
+    @subject = Subject.friendly.find(params[:subject_id])
     @lesson = Lesson.new(lesson_params)
     authorize @lesson
+    byebug
     @lesson.subject_id = @subject.id
+    byebug
     if @lesson.save!
        redirect_to course_subject_lessons_path(@lesson.subject.course.id, @lesson.subject.id)
       flash[:notice] = "Aula salva com sucesso"
