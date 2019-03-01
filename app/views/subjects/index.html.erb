@@ -59,14 +59,14 @@
                   <div class="row">
                     <div class="col-sm-12 px-0 px-sm-2" id="hide-form">
 
-                        <div class="course-card mb-5">
-                          <% colors = ['background-color: #373F51;','background-color: #ECB5D3;','background-color: #FFDE17;','background-color: #008DD5;'] %>
+                        <div>
+                          <% colors = ['background-color: #373F51;','background-color: #ECB5D3;','background-color: #FFDE17;','background-color: #008DD5;', 'background-color: #DB5461;', 'background-color: #72BDA3;'] %>
                           <% @course.subjects.in_groups_of(4, false).each do |group| %>
                             <div class="row text-center d-flex justify-content-start">
                               <% group.each do |subject| %>
                                 <div class="col-3">
-                                  <%= link_to course_subject_lessons_path(subject.course_id, subject.id) do %>
-                                    <div class="subjects-box mx-auto my-3 subjects-p" style="<%= colors[rand(0..3)] %>">
+                                  <%= link_to course_subject_lessons_path(subject.course.slug, subject.slug) do %>
+                                    <div class="subjects-box mx-auto my-3 subjects-p" style="<%= colors[rand(0..5)] %>">
                                       <p class="text-white mb-0 subjects-p">
                                         <%= subject.title %>
                                       </p>
