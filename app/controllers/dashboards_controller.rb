@@ -9,6 +9,7 @@ class DashboardsController < ApplicationController
     @users = User.all.order(score: :desc)
     @quizzes = Quiz.all
     @files = Attachment.where(user: current_user)
+    @enroll = Enrollment.where(user: current_user.id)
   end
 
 end
