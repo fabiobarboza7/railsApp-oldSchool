@@ -43,7 +43,7 @@
       </li>
       <% if current_user.admin? %>
         <%= simple_form_for [@subject.course, @subject, lesson] do |f| %>
-          <%= f.input :position, label: false, placeholder: 'Digite um índice', input_html: {value: lesson.position} %>
+          <%= f.input :position, label: "índice", input_html: {value: lesson.position} %>
           <%= f.submit 'Atualizar Índices', class: 'btn btn-info' %>
         <% end %>
       <% end %>
