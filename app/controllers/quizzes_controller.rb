@@ -24,7 +24,7 @@ class QuizzesController < ApplicationController
   end
 
   def create
-    @lesson = Lesson.find(params[:lesson_id])
+    @lesson = Lesson.friendly.find(params[:lesson_id])
     @quiz = Quiz.new(quiz_params)
     @quiz.lesson_id = @lesson.id
     @question = @quiz.questions.first

@@ -77,24 +77,25 @@
     <div class="p-3 bg-white rounded">
       <p class="text-darkblue">Quizzes para fazer <i class="fas fa-dice text-danger"></i></p>
       <ul class="list-group overflow-scroll">
-        <% enroll = Enrollment.where(user: current_user.id) %>
-        <% if enroll.last.nil? == false %>
+        
+        <%# byebug %>
+        <% if @enroll.any? %>
           <% @quizzes.all.each do |quiz| %>
-            <% if quiz.lesson.subject.course_id == enroll.last.course_id %>
-              <% if !quiz.user_answers.where(user: current_user).any? %>
-                <%= link_to course_subject_lessons_path(quiz.lesson.subject.course, quiz.lesson.subject, quiz.lesson) do %>
-                <li class="my-1 list-group-item d-flex justify-content-between align-items-center list-group-item-action list-group-item-success">
-                <%= quiz.title %> <i class="fas fa-question text-danger"></i></li>
-              <% end %>
-            <% end %>  
-            <% else %>
-            <!-- something -->
+            <% @enroll.each do |enroll| %>
+              <% if quiz.lesson.subject.course_id == enroll.course_id %>
+                <% if !quiz.user_answers.where(user: current_user).any? %>
+                  <%= link_to course_subject_lessons_path(quiz.lesson.subject.course, quiz.lesson.subject, quiz.lesson) do %>
+                  <li class="my-1 list-group-item d-flex justify-content-between align-items-center list-group-item-action list-group-item-success">
+                  <%= quiz.title %> <i class="fas fa-question text-danger"></i></li>
+                <% end %>
+              <% end %>  
+            <% end %>
             <% end %>
           <% end %>
-          <% else %>
-            <li class="my-1 list-group-item d-flex justify-content-between align-items-center list-group-item-action list-group-item-default">
-              Em breve mais desafios! Continue estudando :)
-            </li>
+        <% else %>
+          <li class="my-1 list-group-item d-flex justify-content-between align-items-center list-group-item-action list-group-item-default">
+            Em breve mais desafios! Continue estudando :)
+          </li>
         <% end %>
       </ul>
     </div>
