@@ -28,6 +28,7 @@
 
 //= require chartkick
 //= require_tree .
+  
 
   function printDiv()
   {
@@ -68,6 +69,13 @@
 
 
 $(document).on('turbolinks:load', function(){
+ 
+  $('.edit_lesson').hide();
+  $('#show-position').on('click', function(){
+    $('.edit_lesson').show();
+  });
+  
+
   $(".alert, .success, .notice" ).fadeOut(5000);
 
   $('input[type="tel"]').inputmask("(99) 9 99999999");  //static mask
