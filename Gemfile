@@ -14,6 +14,8 @@ gem 'devise'
 gem 'friendly_id', '~> 5.2.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
 # Authorization
 gem "pundit"
+
+gem 'jquery-ui-rails'
 # Chart
 gem "chartkick"
 # GroupDate

@@ -1,13 +1,13 @@
 <div class="row p-0 p-sm-4 bg-grey rounded mt-5">
   <div class="col-sm-12 px-2 py-3">
     <h2>Olá <%= current_user.first_name.capitalize %>!</h2>
-    <p>Esta é a matéria de <%= @subject.title %>, vamos aprender muitas coisas legais! Não deixe de praticar e fazer os quiz para ganhar posições no ranking!</p>
+    <p>Esta é a matéria de <%= @subject.title %>, vamos aprender muitas coisas legais! Não deixe de praticar e fazer os quizzes para melhorar sua posição no ranking!</p>
   </div>
 </div>
 <section id="courses">
   <div class="row p-0 p-sm-4 bg-grey rounded mt-5">
     <div class="col-sm-12 text-center mb-5 mt-4 px-0 px-sm-5">
-      <h4>Lições</h4>
+      <h4>Suas Aulas</h4>
     </div>
     <div class="col-sm-12 ">
       <% @lessons.in_groups_of(3, false).each do |group| %>
@@ -18,7 +18,7 @@
                 <div class="lesson-card mb-5 bg-white blog-card pt-2">
                   <p class="my-2"><%= lesson.title %></p>
                   <div class="horizontal-line"></div>
-                  <p class="mb-0 p-2 p-link"><%= link_to 'Fazer Lição', course_subject_lesson_path(lesson.subject.course.slug, lesson.subject.slug, lesson), class: 'text-blue', remote: true %></p>
+                  <p class="mb-0 p-2 p-link"><%= link_to 'Assistir a aula', course_subject_lesson_path(lesson.subject.course.slug, lesson.subject.slug, lesson), class: 'text-blue', remote: true %></p>
                 </div>
               </div>
             <% end %>
