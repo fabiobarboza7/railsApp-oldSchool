@@ -1,4 +1,5 @@
 <%= simple_form_for [@subject.course, @subject, @lesson], html: { class: "form-container"}, remote: true do |f| %>
+  <%= f.input :position, label: 'índice', placeholder: 'Digite um índice' %>
   <%= f.input :title, label: 'Lição', placeholder: 'Digite o título' %>
   <%= f.input :subtitle, label: 'Descrição', placeholder: 'Digite a descrição' %>
   <%= f.input :video, label: 'Url do video', placeholder: 'Digite a url do video' %>

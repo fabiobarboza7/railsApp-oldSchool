@@ -25,7 +25,8 @@ class LessonsController < ApplicationController
   end
 
   def show
-    @lessons = policy_scope(Lesson).where(subject_id: params[:subject_id]).order(created_at: :asc)
+    @lessons = policy_scope(Lesson).where(subject_id: params[:subject_id])
+    @lessons = @lessons.order(position: :desc)
     # before_action
     @user_answer = UserAnswer.new
     @quiz = Quiz.new
@@ -36,11 +37,9 @@ class LessonsController < ApplicationController
         @count = @count + 1
       end
     end
-
     @question = @quiz.questions.build
     @quiz.lesson_id = @lesson
     authorize @lesson
-
   end
 
   def create
@@ -90,7 +89,7 @@ class LessonsController < ApplicationController
   end
 
   def lesson_params
-    params.require(:lesson).permit(:title, :subtitle, :video, :file, :subject_id)
+    params.require(:lesson).permit(:title, :subtitle, :video, :file, :subject_id, :position)
   end
 
 end
