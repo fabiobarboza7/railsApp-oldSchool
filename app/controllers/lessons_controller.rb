@@ -4,7 +4,7 @@ class LessonsController < ApplicationController
   def index
     @subject = Subject.friendly.find(params[:subject_id])
     # @lessons = policy_scope(Lesson).friendly.where(subject_id: params[:subject_id]).order(created_at: :asc)
-    @lessons = policy_scope(Lesson).where(subject_id: @subject)
+    @lessons = policy_scope(Lesson).where(subject_id: @subject).order(position: :asc)
     @lesson = Lesson.new
     @file = Attachment.new
     @files = Attachment.where(subject_id: @subject, user: current_user)
@@ -25,8 +25,7 @@ class LessonsController < ApplicationController
   end
 
   def show
-    @lessons = policy_scope(Lesson).where(subject_id: params[:subject_id])
-    @lessons = @lessons.order(position: :desc)
+    @lessons = policy_scope(Lesson).where(subject_id: params[:subject_id]).order(position: :desc)
     # before_action
     @user_answer = UserAnswer.new
     @quiz = Quiz.new
