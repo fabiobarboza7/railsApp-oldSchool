@@ -47,9 +47,7 @@ class LessonsController < ApplicationController
     @subject = Subject.friendly.find(params[:subject_id])
     @lesson = Lesson.new(lesson_params)
     authorize @lesson
-    byebug
     @lesson.subject_id = @subject.id
-    byebug
     if @lesson.save!
        redirect_to course_subject_lessons_path(@lesson.subject.course.id, @lesson.subject.id)
       flash[:notice] = "Aula salva com sucesso"
