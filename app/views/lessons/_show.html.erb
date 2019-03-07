@@ -3,7 +3,7 @@
     <div class="course-card mb-1 mb-sm-5">
       <p class="mt-3"><%= @lesson.title %>
         <% if policy(Lesson).edit? %>
-          <%= link_to "[editar]", edit_course_subject_lesson_path(@lesson.subject.course.id, @lesson.subject.id, @lesson), remote: true %></p>
+          <%= link_to "[editar]", edit_course_subject_lesson_path(@lesson.subject.course.id, @lesson.subject.id, @lesson.id), remote: true %></p>
         <% end %>
       <% if @lesson.video? %>
         <% if @lesson.video.include? 'vimeo' %>
