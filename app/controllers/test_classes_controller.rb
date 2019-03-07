@@ -44,7 +44,6 @@ class TestClassesController < ApplicationController
     redirect_to root_path
   end
 
-
   private
 
   def set_test_class
