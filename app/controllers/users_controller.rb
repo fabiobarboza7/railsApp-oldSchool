@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def index
-    @users = policy_scope(User).order(created_at: :asc)
+    @users = policy_scope(User).order(sign_in_count: :asc)
     authorize User
   end
 
