@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
 
+  def index
+    @users = policy_scope(User).order(created_at: :asc)
+    authorize User
+  end
+
   def new
     @user = User.new
     authorize @user
