@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190307185723) do
+ActiveRecord::Schema.define(version: 20190426160200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,13 @@ ActiveRecord::Schema.define(version: 20190307185723) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "slug"
+  end
+
+  create_table "classrooms", force: :cascade do |t|
+    t.integer  "enrollment_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["enrollment_id"], name: "index_classrooms_on_enrollment_id", using: :btree
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -225,6 +232,7 @@ ActiveRecord::Schema.define(version: 20190307185723) do
 
   add_foreign_key "attachments", "subjects"
   add_foreign_key "attachments", "users"
+  add_foreign_key "classrooms", "enrollments"
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users"
   add_foreign_key "lessons", "subjects"
