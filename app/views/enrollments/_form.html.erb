@@ -4,6 +4,7 @@
     <%= simple_form_for @enrollment, html: { class: "form-container"} do |f| %>
       <%= f.association :user, label: 'Usuário', label_method: :user_data %>
       <%= f.association :course, label: 'Curso' %>
+      <%= f.association :classroom, label: 'Turma' %>
       <%= f.submit 'Cadastrar Matrícula', class: 'btn btn-info' %>
     <% end %>
   </div>

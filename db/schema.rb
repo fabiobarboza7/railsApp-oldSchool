@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190426160200) do
+ActiveRecord::Schema.define(version: 20190426182757) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20190426160200) do
     t.integer  "enrollment_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "title"
     t.index ["enrollment_id"], name: "index_classrooms_on_enrollment_id", using: :btree
   end
 
@@ -73,8 +74,10 @@ ActiveRecord::Schema.define(version: 20190426160200) do
   create_table "enrollments", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "course_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "classroom_id"
+    t.index ["classroom_id"], name: "index_enrollments_on_classroom_id", using: :btree
     t.index ["course_id"], name: "index_enrollments_on_course_id", using: :btree
     t.index ["user_id"], name: "index_enrollments_on_user_id", using: :btree
   end
@@ -233,6 +236,7 @@ ActiveRecord::Schema.define(version: 20190426160200) do
   add_foreign_key "attachments", "subjects"
   add_foreign_key "attachments", "users"
   add_foreign_key "classrooms", "enrollments"
+  add_foreign_key "enrollments", "classrooms"
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users"
   add_foreign_key "lessons", "subjects"

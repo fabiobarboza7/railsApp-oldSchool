@@ -1,0 +1,29 @@
+<div class="container mt-5">
+	<div class="row">
+		<div class="col-sm-12">
+			<table class="table table-striped table-dark text-center" border="1">
+				<thead>
+					<tr>
+						<td colspan="2">
+							<%= link_to "Adicionar aluno", edit_classroom_path(@classroom) %>						
+						</td>
+					</tr>
+					<tr>
+					  <th scope="col">#ID</th>
+					  <th scope="col">Aluno</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @classroom.enrollments.each do |student| %>
+						<tr>
+							<th scope="row"><%= student.user.id %></th>
+							<td>								
+								<%= student.user.first_name %> <%= student.user.last_name %>
+							</td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
