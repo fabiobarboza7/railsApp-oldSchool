@@ -21,7 +21,7 @@ class EnrollmentsController < ApplicationController
   def create
     @enrollment = Enrollment.new(enrollment_params)
     authorize @enrollment
-    if @enrollment.save
+    if @enrollment.save!
       flash[:notice] = "Matricula criada com sucesso"
     else  
       @enrollment.errors.full_messages.each do |message|
@@ -64,6 +64,6 @@ class EnrollmentsController < ApplicationController
   end
 
   def enrollment_params
-    params.require(:enrollment).permit(:course_id, :user_id)
+    params.require(:enrollment).permit(:course_id, :user_id, :classroom_id)
   end
 end

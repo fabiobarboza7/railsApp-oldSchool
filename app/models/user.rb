@@ -23,6 +23,11 @@ class User < ApplicationRecord
     "#{self.first_name} => #{self.login}"
   end
 
+  def user_arrange
+    User.all.order(first_name: :asc)
+    "#{self.first_name} => #{self.login}"
+  end
+
   def validate_username
     if User.where(email: username).exists?
       errors.add(:username, :invalid)

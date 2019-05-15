@@ -1,0 +1,11 @@
+<div class="container mt-5">
+	<div class="row">
+		<div class="col-sm-12">
+			<%= simple_form_for @classroom do |f| %>
+				<%= f.input :title %>
+				<%= f.association :enrollments, label_method: :user_name, as: :check_boxes	 %>
+				<%= f.submit "Salvar" %>
+			<% end %>
+		</div>
+	</div>
+</div>

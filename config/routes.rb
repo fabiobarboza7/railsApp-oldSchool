@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'classrooms/index'
+
   resources :attachments, only: [:new, :create]
 
   resources :courses, except: [:index, :edit, :update, :destroy], :path => "cursos" do
