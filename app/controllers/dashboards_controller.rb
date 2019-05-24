@@ -7,6 +7,9 @@ class DashboardsController < ApplicationController
     @enrollments = current_user.enrollments
     @dashboards = policy_scope(Dashboard).order(created_at: :desc)
     @users = User.all.order(score: :desc)
+    @user_best = @users.first
+    @user_second = @users[1...2]
+    @user_third = @users[2...3]
     @quizzes = Quiz.all
     @files = Attachment.where(user: current_user)
     @enroll = Enrollment.where(user: current_user.id)
