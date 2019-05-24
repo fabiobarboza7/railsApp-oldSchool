@@ -5,6 +5,7 @@
 				<thead>
 					<tr>
 					  <th scope="col">#ID</th>
+					  <th scope="col">Usuário</th>
 					  <th scope="col">Nome</th>
 					  <th scope="col">Turma</th>
 					  <th scope="col">Último Acesso</th>
@@ -15,6 +16,7 @@
 					<% @users.each do |user| %>
 						<tr>
 							<th scope="row"><%= user.id %></th>
+							<td><%= user.username %></td>
 							<td><%= user.first_name %> <%= user.last_name %></td>
 							<td></td>
 							<td><%= user.last_sign_in_at&.strftime(" %d/%m/%Y - %H:%M") %></td>
