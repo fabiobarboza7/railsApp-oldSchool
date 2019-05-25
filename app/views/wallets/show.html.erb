@@ -60,16 +60,20 @@
         </div>
         <div class="container-fluid bg-grey mt-5">
           <div class="row p-0 p-sm-4">
-            <div class="col-sm-4 p-1">
+            <div class="col-sm-6 p-1">
+              <div class="mt-1 mb-3  bg-white rounded p-4">
+                <p>Saldo</p>
+                <a href="#" class="badge badge-success p-2"><%= number_to_currency_br(@wallet.money) %></a>
+              </div>
               <div class="m-1  bg-white rounded p-4">
                 <p>Extrato</p>
                 <div class="list-group transictions-overflow-box">
                   <% @transictions.each do |transiction| %>
                     <% if transiction.user == current_user  %>
-                      <a href="#" class="list-group-item list-group-item-action list-group-item-danger" data-toggle="modal" data-target="#exampleModal-<%=transiction.id%>"> enviou <%= number_to_currency_br(transiction.amount) %> para <%= user_target(transiction.user_target).first_name %> </a>
+                      <a href="#" class="list-group-item list-group-item-action list-group-item-danger my-1" data-toggle="modal" data-target="#exampleModal-<%=transiction.id%>"> enviou <%= number_to_currency_br(transiction.amount) %> para <%= user_target(transiction.user_target).first_name %> </a>
                     <% end %>
                     <% if transiction.user_target == current_user.id %>
-                      <a href="#" class="list-group-item list-group-item-action list-group-item-success" data-toggle="modal" data-target="#exampleModal-<%=transiction.id%>"> recebeu <%= number_to_currency_br(transiction.amount) %> de <%= transiction.user.first_name %></a>
+                      <a href="#" class="list-group-item list-group-item-action list-group-item-success my-1" data-toggle="modal" data-target="#exampleModal-<%=transiction.id%>"> recebeu <%= number_to_currency_br(transiction.amount) %> de <%= transiction.user.first_name %></a>
                     <% end %>
                     <% sender = transiction.user %>
                     <% sender == current_user ? sender.first_name = "você" : false %>
@@ -115,19 +119,30 @@
                       </div>
                     </div>
                   <% end %>
+                  <% @exchange_all.each do |exchange| %>
+                    <a href="#" class="list-group-item list-group-item-action list-group-item-info my-1"> Você trocou <span class="badge badge-warning text-primary"><%= exchange.sale.rank_price %> pontos</span> do seu ranking por <span href="#" class="badge badge-danger"><i class="fas fa-money-bill-alt text-success"></i> m$<%= exchange.sale.value %></span></a>
+                  <% end %>
                 </div>
               </div>
             </div>
-            <div class="col-sm-4 p-1">
-              <div class="m-1  bg-white rounded p-4">
-                <p>Saldo</p>
-                <a href="#" class="badge badge-success p-2"><%= number_to_currency_br(@wallet.money) %></a>
-              </div>
-            </div>
-            <div class="col-sm-4 p-1">
+            <div class="col-sm-6 p-1">
               <div class="m-1  bg-white rounded p-4">
                 <p>Ofertas</p>
-                <p>Nenhuma oferta por enquanto</p>
+                <% @sales.each do |sale| %>
+                  <div class="card border-dark my-2 border-dotted">
+                    <div class="card-header">
+                      <p class="mb-0">Trocar Pontos do Ranking por MooMoney</p>
+                    </div>
+                    <div class="card-body">
+                      <!-- <h5 class="card-title"></h5> -->
+                      <p class="card-text">trocar <a href="#" class="badge badge-warning text-primary"><%= sale.rank_price %></a> pontos do meu ranking por <a href="#" class="badge badge-danger"><i class="fas fa-money-bill-alt text-success"></i> m$<%= sale.value %></a></p>
+                      <%= simple_form_for @exchange do |f| %>
+                        <%= f.input :sale_id, input_html: {value: sale.id}, as: :hidden %>
+                        <%= f.submit "Sim, quero trocar", class: 'btn btn-primary', data: { confirm: "Tem certeza? Lembre-se, os pontos trocados por MooMoney's podem impactar na sua posição no ranking." } %>
+                      <% end %>
+                    </div>
+                  </div>
+                <% end %>
               </div>
             </div>
           </div>

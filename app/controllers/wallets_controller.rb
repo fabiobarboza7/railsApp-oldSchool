@@ -4,6 +4,10 @@ class WalletsController < ApplicationController
   def show
     @courses = Course.all
     @transictions = policy_scope(Transiction).order(created_at: :desc)
+    @sales = policy_scope(Sale).order(created_at: :asc)
+    @exchange = Exchange.new
+    @exchange.user = current_user
+    @exchange_all = Exchange.where(user_id: current_user)
     authorize @wallet
   end
 

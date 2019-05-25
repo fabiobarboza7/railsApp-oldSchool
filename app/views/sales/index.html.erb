@@ -1,0 +1,91 @@
+<% content_for :sidebar do %>
+  <div class="wrapper">
+    <%= render 'shared/sidebar_bank' %>
+   <!-- Page Content -->
+    <div id="content-bar">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between align-items-center">
+        <button type="button" id="sidebarCollapse" class="btn btn-info">
+          <i class="fas fa-align-left"></i>
+        </button>
+        <span class="dropdown-custom pl-3">
+          <span class="btn btn-sm btn-outline-dark dropbtn" onclick="myFunction()">
+            Meu perfil
+          </span>
+          <div id="myDropdown" class="dropdown-menu dropdown-content-custom dropdown-menu-right" style="min-width: 15rem;">
+            <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "px-4 py-3 form-group"}) do |f| %>
+              <% if !user_signed_in? %>
+                <div class="form-inputs">
+                <%= f.input :email, required: false, autofocus: true, class: 'form-control', label: 'Login', placeholder: 'usuário ou email' %>
+                <%= f.input :password, required: false, input_html: { autocomplete: "current-password" }, class: 'form-control', label: 'Senha', placeholder: 'senha' %>
+                <%= f.input :remember_me, class: 'form-control', label: 'Lembrar senha', as: :boolean if devise_mapping.rememberable? %>
+                </div>
+              <% else %>
+                <div class="form-inputs d-flex justify-content-between align-items-center mb-3">
+                  <%= cl_image_tag(current_user.photo, class: 'avatar-mini') %>
+                  <%= current_user.first_name %>
+                </div>
+                <div class="form-inputs">
+                  <i class="fas fa-briefcase"></i>
+                  <%= link_to "Dashboard", dashboards_path%>
+                </div>
+                <div class="form-inputs">
+                  <i class="fas fa-user-edit"></i>
+                  <%= link_to "Editar perfil", edit_user_registration_path(current_user)%>
+                </div>
+              <% end %>
+              <div class="form-actions mt-3">
+                <% if user_signed_in? %>
+                  <%= link_to "Sair", destroy_user_session_path, class: 'btn btn-danger btn-block', method: :delete %>
+                <% else %>
+                  <%= f.button :submit, "Login", class: 'btn btn-primary btn-block' %>
+                  <%= render "devise/shared/links" %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </span>
+      </nav>
+      <section>
+        <div class="container-fluid bg-grey">
+          <%= render 'shared/flashes' %>
+          <div class="row p-0 p-sm-4">
+            <div class="col-sm-12 p-4 bg-white rounded">
+              <div class="d-flex justify-content-between align-items-center">
+                <%= cl_image_tag(current_user.photo, class: 'avatar') %>
+                <h4 class="text-dark mb-0"><%= current_user.first_name %></h4>
+                <a href="#" class="badge badge-danger p-2"><%= Time.now.strftime("%d/%m/%Y") %></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid bg-grey mt-5">
+          <div class="row p-0 p-sm-4">
+            <div class="col-sm-4 p-1">
+              <div class="m-1  bg-white rounded p-4">
+                <p>Saldo</p>
+                <a href="#" class="badge badge-success p-2"><%= number_to_currency_br(@wallet.money) %></a>
+              </div>
+            </div>
+            <div class="col-sm-8 p-1">
+              <div class="m-1  bg-white rounded p-4">
+                <p>Ofertas</p>
+                <% @sales.each do |sale| %>
+                  <div class="card border-dark my-2 border-dotted">
+                    <div class="card-header">
+                      <p class="mb-0">Trocar Pontos do Ranking por MooMoney</p>
+                    </div>
+                    <div class="card-body">
+                      <!-- <h5 class="card-title"></h5> -->
+                      <p class="card-text">trocar <a href="#" class="badge badge-warning text-primary"><%= sale.rank_price %></a> pontos do meu ranking por <a href="#" class="badge badge-danger"><i class="fas fa-money-bill-alt text-success"></i> <%= sale.title %></a></p>
+                      <a href="#" class="btn btn-primary">Sim, quero trocar</a>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+<% end %>

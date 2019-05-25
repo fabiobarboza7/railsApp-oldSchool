@@ -25,5 +25,4 @@ class TransictionPolicy < ApplicationPolicy
     true
   end
 
-
 end

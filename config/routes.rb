@@ -2,6 +2,9 @@ Rails.application.routes.draw do
 
   get 'classrooms/index'
 
+  resources :sales, only: [:index, :new, :create]
+  resources :exchanges, only: [:new, :create]
+
   resources :attachments, only: [:new, :create]
 
   resources :courses, except: [:index, :edit, :update, :destroy], :path => "cursos" do
