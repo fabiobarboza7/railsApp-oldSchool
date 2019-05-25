@@ -16,7 +16,12 @@
 					<% @users.each do |user| %>
 						<tr>
 							<th scope="row"><%= user.id %></th>
-							<td><%= user.username %></td>
+
+							<td>
+								<%#= link_to edit_user_registration_path(user) do %>
+									<%= user.username %>
+								<%# end %>
+							</td>
 							<td><%= user.first_name %> <%= user.last_name %></td>
 							<td></td>
 							<td><%= user.last_sign_in_at&.strftime(" %d/%m/%Y - %H:%M") %></td>

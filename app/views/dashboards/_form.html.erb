@@ -1,37 +1,6 @@
 <div class="row">
-	<div class="col-6 rounded my-2 my-sm-0">
-		<div class="p-4 bg-white rounded">
-			<p>Meu desempenho no curso</p>
-			<% chart = ["Acertos", "Erros"] %>
-			<%= line_chart user_range().each_with_index.map {|user, index|
-				{name: chart[index], data: user.group_by_day(:created_at).count}
-			}, xtitle: "Data", ytitle: "Pontos" %>
-		</div>
-	</div>
-	<div class="col-6 rounded my-2 my-sm-0">
-		<div class="p-4 bg-white rounded">
-			<p>Meus Arquivos <i class="fas fa-file"></i></p>
-			<ul class="overflow-scroll">
-				<% if @files.any? %>
-					<% @files.each do |file| %>
-						<%= link_to course_subject_lessons_path(file.subject.course.slug, file.subject.slug) do %>
-							<li class="list-group-item d-flex justify-content-between align-items-center">
-								<span class="badge bg-info text-white badge-pill"><%= file.subject.title %></span>
-								<%= file.title %>
-							</li>
-						<% end %>
-					<% end %>
-				<% else %>
-					<li class="list-group-item d-flex justify-content-between align-items-center">
-						Você ainda não salvou nenhum arquivo
-					</li>
-				<% end %>
-			</ul>
-		</div>
-	</div>
-</div>
-<div class="row mt-3">
-	<div class="col-sm-5">
+	<div class="col-sm-6 rounded my-2 my-sm-0">
+		<!--  -->
 		<div class="p-3 bg-white rounded">
 			<div class="d-flex justify-content-between align-items-center mb-3">
 				<% if @user.photo_url.nil? %>
@@ -44,9 +13,35 @@
 				<p class="mb-0">Carteira: <%= number_to_currency_br(current_user.wallet.money) %> moos <i class="far fa-money-bill-alt text-success"></i></p>
 			</div>
 			<p><%= "#{@user.first_name} #{@user.last_name}" %></p>
+			<div class="p-3 bg-white rounded">
+			<p class="text-darkblue">Quizzes para fazer <i class="fas fa-dice text-danger"></i></p>
+			<ul class="list-group overflow-scroll">
+				<% no_quiz = 0 %>
+				<% @quizzes.all.each do |quiz| %>
+					<% @enroll.each do |enroll| %>
+						<% if quiz.lesson.subject.course_id == enroll.course_id %>
+							<% if !quiz.user_answers.where(user: current_user).any? %>
+								<% no_quiz = 1 %>
+								<%= link_to course_subject_lessons_path(quiz.lesson.subject.course, quiz.lesson.subject, quiz.lesson) do %>
+								<li class="my-1 list-group-item d-flex justify-content-between align-items-center list-group-item-action list-group-item-success">
+								<%= quiz.title %> <i class="fas fa-question text-danger"></i></li>
+								<% end %>
+							<% else %>
+								<%  %>
+							<% end %>  
+						<% end %>
+					<% end %>
+				<% end %>
+				<% if no_quiz == 0 %>
+						<li class="my-1 list-group-item d-flex justify-content-between align-items-center list-group-item-action list-group-item-default">
+							Em breve mais desafios! Continue estudando :)
+						</li>
+				<% end %>       
+			</ul>
+		</div>
 		</div>
 	</div>
-	<div class="col-sm-3">
+	<div class="col-sm-6 rounded my-2 my-sm-0">
 		<div class="p-3 bg-white rounded">
 			<p class="text-yellow">Ranking</p>
 			<ul class="list-group overflow-scroll">
@@ -142,32 +137,36 @@
 			</ul>
 		</div>
 	</div>
-	<div class="col-sm-4">
-		<div class="p-3 bg-white rounded">
-			<p class="text-darkblue">Quizzes para fazer <i class="fas fa-dice text-danger"></i></p>
-			<ul class="list-group overflow-scroll">
-				<% no_quiz = 0 %>
-				<% @quizzes.all.each do |quiz| %>
-					<% @enroll.each do |enroll| %>
-						<% if quiz.lesson.subject.course_id == enroll.course_id %>
-							<% if !quiz.user_answers.where(user: current_user).any? %>
-								<% no_quiz = 1 %>
-								<%= link_to course_subject_lessons_path(quiz.lesson.subject.course, quiz.lesson.subject, quiz.lesson) do %>
-								<li class="my-1 list-group-item d-flex justify-content-between align-items-center list-group-item-action list-group-item-success">
-								<%= quiz.title %> <i class="fas fa-question text-danger"></i></li>
-								<% end %>
-							<% else %>
-								<%  %>
-							<% end %>  
+</div>
+<div class="row mt-3">
+	<div class="col-sm-6">
+		<div class="p-4 bg-white rounded">
+			<p>Meus Arquivos <i class="fas fa-file"></i></p>
+			<ul class="overflow-scroll">
+				<% if @files.any? %>
+					<% @files.each do |file| %>
+						<%= link_to course_subject_lessons_path(file.subject.course.slug, file.subject.slug) do %>
+							<li class="list-group-item d-flex justify-content-between align-items-center">
+								<span class="badge bg-info text-white badge-pill"><%= file.subject.title %></span>
+								<%= file.title %>
+							</li>
 						<% end %>
 					<% end %>
+				<% else %>
+					<li class="list-group-item d-flex justify-content-between align-items-center">
+						Você ainda não salvou nenhum arquivo
+					</li>
 				<% end %>
-				<% if no_quiz == 0 %>
-						<li class="my-1 list-group-item d-flex justify-content-between align-items-center list-group-item-action list-group-item-default">
-							Em breve mais desafios! Continue estudando :)
-						</li>
-				<% end %>       
 			</ul>
+		</div>
+	</div>
+	<div class="col-sm-6">
+		<div class="p-4 bg-white rounded">
+			<p>Meu desempenho no curso</p>
+			<% chart = ["Acertos", "Erros"] %>
+			<%= line_chart user_range().each_with_index.map {|user, index|
+				{name: chart[index], data: user.group_by_day(:created_at).count}
+			}, xtitle: "Data", ytitle: "Pontos" %>
 		</div>
 	</div>
 </div>

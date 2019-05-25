@@ -1,11 +1,12 @@
-class UserPolicy < ApplicationPolicy
+class ExchangePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
     end
   end
 
-  def index?
+
+   def index?
     true
   end
 
@@ -26,10 +27,6 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-    true
-  end
-
-  def buy?
     true
   end
 

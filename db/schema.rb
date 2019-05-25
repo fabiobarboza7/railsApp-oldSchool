@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190426182757) do
+ActiveRecord::Schema.define(version: 20190525214224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,17 @@ ActiveRecord::Schema.define(version: 20190426182757) do
     t.index ["user_id"], name: "index_enrollments_on_user_id", using: :btree
   end
 
+  create_table "exchanges", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.integer  "rank_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "sale_id"
+    t.index ["sale_id"], name: "index_exchanges_on_sale_id", using: :btree
+    t.index ["user_id"], name: "index_exchanges_on_user_id", using: :btree
+  end
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
     t.integer  "sluggable_id",              null: false
@@ -127,6 +138,13 @@ ActiveRecord::Schema.define(version: 20190426182757) do
     t.datetime "updated_at", null: false
     t.boolean  "done"
     t.index ["lesson_id"], name: "index_quizzes_on_lesson_id", using: :btree
+  end
+
+  create_table "sales", force: :cascade do |t|
+    t.integer  "value"
+    t.integer  "rank_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "subjects", force: :cascade do |t|
@@ -239,6 +257,8 @@ ActiveRecord::Schema.define(version: 20190426182757) do
   add_foreign_key "enrollments", "classrooms"
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users"
+  add_foreign_key "exchanges", "sales"
+  add_foreign_key "exchanges", "users"
   add_foreign_key "lessons", "subjects"
   add_foreign_key "quizzes", "lessons"
   add_foreign_key "subjects", "courses"
