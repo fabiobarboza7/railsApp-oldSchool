@@ -1,7 +1,7 @@
 class ExchangesController < ApplicationController
 
 	def index
-		@exchanges = policy_scope(Exchange).order(created_at: :asc)
+		@exchanges = policy_scope(Exchange).order(created_at: :desc)
 	end
 
 	def new
@@ -28,7 +28,20 @@ class ExchangesController < ApplicationController
 		redirect_to user_wallet_path(current_user, current_user.wallet)
 	end
 
+	def update
+		@exchange = Exchange.find(params[:id])
+		authorize @exchange
+		if @exchange.status != true
+			@exchange.update(status: true)
+			flash[:notice] = "Você pagou o #{@exchange.user.first_name}"	
+		else
+			@exchange.update(status: false)
+			flash[:alert] = "Você cancelou o #{@exchange.user.first_name}"	
+		end
+		redirect_to exchanges_path
+	end
+
 	def exchange_params
-    	params.require(:exchange).permit(:user_id, :title, :rank_price, :sale_id)
+    	params.require(:exchange).permit(:user_id, :title, :rank_price, :sale_id, :status)
   	end
 end

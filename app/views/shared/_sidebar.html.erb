@@ -36,6 +36,7 @@
     </li>
     <li>
       <% if policy(Enrollment).new? %>
+        <%= link_to "Saques", exchanges_path, class: "text-warning" %>
         <%= link_to "Acessos", users_path, class: "text-danger" %>
         <%= link_to "Turmas", classrooms_path, class: "text-danger" %>
         <%= link_to "Cadastrar Usuário", new_user_path, class: "text-danger" %>

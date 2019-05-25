@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'classrooms/index'
 
   resources :sales, only: [:index, :new, :create]
-  resources :exchanges, only: [:new, :create]
+  resources :exchanges
 
   resources :attachments, only: [:new, :create]
 
