@@ -32,10 +32,14 @@ class ExchangesController < ApplicationController
 		@exchange = Exchange.find(params[:id])
 		authorize @exchange
 		if @exchange.status != true
+			less_money = current_user.wallet.money - @exchange.sale.value
 			@exchange.update(status: true)
+			current_user.wallet.update(money: less_money)
 			flash[:notice] = "Você pagou o #{@exchange.user.first_name}"	
 		else
+			more_money = current_user.wallet.money + @exchange.sale.value
 			@exchange.update(status: false)
+			current_user.wallet.update(money: more_money)
 			flash[:alert] = "Você cancelou o #{@exchange.user.first_name}"	
 		end
 		redirect_to exchanges_path
