@@ -10,9 +10,19 @@ class DashboardsController < ApplicationController
     @user_best = @users.first
     @user_second = @users[1...2]
     @user_third = @users[2...3]
+
+    if @user_best.score == @user_second.first.score
+      @user_second = @users[2...3]
+    end
+
+    if @user_second.first.score == @user_third.first.score
+      @user_third = @users[3...4]
+    end
+
     @quizzes = Quiz.all
     @files = Attachment.where(user: current_user)
     @enroll = Enrollment.where(user: current_user.id)
   end
+
 
 end
