@@ -21,3 +21,4 @@
 .env*
 .env*
 /config/initializers/smtp.rb
+/public/uploads/tmp/1538016494-9907-0002-2671/depo.mp4
