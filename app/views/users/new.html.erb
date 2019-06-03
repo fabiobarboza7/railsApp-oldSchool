@@ -54,6 +54,7 @@
           </span>
         </label>
           <%= f.input :username, required: true, autofocus: true, label: "Usuário" %>
+          <%= f.input :is_adult, required: true, autofocus: true, label: "Adulto?" %>
           <%= f.input :email, required: true, autofocus: true, label: "Email" %>
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
             <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>

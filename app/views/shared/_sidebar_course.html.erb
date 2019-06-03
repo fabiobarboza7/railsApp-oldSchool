@@ -1,13 +1,15 @@
 <nav id="sidebar" style="background-color: #008DD5;">
-  <%= link_to course_subject_lessons_path(@subject.course.slug, @subject) do %>
-    <div class="sidebar-header-course">
-      <%= link_to course_subjects_path(@subject.course) do %>
-        <div class="d-flex justify-content-between align-items-center">
-          <i class="fas fa-chevron-left mr-3"></i>
-          <h3 class="mb-0"><%= @subject.title %></h3>
-        </div>
-      <% end %>
-    </div>
+  <% if current_user.is_adult? != true %>
+    <%= link_to course_subject_lessons_path(@subject.course.slug, @subject) do %>
+      <div class="sidebar-header-course">
+        <%= link_to course_subjects_path(@subject.course) do %>
+          <div class="d-flex justify-content-between align-items-center">
+            <i class="fas fa-chevron-left mr-3"></i>
+            <h3 class="mb-0"><%= @subject.title %></h3>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   <% end %>
   <ul class="list-unstyled components">
     <% @lessons.each do |lesson| %>
