@@ -10,6 +10,7 @@ class DashboardsController < ApplicationController
     @user_best = @users.first
     @user_second = @users[1...2]
     @user_third = @users[2...3]
+    @user_fourth = @users[3...4]
 
     if @user_best.score == @user_second.first.score
       @user_second = @users[2...3]
@@ -17,6 +18,10 @@ class DashboardsController < ApplicationController
 
     if @user_second.first.score == @user_third.first.score
       @user_third = @users[3...4]
+    end
+
+    if @user_third.first.score == @user_fourth.first.score
+      @user_fourth = @users[4...5]
     end
 
     @quizzes = Quiz.all
