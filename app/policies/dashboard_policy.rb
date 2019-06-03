@@ -6,6 +6,6 @@ class DashboardPolicy < ApplicationPolicy
   end
 
   def index?
-    true
+    user.is_adult? == false
   end
 end

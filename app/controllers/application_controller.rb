@@ -57,9 +57,9 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    @course = Course.find(3)
+    @course_adult = Course.find(3)
     if current_user.is_adult? === true
-      redirect_to course_subject_lessons_path(@course, @course.subjects.first, @course.subjects.first.lessons)
+       course_subject_lessons_path(@course_adult, @course_adult.subjects.first)
     else
       dashboards_path
     end 

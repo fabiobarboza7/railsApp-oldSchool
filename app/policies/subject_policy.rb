@@ -6,7 +6,7 @@ class SubjectPolicy < ApplicationPolicy
   end
 
   def index?
-    true
+    user.is_adult? == false
   end
 
   def show?
