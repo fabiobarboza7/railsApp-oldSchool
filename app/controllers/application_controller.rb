@@ -60,8 +60,9 @@ class ApplicationController < ActionController::Base
     @course = Course.find(3)
     if current_user.is_adult? === true
       redirect_to course_subject_lessons_path(@course, @course.subjects.first, @course.subjects.first.lessons)
-    end
-    dashboards_path
+    else
+      dashboards_path
+    end 
   end
 
   private
