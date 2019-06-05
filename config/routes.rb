@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   resources :sales, only: [:index, :new, :create]
   resources :exchanges
+  resources :deposits
+  resources :withdrawals
 
   resources :attachments, only: [:new, :create]
 

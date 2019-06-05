@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190603143549) do
+ActiveRecord::Schema.define(version: 20190605142341) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,14 @@ ActiveRecord::Schema.define(version: 20190603143549) do
   create_table "dashboards", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "deposits", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_deposits_on_user_id", using: :btree
   end
 
   create_table "enrollments", force: :cascade do |t|
@@ -253,9 +261,18 @@ ActiveRecord::Schema.define(version: 20190603143549) do
     t.index ["user_id"], name: "index_wallets_on_user_id", using: :btree
   end
 
+  create_table "withdrawals", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_withdrawals_on_user_id", using: :btree
+  end
+
   add_foreign_key "attachments", "subjects"
   add_foreign_key "attachments", "users"
   add_foreign_key "classrooms", "enrollments"
+  add_foreign_key "deposits", "users"
   add_foreign_key "enrollments", "classrooms"
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users"
@@ -273,4 +290,5 @@ ActiveRecord::Schema.define(version: 20190603143549) do
   add_foreign_key "user_answers", "tests"
   add_foreign_key "user_answers", "users"
   add_foreign_key "wallets", "users"
+  add_foreign_key "withdrawals", "users"
 end

@@ -1,10 +1,9 @@
-class ExchangePolicy < ApplicationPolicy
+class WithdrawalPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
     end
   end
-
 
   def index?
     true
@@ -29,5 +28,5 @@ class ExchangePolicy < ApplicationPolicy
   def update?
     true
   end
-
+  
 end

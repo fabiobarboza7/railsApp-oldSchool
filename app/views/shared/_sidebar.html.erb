@@ -36,7 +36,9 @@
     </li>
     <li>
       <% if policy(Enrollment).new? %>
-        <%= link_to "Saques", exchanges_path, class: "text-warning" %>
+        <%= link_to "Saques Promocionais", exchanges_path, class: "text-warning" %>
+        <%= link_to "Depositar", new_deposit_path, class: "text-info" %>
+        <%= link_to "Saques", new_withdrawal_path, class: "text-info" %>
         <%= link_to "Acessos", users_path, class: "text-danger" %>
         <%= link_to "Turmas", classrooms_path, class: "text-danger" %>
         <%= link_to "Cadastrar Usuário", new_user_path, class: "text-danger" %>

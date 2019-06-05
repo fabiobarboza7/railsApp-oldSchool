@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :user_answers
   has_many :enrollments
   has_many :attachments
+  has_many :deposits
+  has_many :withdrawals
   mount_uploader :photo, PhotoUploader
 
   devise :database_authenticatable, :registerable,
@@ -20,7 +22,7 @@ class User < ApplicationRecord
   validates :username, presence: :true, uniqueness: { case_sensitive: false }
 
   def user_data
-    "#{self.first_name} => #{self.login}"
+    "#{self.first_name} #{self.last_name}  => #{self.login} m$#{self.wallet.money}"
   end
 
   def user_arrange

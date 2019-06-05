@@ -1,0 +1,11 @@
+<div class="container mt-5">
+	<div class="row">
+		<div class="col-sm-12">
+			<%= simple_form_for @deposit do |f| %>
+				<%= f.input :amount, label: "Quantidade m$" %>
+				<%= f.association :user, label_method: :user_data, label: "Solicitante" %>
+				<%= f.submit "Depositar", class: "btn btn-warning text-info", data: { confirm: 'O MooMoney foi entregue?' } %>
+			<% end %>
+		</div>
+	</div>
+</div>
