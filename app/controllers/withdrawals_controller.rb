@@ -13,7 +13,7 @@ class WithdrawalsController < ApplicationController
 	def create
 		@withdrawal = Withdrawal.new(withdrawal_params)
 		authorize @withdrawal
-		if @withdrawal.amount < @withdrawal.user.wallet.money
+		if @withdrawal.amount <= @withdrawal.user.wallet.money
 			if @withdrawal.save
 				update_money = @withdrawal.user.wallet.money - @withdrawal.amount
 				@withdrawal.user.wallet.update(money: update_money)
