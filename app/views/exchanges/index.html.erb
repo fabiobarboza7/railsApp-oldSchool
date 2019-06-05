@@ -5,7 +5,7 @@
 				<thead>
 					<tr>
 					  
-					  <th scope="col">Pagar</th>
+					  <!-- <th scope="col">Pagar</th> -->
 					  <th scope="col">m$ para receber</th>
 					  <th scope="col">Usuário</th>
 					  <th scope="col">Nome</th>
@@ -15,15 +15,15 @@
 				<tbody>
 					<% @exchanges.each do |exc| %>
 						<tr>
-							<td>
-								<%= link_to exchange_path(exc), :method=> :put  do %>
-									<% if exc.status != true %>
-										<i class="fas fa-times-circle text-warning"></i>
-									<% else %>
-										<i class="fas fa-check-circle text-success"></i>
-									<% end %>
-								<% end %>
-							</td>
+							<!-- <td> -->
+								<%#= link_to exchange_path(exc), :method=> :put  do %>
+									<%# if exc.status != true %>
+										<!-- <i class="fas fa-times-circle text-warning"></i> -->
+									<%# else %>
+										<!-- <i class="fas fa-check-circle text-success"></i> -->
+									<%# end %>
+								<%# end %>
+							<!-- </td> -->
 							<td><%= exc.sale.value %></td>
 							<td><%= exc.user.username %></td>
 							<td><%= exc.user.first_name %> <%= exc.user.last_name %></td>
