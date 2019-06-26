@@ -22,7 +22,9 @@
           Envie um WhatsApp
           <i style="color: #0EC144;" class="fab fa-whatsapp"></i>
         <% end %>
-        <%= link_to "Aula Grátis", aula_gratis_path, class: "px-2 text-yellow"%>
+        <%= link_to aula_gratis_path, class: "text-white btn btn-outline-warning" do%>
+          <span>Aula Grátis</span>
+        <% end %>        
         <span class="dropdown-custom pl-3">
           <span class="btn btn-sm btn-outline-dark dropbtn" onclick="myFunction()">
             Acesso do Aluno
