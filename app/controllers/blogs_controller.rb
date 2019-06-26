@@ -1,5 +1,5 @@
 class BlogsController < ApplicationController
-  before_action :set_blog, only: [:show, :update, :destroy]
+  before_action :set_blog, only: [:show, :update, :edit, :destroy]
   skip_before_action :authenticate_user!
 
   def index
@@ -17,6 +17,10 @@ class BlogsController < ApplicationController
     authorize @blog
   end
 
+  def edit
+    authorize @blog
+  end
+
   def create
     @blog = Blog.new(blog_params)
     authorize @blog
@@ -25,14 +29,14 @@ class BlogsController < ApplicationController
     else
       render :new
     end
-    redirect_to root_path
+    redirect_to blog_path(@blog)
   end
 
   def update
     # before_action
     @blog.update(blog_params)
     authorize @blog
-    redirect_to root_path
+    redirect_to blog_path(@blog)
   end
 
   def destroy

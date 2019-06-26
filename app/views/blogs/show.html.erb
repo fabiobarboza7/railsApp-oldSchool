@@ -9,12 +9,16 @@
     <div class="row course-card my-5 bg-darkblue">
       <div class="col-12 col-sm-10 offset-sm-1 d-sm-flex justify-content-between align-items-center py-4">
         <%= cl_image_tag(@blog.photo, :secure => true, :width => 300, class: 'img-fluid img-thumbnail mx-auto d-block') %>
-        <h3 class="flex-grow-1 text-center mt-sm-0 mt-2 text-white"><%= @blog.title %></h3>
+        <h3 class="flex-grow-1 text-center mt-sm-0 mt-2 text-white"><%= @blog.title %>
+          <% if current_user.admin? %>
+             <%= link_to "editar", edit_blog_path(@blog), class: "text-danger" %>
+          <% end %>
+        </h3>
       </div>
       <div class="horizontal-line"></div>
       <div class="col-sm-12 bg-grey">
         <div class="col-12 col-sm-10 offset-sm-1 mt-5 text-darkblue">
-          <p class="pl-4 text-justify"><%= h(@blog.content).gsub(/\n/, '<br>').html_safe %></p>
+          <div class="pl-4 text-justify"><%= (@blog.content).gsub(/\n/, '<br>').html_safe %></div>
         </div>
       </div>
     </div>
