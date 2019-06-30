@@ -1,21 +1,33 @@
 <% content_for(:title_tag) do %>
   Aula Grátis
 <% end %>
-<header class="banner-moodev d-flex justify-content-center align-items-center my-4">
+<header class="banner-moodev py-4 bg-test-svg d-flex align-items-center">
   <div class="container">
     <div class="row">
-      <div class="col-sm-6 offset-sm-3">
-        <h3 class="text-center">Formulário para agendar uma <span class="text-yellow">aula</span> experimental <span class="text-yellow">gratuita</span></h3>
-        <%= simple_form_for @test_class, html: { class: "form-container"} do |f| %>
-          <%= f.input :student, label: "Nome do Aluno", placeholder: "Digite o nome do aluno" %>
-          <%= f.input :age, label: "Idade", as: :integer, placeholder: "Digite a idade do aluno" %>
+      <div class="col-sm-10 offset-sm-1 bg-white p-4 rounded">
+        <h3 class="text-center">Agendar uma <span class="text-danger">aula</span> experimental <span class="text-danger">gratuita</span></h3>
+        <%= simple_form_for @test_class, html: { class: "form-container bg-white"} do |f| %>
+          <div class="row">
+            <div class="col-6">
+              <%= f.input :student, label: "Nome do Aluno", placeholder: "Digite o nome do aluno" %>
+            </div>
+            <div class="col-6">
+              <%= f.input :age, label: "Idade", as: :integer, placeholder: "Digite a idade do aluno" %>
+            </div>
+          </div>
           <%#= f.input :age, label: "Data de Nascimento", as: :date, :order => [ :day, :month, :year], placeholder: "Digite" %>
           <%= f.input :parent, label: "Nome do Responsável", placeholder: "Digite o nome do responsável" %>
-          <%= f.input :email, label: "E-mail", placeholder: "Digite seu e-mail" %>
-          <%= f.input :phone, label: "Telefone", placeholder: "Digite se telefone" %>
+          <div class="row">
+            <div class="col-6">
+              <%= f.input :email, label: "E-mail", placeholder: "Digite seu e-mail" %>
+            </div>
+            <div class="col-6">
+              <%= f.input :phone, label: "Telefone", placeholder: "Digite seu telefone" %>
+            </div>
+          </div>
           <%= f.input :schedule, label: "Data", collection: TestClass::SCHEDULE_DAYS, :prompt => "Selecione um dia" %>
           <%#= f.association :course, label: "Qual curso fará a aula gratuita?", as: :radio_buttons, label_method: :title, :prompt => "Selecione o curso" %>
-          <%= f.submit "Solicitar Aula", class: 'btn bg-yellow' %>
+          <%= f.submit "Solicitar Aula", class: 'btn btn-success btn-block' %>
           <div class="progress mt-2">
             <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
