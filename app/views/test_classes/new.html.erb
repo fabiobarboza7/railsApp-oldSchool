@@ -8,10 +8,10 @@
         <h3 class="text-center">Agendar uma <span class="text-danger">aula</span> experimental <span class="text-danger">gratuita</span></h3>
         <%= simple_form_for @test_class, html: { class: "form-container bg-white"} do |f| %>
           <div class="row">
-            <div class="col-6">
+            <div class="col-12 col-sm-6">
               <%= f.input :student, label: "Nome do Aluno", placeholder: "Digite o nome do aluno" %>
             </div>
-            <div class="col-6">
+            <div class="col-12 col-sm-6">
               <%= f.input :age, label: "Idade", as: :integer, placeholder: "Digite a idade do aluno" %>
             </div>
           </div>
