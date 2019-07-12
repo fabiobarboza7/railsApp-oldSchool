@@ -45,75 +45,84 @@
 		<div class="p-3 bg-white rounded">
 			<p class="text-yellow">Ranking</p>
 			<ul class="list-group overflow-scroll">
-				<li class="list-group-item d-flex justify-content-between align-items-center">
-							<span class="badge bg-darkblue text-yellow badge-pill"><%= @user_best.score %></span>
-						<div>
-							
-								<% if current_user == @user_best %>
+				<% count = 1 %>
+				<% @users.each do |user_rank| %>
+					<!-- first init -->
+					<% if count == 1 %>
+						<li class="list-group-item d-flex justify-content-between align-items-center">
+							<span class="badge bg-darkblue text-yellow badge-pill"><%= user_rank.score %></span>
+							<div>
+								<% if current_user == user_rank %>
 									<%= image_tag('gold-medal.png') %> 
 									<strong class="text-success">
-									<% if @user_best.first_name.split.size > 1 %>
-										<%= @user_best.first_name %> 
+									<% if user_rank.first_name.split.size > 1 %>
+										<%= user_rank.first_name %> 
 									<% else %>
-										<%= @user_best.first_name %> <%= @user_best.last_name.partition(" ").first %>
+										<%= user_rank.first_name %> <%= user_rank.last_name.partition(" ").first %>
 									<% end %>
 									</strong>
 								<% else %>
-									<%= image_tag('gold-medal.png') %>
-									<% if @user_best.first_name.split.size > 1 %>
-										<%= @user_best.first_name %> 
+									<%= image_tag('gold-medal.png') %> 
+									<% if user_rank.first_name.split.size > 1 %>
+										<%= user_rank.first_name %> 
 									<% else %>
-										<%= @user_best.first_name %> <%= @user_best.last_name.partition(" ").first %>
+										<%= user_rank.first_name %> <%= user_rank.last_name.partition(" ").first %>
 									<% end %>
 								<% end %>
 							</div>
-					</li>
-					<li class="list-group-item d-flex justify-content-between align-items-center">
-						<span class="badge bg-darkblue text-yellow badge-pill"><%= @user_second.first.score %></span>
-						<div>
-							<% if current_user == @user_second.first %>
-								<%= image_tag('silver-medal.png') %> 
-								<strong class="text-success">
-								<% if @user_second.first.first_name.split.size > 1 %>
-									<%= @user_second.first.first_name %> 
+						</li>
+					<% end %>
+					<!-- first end -->
+					<!-- second init -->
+					<% elsif count == 2 %>
+						<li class="list-group-item d-flex justify-content-between align-items-center">
+							<span class="badge bg-darkblue text-yellow badge-pill"><%= user_rank.score %></span>
+							<div>
+								<% if current_user == user_rank %>
+									<%= image_tag('silver-medal.png') %> 
+									<strong class="text-success">
+									<% if user_rank.first_name.split.size > 1 %>
+										<%= user_rank.first_name %> 
+									<% else %>
+										<%= user_rank.first_name %> <%= user_rank.last_name.partition(" ").first %>
+									<% end %>
+									</strong>
 								<% else %>
-									<%= @user_second.first.first_name %> <%= @user_second.first.last_name.partition(" ").first %>
+									<%= image_tag('silver-medal.png') %> 
+									<% if user_rank.first_name.split.size > 1 %>
+										<%= user_rank.first_name %> 
+									<% else %>
+										<%= user_rank.first_name %> <%= user_rank.last_name.partition(" ").first %>
+									<% end %>
 								<% end %>
-								</strong>
-							<% else %>
-								<%= image_tag('silver-medal.png') %>
-								<% if @user_second.first.first_name.split.size > 1 %>
-									<%= @user_second.first.first_name %> 
+							</div>
+						</li>
+					<% elsif count == 3 %>
+						<li class="list-group-item d-flex justify-content-between align-items-center">
+							<span class="badge bg-darkblue text-yellow badge-pill"><%= user_rank.score %></span>
+							<div>
+								<% if current_user == user_rank %>
+									<%= image_tag('bronze-medal.png') %>
+									<strong class="text-success">
+									<% if user_rank.first_name.split.size > 1 %>
+										<%= user_rank.first_name %> 
+									<% else %>
+										<%= user_rank.first_name %> <%= user_rank.last_name.partition(" ").first %>
+									<% end %>
+									</strong>
 								<% else %>
-									<%= @user_second.first.first_name %> <%= @user_second.first.last_name.partition(" ").first %>
+									<%= image_tag('bronze-medal.png') %>
+									<% if user_rank.first_name.split.size > 1 %>
+										<%= user_rank.first_name %> 
+									<% else %>
+										<%= user_rank.first_name %> <%= user_rank.last_name.partition(" ").first %>
+									<% end %>
 								<% end %>
-							<% end %>
-						</div>
-					</li>
-					<li class="list-group-item d-flex justify-content-between align-items-center ">
-						<span class="badge bg-darkblue text-yellow badge-pill"><%= @user_third.first.score %></span>
-						<div>
-							<% if current_user == @user_third.first %>
-								<%= image_tag('bronze-medal.png') %> 
-								<strong class="text-success">
-								<% if @user_third.first.first_name.split.size > 1 %>
-									<%= @user_third.first.first_name %> 
-								<% else %>
-									<%= @user_third.first.first_name %> <%= @user_third.first.last_name.partition(" ").first %>
-								<% end %>
-								</strong>
-							<% else %>
-								<%= image_tag('bronze-medal.png') %>
-								<% if @user_third.first.first_name.split.size > 1 %>
-									<%= @user_third.first.first_name %> 
-								<% else %>
-									<%= @user_third.first.first_name %> <%= @user_third.first.last_name.partition(" ").first %>
-								<% end %>
-							<% end %>
-						</div>
-					</li>
-				<% @users.drop(4).each do |user_rank| %>
-					
+							</div>
+						</li>
+					<!-- second end -->
+					<% end %>
+					<% count = count + 1 %>
 					<li class="list-group-item d-flex justify-content-between align-items-center">
 						<span class="badge bg-darkblue text-yellow badge-pill"><%= user_rank.score %></span>
 						<div>
