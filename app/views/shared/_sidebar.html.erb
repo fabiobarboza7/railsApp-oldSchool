@@ -17,13 +17,13 @@
         <% end %>
       </ul>
     </li>
-    <% if policy(Wallet).show? %>
-    <li>
-      <%= link_to user_wallet_path(current_user, current_user.wallet) do %>
-        <i class="fas fa-dollar-sign text-yellow"></i>
-        MooMoney Bank
-      <% end %>
-    </li>
+    <% if current_user.wallet.is_verified?  %>
+      <li>
+        <%= link_to user_wallet_path(current_user, current_user.wallet) do %>
+          <i class="fas fa-dollar-sign text-yellow"></i>
+          MooMoney Bank
+        <% end %>
+      </li>
     <% end %>
     <li>
       <%= link_to "Tutoriais", tutorials_path %>
