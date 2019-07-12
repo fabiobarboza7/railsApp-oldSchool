@@ -6,7 +6,8 @@ class WalletPolicy < ApplicationPolicy
   end
 
   def show?
-    user.wallet.is_verified?
+  	# user.wallet.is_verified?
+    record.user = user
   end
 
 end
