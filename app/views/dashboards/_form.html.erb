@@ -71,7 +71,6 @@
 								<% end %>
 							</div>
 						</li>
-					<% end %>
 					<!-- first end -->
 					<!-- second init -->
 					<% elsif count == 2 %>
@@ -121,28 +120,29 @@
 							</div>
 						</li>
 					<!-- second end -->
-					<% end %>
+					<% else %>
 					<% count = count + 1 %>
-					<li class="list-group-item d-flex justify-content-between align-items-center">
-						<span class="badge bg-darkblue text-yellow badge-pill"><%= user_rank.score %></span>
-						<div>
-							<% if current_user == user_rank %>
-								<strong class="text-success">
-								<% if user_rank.first_name.split.size > 1 %>
-									<%= user_rank.first_name %> 
+						<li class="list-group-item d-flex justify-content-between align-items-center">
+							<span class="badge bg-darkblue text-yellow badge-pill"><%= user_rank.score %></span>
+							<div>
+								<% if current_user == user_rank %>
+									<strong class="text-success">
+									<% if user_rank.first_name.split.size > 1 %>
+										<%= user_rank.first_name %> 
+									<% else %>
+										<%= user_rank.first_name %> <%= user_rank.last_name.partition(" ").first %>
+									<% end %>
+									</strong>
 								<% else %>
-									<%= user_rank.first_name %> <%= user_rank.last_name.partition(" ").first %>
+									<% if user_rank.first_name.split.size > 1 %>
+										<%= user_rank.first_name %> 
+									<% else %>
+										<%= user_rank.first_name %> <%= user_rank.last_name.partition(" ").first %>
+									<% end %>
 								<% end %>
-								</strong>
-							<% else %>
-								<% if user_rank.first_name.split.size > 1 %>
-									<%= user_rank.first_name %> 
-								<% else %>
-									<%= user_rank.first_name %> <%= user_rank.last_name.partition(" ").first %>
-								<% end %>
-							<% end %>
-						</div>
-					</li>
+							</div>
+						</li>
+					<% end %>
 				<% end %>
 			</ul>
 		</div>
